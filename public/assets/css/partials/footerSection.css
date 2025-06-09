@@ -1,0 +1,68 @@
+.xodry-footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  font-size: 0.95rem;
+}
+
+.footer-brand {
+  color: var(--light-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.footer-about {
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.footer-title {
+  color: var(--light-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.footer-links a {
+  display: block;
+  color: #ddd;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--accent-color);
+  padding-left: 5px;
+}
+
+.footer-contact li {
+  color: #ccc;
+  margin-bottom: 0.5rem;
+}
+
+.footer-social a {
+  color: var(--light-color);
+  font-size: 1.2rem;
+  display: inline-block;
+  transition: 0.3s;
+}
+
+.footer-social a:hover {
+  color: var(--main-color);
+  transform: scale(1.1);
+}
+
+.footer-divider {
+  border-color: var(--accent-color);
+}
+
+@media (max-width: 767px) {
+  .footer-brand,
+  .footer-title {
+    text-align: center;
+  }
+
+  .footer-social {
+    justify-content: center;
+    text-align: center;
+  }
+}

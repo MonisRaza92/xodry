@@ -1,0 +1,21 @@
+.my-chart {
+  border: 1px solid var(--accent-color);
+  padding: 10px;
+  background-color: var(--secondary-color);
+}
+.recent-users-container {
+    border: 1px solid var(--accent-color);
+    background-color: var(--secondary-color);
+    padding: 10px;
+    height: 211px;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+.recent-users-container .recent-users-heading{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 10px!important; 
+    border-bottom: 2px solid var(--accent-color);
+}

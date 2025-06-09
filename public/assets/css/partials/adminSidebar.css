@@ -1,0 +1,51 @@
+.admin-sidebar{
+    background-color: var(--secondary-color);
+    width: 100%;
+    padding: 20px;
+    margin-top: calc(var(--nav-height) + 20px);
+    border: 1px solid var(--accent-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.admin-sidebar ul li{
+    font-weight: 600;
+    padding: 5px 0 5px 40px;
+    position: relative;
+    transition: all ease .4s;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+.admin-sidebar ul li::after{
+    content: "+";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-55%);
+}
+.active-li{
+    background-color: var(--accent-color);
+}
+.admin-sidebar ul li:hover{
+    background-color: var(--accent-color);
+}
+.admin-sidebar ul li i{
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.divider-text{
+    color: var(--light-accent-color);
+    font-weight: 500;
+    margin-top: 20px;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+.divider{
+    width: 100%;
+    height: 2px;
+    margin-bottom: 20px;
+    background-color: var(--light-accent-color);
+}

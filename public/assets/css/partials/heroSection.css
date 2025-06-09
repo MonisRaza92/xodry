@@ -1,0 +1,56 @@
+.hero-section{
+    margin-top: 60px;
+    padding-bottom: 50px;
+}
+.hero-section .hero-content{
+    padding: 70px 20px 0 20px;
+}
+.hero-section .hero-content h6{
+    border: 1px solid var(--accent-color);
+    width: fit-content;
+    border-radius: 20px;
+    background-color: var(--secondary-color);
+    padding: 5px 20px 5px 40px;
+    position: relative;
+}
+.hero-section .hero-content h6::before{
+    content: '';
+    position: absolute;
+    width: 15px ;
+    height: 15px ;
+    border-radius: 50%;
+    background-color: greenyellow;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.hero-section .hero-content h1{
+    font-size: 55px;
+    font-weight: 600;
+}
+.hero-section .hero-content p{
+    font-size: 18px;
+    font-weight: 200;
+}
+.hero-section .hero-content h2{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--light-color);
+}
+.hero-img{
+    padding-top: 60px;
+}
+@media screen and  (max-width:768px) {
+    .hero-section .hero-content{
+        padding: 40px 15px 0 15px;
+    }
+    .hero-section .hero-content h1{
+        font-size: 40px;
+    }
+    .hero-section .hero-content h2{
+        font-size: 16px;
+    }  
+    .hero-section .hero-content p{
+        font-size: 14px;
+    }
+}

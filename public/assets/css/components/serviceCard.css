@@ -1,0 +1,25 @@
+.xodry-whatwedo-card {
+    background-color: var(--dark-color);
+    transition: all 0.3s ease;
+    border: 1px solid var(--accent-color);
+  }
+  
+  .xodry-whatwedo-card:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  }
+  .xodry-whatwedo-card img{
+    height: 300px;
+    object-fit: cover;
+  }
+  .xodry-whatwedo-card-title {
+    color: var(--light-color);
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .xodry-whatwedo-card-text {
+    color: var(--light-color);
+    font-size: 16px;
+  }

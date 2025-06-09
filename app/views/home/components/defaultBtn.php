@@ -1,0 +1,2 @@
+<a href="pricing" id="<?= $btnDefaultOutlineId ?>" class=" default-btn-outline" data-aos="fade-up"><?= $btnDefaultOutline ?></a>
+<a href="#" id="<?= $btnDefaultId ?>" class="default-btn" data-aos="fade-up"><?= $btnDefault ?></a>

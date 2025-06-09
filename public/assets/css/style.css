@@ -1,0 +1,73 @@
+/* INCLUDES CSS IMPORT */
+@import url(includes/navbar.css);
+@import url(includes/login.css);
+@import url(includes/pickupForm.css);
+@import url(includes/breadcrumb.css);
+@import url(includes/userDetailsForm.css);
+
+/* PARTIALS CSS IMPORT */
+@import url(partials/heroSection.css);
+@import url(partials/whatWeDo.css);
+@import url(partials/whyChooseUs.css);
+@import url(partials/howItWorks.css);
+@import url(partials/pricingSection.css);
+@import url(partials/FAQSection.css);
+@import url(partials/footerSection.css);
+@import url(partials/aboutOurStory.css);
+@import url(partials/vision&mission.css);
+@import url(partials/ownerPortfolio.css);
+@import url(partials/adminSidebar.css);
+@import url(partials/adminStats.css);
+
+
+
+/* COMPONENTS CSS  IMPORT */
+@import url(components/imageSlider.css);
+@import url(components/defaultBtn.css);
+@import url(components/serviceCard.css);
+@import url(components/imageCompare.css);
+@import url(components/statsCard.css);
+@import url(components/recentUserList.css);
+@import url(components/shortRidersList..css);
+
+:root{
+    --dark-color:#111111;
+    --primary-color:#18230F;
+    --secondary-color:#27391C;
+    --accent-color:#255F38;
+    --main-color:#1F7D53;
+    --light-color:#f2f2f2;
+    --light-accent-color:#a0b3a6;
+    --fade-color:#00000050;
+    --nav-height:64px;
+}
+body{
+    background: var(--primary-color);
+    color: var(--light-color); 
+    font-family:sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    width: 100%!important;
+}
+ul{
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color:  var(--light-color);
+}
+p{
+    font-size: 12px;
+}
+button{
+    border: none;
+    background-color: transparent;
+    color: var(--light-color);
+}
+.container{
+    position: relative;
+}

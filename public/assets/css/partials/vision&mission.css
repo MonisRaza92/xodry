@@ -1,0 +1,24 @@
+.xodry-vision-mission {
+  background-color: var(--secondary-color);
+}
+
+.xodry-vision-mission h2 {
+  color: var(--light-color);
+  font-weight: 700;
+  font-size: 3rem;
+}
+
+.xodry-vision-mission .card {
+  background-color: var(--primary-color);
+  border-left: 5px solid var(--accent-color);
+}
+
+.xodry-vision-mission h4 {
+  color: var(--light-accent-color);
+  font-weight: 600;
+}
+
+.xodry-vision-mission p {
+  color: var(--light-color);
+  line-height: 1.7;
+}

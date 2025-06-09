@@ -1,0 +1,99 @@
+.xodry-pricing-section {
+  background-color: var(--secondary-color);
+  color: var(--light-color);
+}
+
+.section-title {
+  color: var(--light-color);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--light-color);
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.xodry-pricing-card {
+  background-color: var(--secondary-color);
+  border-radius: 16px;
+  border: 2px solid var(--accent-color);
+  padding: 30px 20px;
+  text-align: center;
+  transition: 0.4s ease-in-out;
+  box-shadow: 0 0 50px var(--fade-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.xodry-pricing-card.featured {
+  background-color: var(--accent-color);
+  border-color: var(--main-color);
+}
+
+.xodry-pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.pricing-icon {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: var(--light-color);
+}
+
+.featured .pricing-icon {
+  color: var(--light-color);
+}
+
+.pricing-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.pricing-price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--light-color);
+  margin-bottom: 20px;
+}
+
+.pricing-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.pricing-features li {
+  font-size: 0.95rem;
+  padding: 6px 0;
+  color: #e0e0e0;
+}
+
+.pricing-features i {
+  color: var(--main-color);
+  margin-right: 8px;
+}
+
+.featured .pricing-features i {
+  color: var(--light-color);
+}
+
+.pricing-btn {
+  background-color: var(--main-color);
+  color: var(--light-color);
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.pricing-btn:hover {
+  background-color: var(--light-accent-color);
+  color: var(--dark-color);
+}

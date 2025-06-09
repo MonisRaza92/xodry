@@ -1,0 +1,18 @@
+.xodry-whatwedo-section {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+}
+
+.xodry-whatwedo-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--light-color);
+}
+
+.xodry-whatwedo-subtitle {
+  font-size: 1rem;
+  color: var(--light-color);
+  margin: 0 auto;
+  text-align: left;
+}
+

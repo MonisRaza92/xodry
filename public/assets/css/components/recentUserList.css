@@ -1,0 +1,17 @@
+.recent-users-list{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 5px;
+    border-bottom: 2px solid var(--accent-color);
+}
+.recent-users-list span{
+    width: 30%;
+}
+.recent-users-list span:last-child{
+    width: 10%;
+    background: var(--accent-color);
+    border-radius: 10px;
+    font-size: 12px;
+    padding: 0 10px 3px 10px;
+}

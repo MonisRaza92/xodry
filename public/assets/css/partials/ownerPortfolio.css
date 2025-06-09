@@ -1,0 +1,26 @@
+.xodry-owner-portfolio h2 {
+    font-weight: bold;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: var(--light-color);
+  }
+  .xodry-owner-portfolio h3{
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  .xodry-owner-portfolio img{
+    height: 300px;
+  }
+  .xodry-owner-portfolio p {
+    font-size: 1rem;
+    color: var(--light-color);
+  }
+  
+  .text-accent {
+    color: var(--accent-color);
+  }
+  
+  .text-light-accent {
+    color: var(--light-accent-color);
+  }
+  
