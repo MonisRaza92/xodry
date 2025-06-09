@@ -33,14 +33,4 @@ class UserModel{
         $stmt->execute([$user_id]);
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
-    public function updateUser($id, $name, $number, $email, $address)
-    {
-        try {
-            $stmt = $this->db->prepare("UPDATE users SET name = ?, number = ?, email = ?, address = ? WHERE id = ?");
-            $stmt->execute([$name, $number, $email, $address, $id]);
-            return $stmt->rowCount() > 0;
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
 }

@@ -29,8 +29,8 @@ class PickupsController{
             $address  = $_POST['address'];
             $password = $_POST['password'] ?? null;
 
-            $userModel = new \App\Models\AuthModel();
-            $pickupModel = new \App\Models\PickupsModel();
+            $userModel = new AuthModel();
+            $pickupModel = new PickupsModel();
 
             $user_id = $_SESSION['user_id'] ?? null;
 
@@ -49,7 +49,7 @@ class PickupsController{
 
                     // Optional: update incomplete profile
                     if (empty($user['name']) || empty($user['address'])) {
-                        $userModel->updateUser($name, $number, $email, $address, $password);
+                        $userModel->updateUser($user_id, $name, $number, $email, $address);
                     }
                 }
             }
@@ -65,7 +65,8 @@ class PickupsController{
         }
     }
 
-    public function order(){
-        echo 'hello';
+    public function changePickupStatus(){
+        $user_id = $_SESSION['user_id'] ?? null;
+        
     }
 }
