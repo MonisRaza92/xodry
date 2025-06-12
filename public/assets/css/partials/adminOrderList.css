@@ -1,0 +1,33 @@
+.pickup-card {
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pickup-header {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--light-color);
+    margin-bottom: 10px;
+}
+
+.pickup-details {
+    font-size: 1rem;
+    color: var(--light-color);
+}
+
+.pickup-meta {
+    font-size: 0.95rem;
+    color: var(--light-color);
+    margin-top: 10px;
+}
+.pickup-card form select {
+    border-radius: 5px;
+    width: 150px;
+    border: none;
+}

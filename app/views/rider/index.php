@@ -11,6 +11,8 @@
     <?php $pageName = "Dashboard";
     include_once __DIR__ . '/../includes/breadcrumb.php' ?>
     <?php include_once __DIR__ . '/partials/riderStats.php' ?>
+    <?php include_once __DIR__ . '/partials/riderPickups.php' ?>
+    <?php include_once __DIR__ . '/partials/riderCompletedPickups.php' ?>
 
 
 

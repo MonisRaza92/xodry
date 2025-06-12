@@ -4,15 +4,24 @@ namespace App\Controllers;
 
 include  __DIR__. '/../../vendor/autoload.php';
 
-use App\Models\AuthModel;
 use App\Models\PickupsModel;
+use App\Models\AuthModel;
+use App\Constants\PickupStatus;
+use App\Models\UserModel;
+use Core\Database;
 
-class PickupsController{
+class PickupsController
+{
+    private $db;
+    private $authModel;
     private $userModel;
     private $pickupsModel;
+
     public function __construct()
     {
-        $this->userModel = new AuthModel();
+        $this->db = new Database();
+        $this->authModel = new AuthModel();
+        $this->userModel = new UserModel($this->db);
         $this->pickupsModel = new PickupsModel();
     }
     public function createPickup()
@@ -22,25 +31,26 @@ class PickupsController{
         ini_set('display_errors', 1);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name     = $_POST['name'];
+            $name = $_POST['name'];
             $pickup_date = $_POST['pickup_date'];
-            $number   = $_POST['number'];
+            $number = $_POST['number'];
             $email = $_POST['email'] ?? null;
-            $address  = $_POST['address'];
+            $address = $_POST['address'];
             $password = $_POST['password'] ?? null;
 
-            $userModel = new AuthModel();
+            $authModel = new AuthModel();
+            $userModel = new UserModel($this->db);
             $pickupModel = new PickupsModel();
 
             $user_id = $_SESSION['user_id'] ?? null;
 
             // Step 1: If not logged in → check user by number
             if (!$user_id) {
-                $user = $userModel->getUserByNumber($number);
+                $user = $authModel->getUserByNumber($number);
 
                 if (!$user) {
                     // Register and login
-                    $user_id = $userModel->createUser($name, $number, $email, $address, $password);
+                    $user_id = $authModel->createUser($name, $number, $email, $address, $password);
                     $_SESSION['user_id'] = $user_id;
                 } else {
                     // Login existing user
@@ -65,8 +75,60 @@ class PickupsController{
         }
     }
 
-    public function changePickupStatus(){
-        $user_id = $_SESSION['user_id'] ?? null;
-        
+    public function cancelPickupStatus()
+    {
+        header('Content-Type: application/json');
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+
+        try {
+            if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+                throw new \Exception('Invalid request method');
+            }
+
+            if (!isset($_POST['pickup_id'])) {
+                throw new \Exception('Pickup ID is required');
+            }
+
+            $pickup_id = $_POST['pickup_id'];
+
+            if (!is_numeric($pickup_id)) {
+                throw new \Exception('Invalid pickup ID format');
+            }
+
+            $result = $this->pickupsModel->updatePickupStatusCancel($pickup_id);
+
+            if ($result === true) {
+                echo json_encode(['status' => 'success', 'message' => 'Pickup cancelled successfully']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => $result]);
+            }
+        } catch (\Exception $e) {
+            error_log("Error in cancelPickupStatus: " . $e->getMessage());
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+        exit;
+    }
+    public function updatePickupStatus()
+    {
+        header('Content-Type: application/json');
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $pickup_id = $_POST['pickup_id'] ?? null;
+            $status = $_POST['status'] ?? null;
+
+            if (!$pickup_id || !$status) {
+                echo json_encode(['status' => 'error', 'message' => 'pickup_id and status are required']);
+                exit;
+            }
+
+            $result = $this->pickupsModel->updatePickupStatus($pickup_id, $status);
+
+            if ($result === true) {
+                echo json_encode(['status' => 'success', 'message' => 'Pickup status updated']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => $result]);
+            }
+        }
+        exit;
     }
 }

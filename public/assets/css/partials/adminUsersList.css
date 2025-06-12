@@ -1,0 +1,37 @@
+.users-list-xodry {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-row-xodry {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr auto;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    color: var(--light-color);
+    font-weight: 600;
+
+}
+
+.user-actions-xodry form {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.user-delete-btn-xodry {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.users-list-empty-xodry {
+    margin: 20px 0;
+    text-align: center;
+}

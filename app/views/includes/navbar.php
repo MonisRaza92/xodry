@@ -32,18 +32,20 @@ $pickupList = $navbarData['pickupList'];
                         </div>
                         <?php foreach ($pickupList as $pickup): ?>
                             <div class="short-order-list">
-                                <i class="fa-regular fa-user"></i>
+                                <i class="fa-solid fa-shirt"></i>
                                 <div class="details">
                                     <p><?= htmlspecialchars($pickup['schedule'] ?? '') ?></p>
                                     <p><?= htmlspecialchars($pickup['address'] ?? '') ?></p>
                                 </div>
-                                <a href="#" class=" btn-danger btn"><i class="fa-solid fa-xmark"></i></i></a>
+                                <button class="btn btn-danger cancel-pickup" data-pickup-id="<?= htmlspecialchars($pickup['id']) ?>">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
                             </div>
                         <?php endforeach; ?>
                     </div>
                     <button id="accountMenuBtn"><i class="fa-regular nav-icons fa-user"></i></button>
                     <div class="account-menu rounded">
-                        <a href="#" id="userDetailsBtn" ><i class="fa-regular fa-user"></i> Profile</a>
+                        <a href="#" id="userDetailsBtn"><i class="fa-regular fa-user"></i> Profile</a>
                         <a href="logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                     </div>
                 <?php else : ?>
@@ -63,6 +65,45 @@ $pickupList = $navbarData['pickupList'];
         <a href="home">home</a>
         <a href="about">About</a>
         <a href="services">Services</a>
-        <a href="pricing">Pricing</a>
+        <a href="prices">Pricing</a>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const cancelButtons = document.querySelectorAll('.cancel-pickup');
+
+        cancelButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const pickupId = this.getAttribute('data-pickup-id');
+
+                if (confirm('Are you sure you want to cancel this pickup?')) {
+                    const formData = new FormData();
+                    formData.append('pickup_id', pickupId);
+
+                    fetch('pickups/cancelPickupStatus', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // Remove the pickup from the list
+                                this.closest('.short-order-list').remove();
+                                // Update the order count
+                                const orderCountSpan = document.querySelector('#cartBtn span');
+                                const currentCount = parseInt(orderCountSpan.textContent);
+                                orderCountSpan.textContent = currentCount - 1;
+                            } else {
+                                alert('Failed to cancel pickup: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            alert('An error occurred while cancelling the pickup');
+                        });
+                }
+            });
+        });
+    });
+</script>

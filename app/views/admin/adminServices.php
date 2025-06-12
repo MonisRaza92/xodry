@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <?php include_once __DIR__ . '/../includes/Header.php' ?>
+    <title>Xodry Admin Dashboard - Affordable Laundry & Dry Cleaning in Delhi</title>
+</head>
+
+<body>
+    <?php include_once __DIR__ . '/../includes/Navbar.php' ?>
+    <div class="container-fluid pb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 position-relative">
+                    <?php include_once __DIR__ . '/partials/adminSidebar.php' ?>
+                </div>
+                <div class="col-lg-9">
+                    <?php $pageName = "Services";
+                    include_once __DIR__ . '/../includes/breadcrumb.php' ?>
+                    <form method="post" action="admin-addCategory" enctype="multipart/form-data" class=" py-4 mt-2 shadow-sm add-category-form">
+                        <!-- Image at Top -->
+                        <div class="mb-3">
+                            <label for="categoryImage" class="form-label">Category Image</label>
+                            <input type="file" class="form-control" id="categoryImage" name="image" accept="image/*" required>
+                        </div>
+
+                        <!-- Category Name -->
+                        <div class="mb-3">
+                            <label for="categoryName" class="form-label">Category Name</label>
+                            <input type="text" class="form-control" id="categoryName" name="category_name" placeholder="Category Name" required>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <label for="categoryDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="categoryDescription" name="description" placeholder="Description" rows="3"></textarea>
+                        </div>
+
+                        <!-- Bullet Points -->
+                        <div class="mb-3">
+                            <label class="form-label">Bullet Points</label>
+                            <input type="text" class="form-control mb-2" name="bullet_point_1" placeholder="Bullet Point 1">
+                            <input type="text" class="form-control mb-2" name="bullet_point_2" placeholder="Bullet Point 2">
+                            <input type="text" class="form-control" name="bullet_point_3" placeholder="Bullet Point 3">
+                        </div>
+
+                        <button type="submit" class="default-btn fs-5 w-100">Add new service</button>
+                    </form>
+
+
+
+                </div>
+                <div class="col-lg-12 mt-4">
+                    <h2 class="mb-4">Existing Services</h2>
+                    <div class="row">
+                        <?php foreach ($categories as $cat) : ?>
+                            <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                                <div class="xodry-whatwedo-card p-0 rounded h-100">
+                                    <img src="<?= htmlspecialchars((!empty($cat['image']) ? $cat['image'] : '/assets/images/Hero/hero-img.png')) ?>" alt="<?= htmlspecialchars($cat['category_name'] ?? '') ?>" class="mb-3 img-fluid">
+                                    <div class="service-card-content p-4">
+                                        <h4 class="xodry-whatwedo-card-title"><?= htmlspecialchars($cat['category_name'] ?? '') ?></h4>
+                                        <p class="xodry-whatwedo-card-text"><?= htmlspecialchars($cat['description'] ?? '') ?></p>
+                                        <ul>
+                                            <?php if (!empty($cat['bullet_point_1'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_1'] ?? '') ?></li><?php endif; ?>
+                                            <?php if (!empty($cat['bullet_point_2'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_2'] ?? '') ?></li><?php endif; ?>
+                                            <?php if (!empty($cat['bullet_point_3'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_3'] ?? '') ?></li><?php endif; ?>
+                                        </ul>
+                                        <form class="mt-4" method="post" action="delete-service" onsubmit="return confirm('Are you sure you want to delete this service?');">
+                                            <input type="hidden" name="category_id" value="<?= array_key_exists('id', $cat) ? htmlspecialchars($cat['id']) : '' ?>">
+                                            <button type="submit" class="btn btn-danger btn-sm mt-2 w-100">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <?php include_once __DIR__ . '/../includes/Footer.php' ?>
+</body>
+
+</html>

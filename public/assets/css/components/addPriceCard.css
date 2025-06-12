@@ -1,0 +1,64 @@
+/* Card styling */
+.custom-add-service-card {
+    background: var(--secondary-color);
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* Header */
+.custom-add-service-card .custom-card-header {
+    background: var(--accent-color,);
+    color: var(--light-color);
+    padding: 14px 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Body */
+.custom-add-service-card .custom-card-body {
+    padding: 20px;
+}
+
+/* Form elements */
+.custom-add-service-card .form-label {
+    font-weight: 500;
+    color: var(--light-color);
+}
+
+.custom-add-service-card .form-control,
+.custom-add-service-card .form-select {
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--light-color);
+    padding: 10px;
+    border: 1px solid var(--light-color);
+    transition: border 0.2s ease;
+}
+.custom-add-service-card .form-control::placeholder,
+.custom-add-service-card .form-select::placeholder {
+    color: var(--light-accent-color, #a0b3a6);
+    opacity: 1; /* Ensures placeholder is fully opaque */
+}
+
+.custom-add-service-card .form-control:focus,
+.custom-add-service-card .form-select:focus {
+    border-color: var(--main-color, #1F7D53);
+    box-shadow: 0 0 0 0.15rem rgba(31, 125, 83, 0.25);
+    background-color: var(--secondary-color, #27391C);
+    color: var(--light-color, #f2f2f2);
+}
+
+/* Submit button */
+.custom-add-service-card .btn-success {
+    background: var(--accent-color, #255F38);
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: background 0.3s ease;
+}
+
+.custom-add-service-card .btn-success:hover {
+    background: var(--main-color, #1F7D53);
+}

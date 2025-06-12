@@ -4,6 +4,7 @@ namespace App\Models;
 use Core\Database;
 use PDO;
 use PDOException;
+use App\Constants\PickupStatus;
 
 
 class PickupsModel {
@@ -44,5 +45,86 @@ class PickupsModel {
         } catch (PDOException $e) {
             return $e->getMessage();
         }
+    }
+
+    // Update pickup status
+    public function updatePickupStatusCancel($pickup_id) {
+        try {
+            $stmt = $this->db->prepare("UPDATE pickups SET status = ? WHERE id = ?");
+            $stmt->execute([PickupStatus::CANCELLED, $pickup_id]);
+            return true;
+        } catch (PDOException $e) {
+            return "Failed to update pickup status";
+        }
+    }
+    public function updatePickupStatus($pickup_id, $status) {
+        try {
+            $stmt = $this->db->prepare("UPDATE pickups SET status = ? WHERE id = ?");
+            $stmt->execute([$status, $pickup_id]);
+            return true;
+        } catch (PDOException $e) {
+            return "Failed to update pickup status";
+        }
+    }
+    
+    public function getPickupByUserId($user_id) {
+        $stmt = $this->db->prepare("SELECT * FROM pickups WHERE user_id = ?");
+        $stmt->execute([$user_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getAllPickups() {
+        $stmt = $this->db->prepare("SELECT * FROM pickups");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getAllPickupsStatus() {
+        $stmt = $this->db->prepare("SELECT id, status FROM pickups");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function assignRider($pickup_id, $rider_id)
+    {
+        $stmt = $this->db->prepare("UPDATE pickups SET rider_id = :rider_id WHERE id = :pickup_id");
+        return $stmt->execute([
+            'rider_id' => $rider_id,
+            'pickup_id' => $pickup_id
+        ]);
+    }
+    public function getPickupsByRider($rider_id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM pickups WHERE rider_id = :rider_id AND status NOT IN ('Dropped at Store', 'Delivered')");
+        $stmt->execute(['rider_id' => $rider_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getRiderPickupStats($rider_id)
+    {
+        // Total completed orders (Dropped at Store + Delivered)
+        $stmt = $this->db->prepare("SELECT COUNT(*) as completed FROM pickups WHERE rider_id = :rider_id AND status IN ('Dropped at Store', 'Delivered')");
+        $stmt->execute(['rider_id' => $rider_id]);
+        $completed = $stmt->fetch()['completed'];
+
+        // Total pending/assigned orders (not completed)
+        $stmt = $this->db->prepare("SELECT COUNT(*) as assigned FROM pickups WHERE rider_id = :rider_id AND status NOT IN ('Dropped at Store', 'Delivered')");
+        $stmt->execute(['rider_id' => $rider_id]);
+        $assigned = $stmt->fetch()['assigned'];
+
+        // Total orders today (all status)
+        $today = date('Y-m-d');
+        $stmt = $this->db->prepare("SELECT COUNT(*) as today FROM pickups WHERE rider_id = :rider_id AND DATE(created_at) = :today");
+        $stmt->execute(['rider_id' => $rider_id, 'today' => $today]);
+        $todayOrders = $stmt->fetch()['today'];
+
+        return [
+            'completed' => $completed,
+            'assigned' => $assigned,
+            'today' => $todayOrders
+        ];
+    }
+
+    public function getCompletedPickupsByRider($rider_id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM pickups WHERE rider_id = :rider_id AND (status = 'Dropped at Store' OR status = 'Delivered')");
+        $stmt->execute(['rider_id' => $rider_id]);
+        return $stmt->fetchAll();
     }
 }

@@ -12,7 +12,5 @@
 
         <div class="row text-center">
             <?php include __DIR__ . '/../components/serviceCard.php' ?>
-            <?php include __DIR__ . '/../components/serviceCard.php' ?>
-            <?php include __DIR__ . '/../components/serviceCard.php' ?>
         </div>
 </section>

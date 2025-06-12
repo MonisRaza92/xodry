@@ -18,6 +18,8 @@
 @import url(partials/ownerPortfolio.css);
 @import url(partials/adminSidebar.css);
 @import url(partials/adminStats.css);
+@import url(partials/adminUsersList.css);
+@import url(partials/adminOrderList.css);
 
 
 
@@ -28,11 +30,15 @@
 @import url(components/imageCompare.css);
 @import url(components/statsCard.css);
 @import url(components/recentUserList.css);
-@import url(components/shortRidersList..css);
+@import url(components/shortRidersList.css);
+@import url(components/rateListCard.css);
+@import url(components/addPriceCard.css);
+
 
 :root{
     --dark-color:#111111;
-    --primary-color:#18230F;
+    --primary-color:#000000;
+    /* --primary-color:#18230F; */
     --secondary-color:#27391C;
     --accent-color:#255F38;
     --main-color:#1F7D53;
