@@ -6,6 +6,7 @@
         <button id="prevBtn"></button>
         <button id="nextBtn"></button>
     </div>
+</div>
 <script>
     let current = 0;
     const images = document.querySelectorAll('#imageSlider .slider-img');

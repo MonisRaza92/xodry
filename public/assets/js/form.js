@@ -33,7 +33,13 @@ if(scheduleBtn){
 scheduleBtn.addEventListener('click', (e) => {
     e.preventDefault();
     pickupForm.classList.add('pickup-form-active');
-});}
+});
+}
+if (pickupFormClose) {
+    pickupFormClose.addEventListener('click', () => {
+        pickupForm.classList.remove('pickup-form-active');
+    });
+}
 document.addEventListener('click', function (event) {
     if (
         pickupForm &&

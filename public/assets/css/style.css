@@ -51,9 +51,10 @@ body{
     background-repeat: no-repeat;
     color: var(--light-color); 
     font-family:sans-serif;
-    box-sizing: border-box;
     overflow-x: hidden;
     width: 100%!important;
+    margin: 0;
+    padding: 0;
 }
 ul{
     padding: 0;

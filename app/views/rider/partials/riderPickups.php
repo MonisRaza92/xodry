@@ -18,7 +18,7 @@
                         <div class="card-body text-white">
                             <h5 class="card-title"><i class="fas fa-box-open me-2 text-white"></i> Pickup ID: <?= $pickup['id'] ?></h5>
                             <p class="mb-1"><strong>Customer:</strong> <?= $pickup['name'] ?> #<?= $pickup['user_id'] ?></p>
-                            <p class="mb-1"><strong>Contact:</strong> <?= $pickup['number'] ?></p>
+                            <p class="mb-1"><strong>Contact:</strong> <a href="tel:<?= $pickup['number'] ?>"><?= $pickup['number'] ?></a></p>
                             <p class="mb-1"><strong>Status:</strong> <?= $pickup['status'] ?></p>
                             <p class="mb-1"><strong>Schedule:</strong> <?= $pickup['schedule'] ?></p>
                             <p class="mb-1"><strong>Address:</strong> <?= $pickup['address'] ?></p>
@@ -87,7 +87,7 @@
                         <div class="card-body text-white">
                             <h5 class="card-title"><i class="fas fa-box-open me-2 text-white"></i> Pickup ID: <?= $pickup['id'] ?></h5>
                             <p class="mb-1"><strong>Customer:</strong> <?= $pickup['name'] ?> #<?= $pickup['user_id'] ?></p>
-                            <p class="mb-1"><strong>Contact:</strong> <?= $pickup['number'] ?></p>
+                            <p class="mb-1"><strong>Contact:</strong><a href="tel:<?= $pickup['number'] ?>"><?= $pickup['number'] ?></a></p>
                             <p class="mb-1"><strong>Status:</strong> <?= $pickup['status'] ?></p>
                             <p class="mb-1"><strong>Schedule:</strong> <?= $pickup['schedule'] ?></p>
                             <p class="mb-1"><strong>Address:</strong> <?= $pickup['address'] ?></p>

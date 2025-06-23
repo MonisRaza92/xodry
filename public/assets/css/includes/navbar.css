@@ -175,7 +175,7 @@ nav{
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background: var(--accent-color);
+    background: var(--main-color);
     opacity: 0;
     visibility: hidden;
     transition: all  ease .3s;
@@ -196,7 +196,7 @@ nav{
     left: 0;
     height: 100vh;
     width: 70%;
-    background-color: var(--accent-color);
+    background-color: var(--main-color);
     transform: translateX(-150%);
     box-shadow: 0 0 200px #000000;
     transition: 0.5s all ease;
@@ -252,7 +252,7 @@ nav{
     border-radius: 3px;
     position: relative;
     &:hover{
-        background-color: var(--accent-color);
+        background-color: var(--main-color);
         color: var(--white-color);
     }       
 }

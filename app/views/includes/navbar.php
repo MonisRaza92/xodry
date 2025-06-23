@@ -10,7 +10,7 @@ $pickupList = $navbarData['pickupList'];
 ?>
 <nav class="container-fluid">
     <div class="container navbar">
-        <a href="home""><img src="assets/images/Logo/logo.png" alt="Xodry"></a>
+        <a href="home""><img src=" assets/images/Logo/logo.png" alt="Xodry"></a>
         <div class="nav-links">
             <a class="d-none d-md-block" href="home">home</a>
             <a class="d-none d-md-block" href="about">About</a>
@@ -31,7 +31,7 @@ $pickupList = $navbarData['pickupList'];
                             <h6>Orders</h6>
                             <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> HISTORY</a>
                         </div>
-                       <?php include __DIR__ . '/../home/components/orderList.php'?>
+                        <?php include __DIR__ . '/../home/components/orderList.php' ?>
                     </div>
                     <button id="accountMenuBtn"><i class="fa-regular nav-icons fa-user"></i></button>
                     <div class="account-menu rounded">
@@ -48,7 +48,7 @@ $pickupList = $navbarData['pickupList'];
 </nav>
 <div id="mobile-menu" class="mobile-menu d-md-none">
     <div class="mobile-header">
-        <a href="home"><img src="assets/images/Logo/Logo.png" alt="Xodry"></a>
+        <a href="home"><img src="assets/images/Logo/logo.png" alt="Xodry"></a>
         <div id="mobile-menu-close" class="mobile-menu-close"></div>
     </div>
     <div class="mobile-links">

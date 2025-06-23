@@ -18,14 +18,13 @@ class ServiceModel
         $database = new Database(); // Custom Database class
         $this->db = $database->connect();
     }
-    public function getServicesByCategory($categoryId)
+    public function getServicesByCategory()
     {
         $stmt = $this->db->prepare("
             SELECT s.*, c.category_name FROM services s
             JOIN categories c ON s.category_id = c.id
             WHERE s.category_id = ?
         ");
-        $stmt->execute([$categoryId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getAllServices()
@@ -48,7 +47,7 @@ class ServiceModel
         $stmt = $this->db->prepare("INSERT INTO services (category_id, service_name, price) VALUES (?, ?, ?)");
         return $stmt->execute([$category_id, $service_name, $price]);
     }
-    public function deletePrice($id)
+    public function deleteService($id)
     {
         $stmt = $this->db->prepare("DELETE FROM services WHERE id = ?");
         return $stmt->execute([$id]);

@@ -1,4 +1,4 @@
-<div class="px-3 overflow-hidden mb-4" data-aos="fade-up">
+<div class="px-3 overflow-hidden" data-aos="fade-up">
     <div class="service-slider overflow-hidden rounded-3 mt-3">
         <div class="slider">
             <?php foreach ($categories as $cat): ?>

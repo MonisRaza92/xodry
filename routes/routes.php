@@ -32,10 +32,14 @@ $router->addRoute('GET', 'admin-prices', 'AdminController@prices');
 $router->addRoute('GET', 'admin-subscriptions', 'AdminController@subscriptions');
 $router->addRoute('GET', 'admin-feedbacks', 'AdminController@feedbacks');
 $router->addRoute('POST', 'admin-addCategory', 'AdminController@addCategory');
+$router->addRoute('POST', 'admin-updateCategory', 'AdminController@updateCategory');
 $router->addRoute('POST', 'admin-addServices', 'AdminController@addServices');
 $router->addRoute('POST', 'delete-price', 'AdminController@deletePrice');
 $router->addRoute('POST', 'assign-rider', 'AdminController@assignRider');
 $router->addRoute('POST', 'addRider', 'AdminController@addRider');
+$router->addRoute('GET', 'admin-subscription', 'AdminController@subscription');
+$router->addRoute('POST', 'admin-addSubscription', 'AdminController@addSubscription');
+$router->addRoute('POST', 'deleteSubscription', 'AdminController@deleteSubscription');
 
 
 

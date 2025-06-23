@@ -33,7 +33,9 @@ foreach ($pickupItems as $item) {
                                 <i class="bi bi-truck"></i> Order #<?= htmlspecialchars($pickup['id']) ?>
                             </div>
                             <div class="pickup-details">
-                                <strong>Customer:</strong> <?= htmlspecialchars($pickup['name'] ?? 'N/A') ?><br>
+                                <strong>Customer:</strong> <?= htmlspecialchars($pickup['name'] ?? 'N/A') ?> #<?= htmlspecialchars($pickup['user_id'] ?? 'N/A') ?><br>
+                                <strong>Phone:</strong> <a href="tel:<?= htmlspecialchars($pickup['number'] ?? 'N/A') ?>"><?= htmlspecialchars($pickup['number'] ?? 'N/A') ?></a><br>
+
                                 <strong>Pickup Address:</strong> <?= htmlspecialchars($pickup['address'] ?? 'N/A') ?>
                             </div>
                             <div class="pickup-meta">

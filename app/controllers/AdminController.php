@@ -13,6 +13,8 @@ class AdminController{
     private $serviceModel;
     private $pickupItemsModel;
 
+    private $subscriptionModel;
+
 
     public function __construct() {
         $this->db = new Database(); 
@@ -21,6 +23,7 @@ class AdminController{
         $this->catModel = new \App\Models\CategoryModel($this->db);
         $this->serviceModel = new \App\Models\ServiceModel();
         $this->pickupItemsModel = new \App\Models\PickupItemsModel();
+        $this->subscriptionModel = new \App\Models\SubscriptionModel();
 
     }
 
@@ -120,7 +123,7 @@ class AdminController{
         $catModel = new \App\Models\CategoryModel($this->db);
         $serviceModel = new \App\Models\ServiceModel();
         $categories = $catModel->getAllCategories();
-        $services = $serviceModel->getServicesByCategory($categories);
+        $services = $serviceModel->getServicesByCategory();
         include_once __DIR__ . '/../views/admin/adminPrices.php';
         exit();
     }
@@ -175,6 +178,40 @@ class AdminController{
             }
         }
     }
+    public function updateCategory()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['category_id'];
+            if (!empty($_FILES['image']['name'])) {
+                $image = 'uploads/' . $_FILES['image']['name'];
+                $uploadPath = __DIR__ . '/../../public/' . $image; // full server path
+                if (!move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
+                    die('Image upload failed.');
+                }
+            } else {
+                $image = $_POST['existing_image']; // keep the existing image
+            }
+
+            $data = [
+                'id' => $id,
+                'image' => $image,
+                'category_name' => $_POST['category_name'],
+                'description' => $_POST['description'],
+                'bullet_point_1' => $_POST['bullet_point_1'],
+                'bullet_point_2' => $_POST['bullet_point_2'],
+                'bullet_point_3' => $_POST['bullet_point_3']
+            ];
+
+            $categoryModel = new \App\Models\CategoryModel($this->db);
+            $result = $categoryModel->updateCategory($data);
+
+            if ($result) {
+                echo "<script>alert('Category updated successfully!');window.location.href='admin-services';</script>";
+            } else {
+                echo "<script>alert('Failed to update category!');window.location.href='admin-services';</script>";
+            }
+        }
+    }
     public function deleteService()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -207,11 +244,79 @@ class AdminController{
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['service_id'];
             $serviceModel = new \App\Models\ServiceModel();
-            $deleted = $serviceModel->deletePrice($id);
+            $deleted = $serviceModel->deleteService($id);
             if ($deleted) {
                 echo "<script>alert('Price deleted successfully');window.location.href='admin-prices';</script>";
             } else {
                 echo "<script>alert('Failed to delete price');window.location.href='admin-prices';</script>";
+            }
+        }
+    }
+    public function subscriptions()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: home');
+            exit();
+        }
+        if (!isset($_SESSION['user_role']) || $_SESSION['user_role'] !== 'admin') {
+            header('Location: home');
+            exit();
+        }
+
+        $subscriptions = $this->subscriptionModel->getAllSubscriptions();
+        include_once __DIR__ . '/../views/admin/adminSubscriptions.php';
+        exit();
+    }
+
+    public function addSubscription()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = $_POST['title'] ?? '';
+            $price = $_POST['price'] ?? '';
+            $point1 = $_POST['point1'] ?? '';
+            $point2 = $_POST['point2'] ?? '';
+            $point3 = $_POST['point3'] ?? '';
+            $point4 = $_POST['point4'] ?? '';
+            $point5 = $_POST['point5'] ?? '';
+            $button_text = $_POST['button_text'] ?? '';
+            $button_link = $_POST['button_link'] ?? '';
+
+            $subscriptionModel = new \App\Models\SubscriptionModel();
+            $subscription = $subscriptionModel->addSubscription(
+                $title,
+                $price,
+                $point1,
+                $point2,
+                $point3,
+                $point4,
+                $point5,
+                $button_text,
+                $button_link
+            );
+
+            if ($subscription) {
+                echo "<script>alert('Subscription added successfully!');window.location.href='admin-subscriptions';</script>";
+            } else {
+                echo "<script>alert('Failed to add subscription!');window.location.href='admin-subscriptions';</script>";
+            }
+        }
+    }
+    public function deleteSubscription()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['subscription_id'] ?? null;
+
+            if ($id) {
+                $subscriptionModel = new \App\Models\SubscriptionModel();
+                $deleted = $subscriptionModel->deleteSubscription($id);
+
+                if ($deleted) {
+                    echo "<script>alert('Subscription deleted successfully!');window.location.href='admin-subscriptions';</script>";
+                } else {
+                    echo "<script>alert('Failed to delete subscription!');window.location.href='admin-subscriptions';</script>";
+                }
+            } else {
+                echo "<script>alert('Invalid subscription ID!');window.location.href='admin-subscriptions';</script>";
             }
         }
     }

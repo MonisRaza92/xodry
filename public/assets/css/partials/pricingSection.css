@@ -17,8 +17,8 @@
 }
 
 .xodry-pricing-card {
-  background: var(--secondary-color);
-  border-radius: 16px;
+  background: var(--accent-color);
+  border-radius:5px;
   padding: 30px 20px;
   text-align: center;
   transition: 0.4s ease-in-out;
@@ -61,7 +61,8 @@
 .pricing-features {
   list-style: none;
   padding: 0;
-  margin: 0 0 20px;
+  margin: 0 0 20px 20px;
+  text-align: left;
 }
 
 .pricing-features li {

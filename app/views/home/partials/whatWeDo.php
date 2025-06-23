@@ -1,4 +1,4 @@
-<section class="xodry-whatwedo-section py-5">
+<section class="xodry-whatwedo-section">
     <div class="container">
         <div class="mb-5">
             <h2 class="xodry-whatwedo-title" data-aos="fade-up">What We Do</h2>

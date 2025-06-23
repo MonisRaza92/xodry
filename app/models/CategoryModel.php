@@ -47,6 +47,24 @@ class CategoryModel
             $data['bullet_point_3']
         ]);
     }
+    public function updateCategory($data)
+    {
+        $stmt = $this->db->prepare("
+            UPDATE categories
+            SET image = ?, category_name = ?, description = ?, bullet_point_1 = ?, bullet_point_2 = ?, bullet_point_3 = ?
+            WHERE id = ?
+        ");
+
+        return $stmt->execute([
+            $data['image'],
+            $data['category_name'],
+            $data['description'],
+            $data['bullet_point_1'],
+            $data['bullet_point_2'],
+            $data['bullet_point_3'],
+            $data['id'], // Assuming 'id' is part of the $data array
+        ]);
+    }
     public function deleteCategory($id)
     {
         $stmt = $this->db->prepare("DELETE FROM categories WHERE id = ?");
