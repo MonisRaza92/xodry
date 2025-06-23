@@ -90,41 +90,4 @@ class PickupsModel {
             'pickup_id' => $pickup_id
         ]);
     }
-    public function getPickupsByRider($rider_id)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM pickups WHERE rider_id = :rider_id AND status NOT IN ('Dropped at Store', 'Delivered')");
-        $stmt->execute(['rider_id' => $rider_id]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-    public function getRiderPickupStats($rider_id)
-    {
-        // Total completed orders (Dropped at Store + Delivered)
-        $stmt = $this->db->prepare("SELECT COUNT(*) as completed FROM pickups WHERE rider_id = :rider_id AND status IN ('Dropped at Store', 'Delivered')");
-        $stmt->execute(['rider_id' => $rider_id]);
-        $completed = $stmt->fetch()['completed'];
-
-        // Total pending/assigned orders (not completed)
-        $stmt = $this->db->prepare("SELECT COUNT(*) as assigned FROM pickups WHERE rider_id = :rider_id AND status NOT IN ('Dropped at Store', 'Delivered')");
-        $stmt->execute(['rider_id' => $rider_id]);
-        $assigned = $stmt->fetch()['assigned'];
-
-        // Total orders today (all status)
-        $today = date('Y-m-d');
-        $stmt = $this->db->prepare("SELECT COUNT(*) as today FROM pickups WHERE rider_id = :rider_id AND DATE(created_at) = :today");
-        $stmt->execute(['rider_id' => $rider_id, 'today' => $today]);
-        $todayOrders = $stmt->fetch()['today'];
-
-        return [
-            'completed' => $completed,
-            'assigned' => $assigned,
-            'today' => $todayOrders
-        ];
-    }
-
-    public function getCompletedPickupsByRider($rider_id)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM pickups WHERE rider_id = :rider_id AND (status = 'Dropped at Store' OR status = 'Delivered')");
-        $stmt->execute(['rider_id' => $rider_id]);
-        return $stmt->fetchAll();
-    }
 }

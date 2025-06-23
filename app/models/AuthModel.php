@@ -40,6 +40,16 @@ class AuthModel
                return $e->getMessage();
           }
      }
+     public function createRider($name, $number, $email, $address, $hashed, $role = 'rider')
+     {
+          try {
+               $stmt = $this->db->prepare("INSERT INTO users (name, number, email, address, password, role) VALUES (?, ?, ?, ?, ?, ?)");
+               $stmt->execute([$name, $number, $email, $address, $hashed, $role]);
+               return true;
+          } catch (PDOException $e) {
+               return $e->getMessage();
+          }
+     }
      public function getUserByNumber($number)
      {
           $stmt = $this->db->prepare("SELECT * FROM users WHERE number = ?");

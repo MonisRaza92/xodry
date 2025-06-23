@@ -2,19 +2,20 @@
     <div class="container px-0">
         <!-- <?php include __DIR__ . '/../components/imageSlider.php' ?> -->
         <div class="row">
-            <div class="hero-content col-lg-6">
-                <h6>WELCOME TO  XODRY</h6>
-                <h1 class="heading mt-2" data-aos="fade-up">Piles of dirty clothes but no time to wash them?</h1>
-                <p class="lead mb-4 mt-3" data-aos="fade-up">In the rush of daily life, laundry often gets ignored — piling up until it becomes a chore you dread. That’s where <strong>Xodry</strong> steps in. We pick up, clean, and deliver your clothes fresh and folded — quickly, hygienically, and right at your doorstep.
+            <div class="hero-content col-lg-5">
+                <h6 class="mb-4">WELCOME TO <span>XODRY</span></h6>
+                <h1 class="heading mt-2" data-aos="fade-up">Freshnes Deliverd to Your Door</h1>
+                <p class="lead mb-4 mt-3" data-aos="fade-up">Discover the ultimate care for your clothes with our top-tier laundry and dry cleaning services.
                 </p>
-                <?php $btnDefault = "Schedule Pickup";
-                $btnDefaultOutline = "Pricing";
-                $btnDefaultId ="scheduleBtn";
-                include __DIR__ . '/../components/defaultBtn.php' ?>
+                <button data-aos="fade-up" id="scheduleBtn">Schedule Pickup</button>
+                <button data-aos="fade-up" id="loginBtn" class="ms-3 <?php if (isset($user)) echo 'd-none'; ?>">Login</button>
+                <button data-aos="fade-up" onclick="window.location.href='pricing'" class="ms-3 <?php if (!isset($user)) echo 'd-none'; ?>">Pricing</button>
+
             </div>
-            <div class="hero-img col-lg-6" data-aos="fade-up">
-                <?php include __DIR__ . '/../components/imageCompare.php' ?>
+            <div class="hero-img col-lg-7" data-aos="fade-up">
+                <?php include __DIR__ . '/../components/imageSlider.php' ?>
             </div>
         </div>
+        <?php include __DIR__ . '/../components/service-slider.php' ?>
     </div>
 </div>

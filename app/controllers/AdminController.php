@@ -10,6 +10,8 @@ class AdminController{
     private $pickupsModel;
     private $db;
     private $catModel;
+    private $serviceModel;
+    private $pickupItemsModel;
 
 
     public function __construct() {
@@ -17,6 +19,9 @@ class AdminController{
         $this->userModel = new \App\Models\UserModel($this->db);
         $this->pickupsModel = new  PickupsModel();
         $this->catModel = new \App\Models\CategoryModel($this->db);
+        $this->serviceModel = new \App\Models\ServiceModel();
+        $this->pickupItemsModel = new \App\Models\PickupItemsModel();
+
     }
 
     public function index(){
@@ -81,7 +86,8 @@ class AdminController{
         include_once __DIR__. '/../views/admin/adminRiders.php';
         exit();
     }
-    public function orders(){
+    public function orders()
+    {
         if (!isset($_SESSION['user_id'])) {
             header('Location: home');
             exit();
@@ -90,12 +96,18 @@ class AdminController{
             header('Location: home');
             exit();
         }
+
         $pickups = $this->pickupsModel->getAllPickups();
         $riders = $this->userModel->getAllRiders();
         $pickupStatus = $this->pickupsModel->getAllPickupsStatus();
-        include_once __DIR__. '/../views/admin/adminOrders.php';
+        $pickupItems = $this->pickupItemsModel->getAllPickupItems(); // get all items for all pickups
+        $categories = $this->catModel->getAllCategories(); // All category names
+        $services = $this->serviceModel->getAllServices(); // All service names
+
+        include_once __DIR__ . '/../views/admin/adminOrders.php';
         exit();
     }
+
     public function services(){
         $catModel = new \App\Models\CategoryModel($this->db);
         $categories = $catModel->getAllCategories();
@@ -106,11 +118,30 @@ class AdminController{
     public function prices()
     {
         $catModel = new \App\Models\CategoryModel($this->db);
-        $serviceModel = new \App\Models\ServiceModel($this->db);
+        $serviceModel = new \App\Models\ServiceModel();
         $categories = $catModel->getAllCategories();
-        $services = $serviceModel->getServicesByCategory();
+        $services = $serviceModel->getServicesByCategory($categories);
         include_once __DIR__ . '/../views/admin/adminPrices.php';
         exit();
+    }
+    public function addRider()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = $_POST['name'];
+            $number = $_POST['number'];
+            $email = $_POST['email'];
+            $address = $_POST['address'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+            $authModel = new \App\Models\AuthModel();
+            $result = $authModel->createRider($name, $number, $email, $address, $password);
+
+            if ($result === true) {
+                echo "<script>alert('Rider added successfully!');window.location.href='admin-riders';</script>";
+            } else {
+                echo "<script>alert('Failed to add rider: {$result}');window.location.href='admin-riders';</script>";
+            }
+        }
     }
 
     public function addCategory()
@@ -165,7 +196,7 @@ class AdminController{
             $cat_id = $_POST['category_id'];
             $name = $_POST['service_name'];
             $price = $_POST['price'];
-            $serviceModel = new \App\Models\ServiceModel($this->db);
+            $serviceModel = new \App\Models\ServiceModel();
             $serviceModel->addService($cat_id, $name, $price);
             header("Location: admin-prices");
             exit;
@@ -175,7 +206,7 @@ class AdminController{
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['service_id'];
-            $serviceModel = new \App\Models\ServiceModel($this->db);
+            $serviceModel = new \App\Models\ServiceModel();
             $deleted = $serviceModel->deletePrice($id);
             if ($deleted) {
                 echo "<script>alert('Price deleted successfully');window.location.href='admin-prices';</script>";

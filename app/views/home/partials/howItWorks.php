@@ -4,13 +4,13 @@
             <h2 class="fw-bold">How It Works
             </h2>
             <p class="pt-2 paragraph">
-                Your laundry journey made simple — just book, and we’ll handle the rest with precision and care.
+                Your laundry journey made simple. just book, and we’ll handle the rest with precision and care.
             </p>
         </div>
 
         <!-- User Steps -->
         <div class="row  xodry-user-step-container mb-5 pe-lg-0">
-            <h3 data-aos="fade-up">You Have to do it just 2 steps</h3>
+            <h3 data-aos="fade-up">You Have to do just 2 steps</h3>
             <div class="col-md-6 text-center mb-4 row pe-0 pe-lg-4">
                 <div class="col-3 d-none d-lg-block pe-lg-1" data-aos="fade-up">
                     <h2>1</h2>
@@ -31,7 +31,7 @@
                     <h2>2</h2>
                 </div>
                 <div class="col-lg-9 pe-0 col-12">
-                    <div class="xodry-user-step p-4 rounded" data-aos="fade-up">
+                    <div class="xodry-user-step p-4 rounded " data-aos="fade-up">
                         <h4 class="fw-semibold mb-2">
                             <i class="fas fa-calendar-check me-1"></i>Book Your Pickup
                         </h4>

@@ -35,14 +35,20 @@ $router->addRoute('POST', 'admin-addCategory', 'AdminController@addCategory');
 $router->addRoute('POST', 'admin-addServices', 'AdminController@addServices');
 $router->addRoute('POST', 'delete-price', 'AdminController@deletePrice');
 $router->addRoute('POST', 'assign-rider', 'AdminController@assignRider');
+$router->addRoute('POST', 'addRider', 'AdminController@addRider');
 
 
 
 //Define Rider Routes
 $router->addRoute('GET','rider','RiderController@index');
+$router->addRoute('POST', 'changePickupStatus', 'RiderController@changePickupStatus');
+$router->addRoute('POST', 'submitPickupDetails', 'RiderController@submitPickupDetails');
+$router->addRoute('POST', 'rider/get-services', 'RiderController@getServices');
+$router->addRoute('POST', 'rider/save-pickup-items', 'RiderController@savePickupItems');
+
 
 //Define Pickups Routes
 $router->addRoute('POST', 'createPickup','PickupsController@createPickup');
 $router->addRoute('GET', 'order','PickupsController@order');
 $router->addRoute('POST', 'updatePickupStatus', 'PickupsController@updatePickupStatus');
-$router->addRoute('POST', 'pickups/cancelPickupStatus', 'PickupsController@cancelPickupStatus');
+$router->addRoute('POST', 'cancelPickupStatus', 'PickupsController@cancelPickupStatus');

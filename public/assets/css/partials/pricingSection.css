@@ -1,5 +1,5 @@
 .xodry-pricing-section {
-  background-color: var(--secondary-color);
+  background: var(--primary-color);
   color: var(--light-color);
 }
 
@@ -17,9 +17,8 @@
 }
 
 .xodry-pricing-card {
-  background-color: var(--secondary-color);
+  background: var(--secondary-color);
   border-radius: 16px;
-  border: 2px solid var(--accent-color);
   padding: 30px 20px;
   text-align: center;
   transition: 0.4s ease-in-out;
@@ -29,12 +28,10 @@
 }
 
 .xodry-pricing-card.featured {
-  background-color: var(--accent-color);
-  border-color: var(--main-color);
+  background: var(--accent-color);
 }
 
 .xodry-pricing-card:hover {
-  transform: translateY(-8px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 }
 
@@ -74,7 +71,7 @@
 }
 
 .pricing-features i {
-  color: var(--main-color);
+  color: var(--light-color);
   margin-right: 8px;
 }
 
@@ -83,8 +80,8 @@
 }
 
 .pricing-btn {
-  background-color: var(--main-color);
-  color: var(--light-color);
+  background-color: var(--light-color);
+  color: var(--dark-color);
   padding: 10px 24px;
   border-radius: 30px;
   text-decoration: none;

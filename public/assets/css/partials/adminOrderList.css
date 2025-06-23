@@ -28,6 +28,19 @@
 }
 .pickup-card form select {
     border-radius: 5px;
-    width: 150px;
+    width: 200px;
     border: none;
+}
+@media screen and (max-width: 988px) {
+    .pickup-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .pickup-header {
+        font-size: 1.1rem;
+    }
+    .pickup-details, .pickup-meta {
+        font-size: 0.9rem;
+    }
+    
 }

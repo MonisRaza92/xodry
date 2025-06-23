@@ -1,21 +1,74 @@
-<div class="container">
-    <h3 class="mt-5 text-light fw-bold">Completed Pickups</h3>
+<div class="container mt-5">
+    <h3 class="text-white mb-3"><i class="fas fa-list me-2"></i> Pickups History</h3>
+    <?php if (empty($history)): ?>
+        <div class="alert alert-warning">No history found.</div>
+    <?php else: ?>
 
-    <?php if (!empty($completedPickups)): ?>
-        <div class="row g-4">
-            <?php foreach ($completedPickups as $pickup): ?>
-                <div class="col-12">
-                    <div style="background-color: var(--secondary-color); border: 1px solid var(--accent-color); border-radius: 5px; padding: 15px; color: var(--light-color);">
-                        <h5>Order #<?= htmlspecialchars($pickup['id']) ?> — Completed</h5>
-                        <p><strong>Customer:</strong> <?= htmlspecialchars($pickup['name'] ?? 'N/A') ?></p>
-                        <p><strong>Address:</strong> <?= htmlspecialchars($pickup['address'] ?? 'N/A') ?></p>
-                        <p><strong>Schedule:</strong> <?= htmlspecialchars($pickup['schedule'] ?? 'N/A') ?></p>
-                        <p><strong>Status:</strong> <?= htmlspecialchars($pickup['status']) ?></p>
+        <!-- Dropped at Store Category -->
+        <h5 class="text-white mt-4 mb-3"><i class="fas fa-store me-2" style="color: #fcba03;"></i> Dropped at Store</h5>
+        <div class="list-group mb-4">
+            <?php foreach ($history as $log): ?>
+                <?php if ($log['status'] === 'Dropped at Store'): ?>
+                    <div class="list-group-item mb-2 rounded-2" style="background: var(--secondary-color); color: white;">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6><i class="fas fa-box me-2"></i> Pickup ID: <?= htmlspecialchars($log['pickup_id']) ?></h6>
+                                <p class="mb-0"><strong>Stage:</strong> <?= htmlspecialchars($log['stage']) ?></p>
+                                <p class="mb-0"><strong>Status:</strong> <?= htmlspecialchars($log['status']) ?></p>
+                                <p class="mb-0"><strong>Time:</strong> <?= htmlspecialchars($log['timestamp']) ?></p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-store fa-2x" style="color: #fcba03;"></i>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
-    <?php else: ?>
-        <div class="alert alert-info mt-3">No completed pickups yet.</div>
+
+        <!-- Delivered Category -->
+        <h5 class="text-white mt-4 mb-3"><i class="fas fa-check-circle me-2" style="color: #04c70e;"></i> Delivered</h5>
+        <div class="list-group mb-4">
+            <?php foreach ($history as $log): ?>
+                <?php if ($log['status'] === 'Delivered'): ?>
+                    <div class="list-group-item mb-2 rounded-2" style="background: var(--secondary-color); color: white;">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6><i class="fas fa-box me-2"></i> Pickup ID: <?= htmlspecialchars($log['pickup_id']) ?></h6>
+                                <p class="mb-0"><strong>Stage:</strong> <?= htmlspecialchars($log['stage']) ?></p>
+                                <p class="mb-0"><strong>Status:</strong> <?= htmlspecialchars($log['status']) ?></p>
+                                <p class="mb-0"><strong>Time:</strong> <?= htmlspecialchars($log['timestamp']) ?></p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-check-circle fa-2x" style="color: #04c70e;"></i>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Cancelled Category -->
+        <h5 class="text-white mt-4 mb-3"><i class="fas fa-times-circle me-2" style="color: #fc2121;"></i> Cancelled</h5>
+        <div class="list-group">
+            <?php foreach ($history as $log): ?>
+                <?php if ($log['status'] === 'Cancelled'): ?>
+                    <div class="list-group-item mb-2 rounded-2" style="background: var(--secondary-color); color: white;">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6><i class="fas fa-box me-2"></i> Pickup ID: <?= htmlspecialchars($log['pickup_id']) ?></h6>
+                                <p class="mb-0"><strong>Stage:</strong> <?= htmlspecialchars($log['stage']) ?></p>
+                                <p class="mb-0"><strong>Status:</strong> <?= htmlspecialchars($log['status']) ?></p>
+                                <p class="mb-0"><strong>Time:</strong> <?= htmlspecialchars($log['timestamp']) ?></p>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-times-circle fa-2x" style="color: #fc2121;"></i>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+
     <?php endif; ?>
 </div>

@@ -17,6 +17,8 @@ document.addEventListener('click', function (event) {
 
 const accountMenuBtn = document.querySelector('#accountMenuBtn');
 const accountMenu = document.querySelector('.account-menu');
+const adminMenuBtn = document.querySelector('.admin-menu-open-btn');
+const adminMenu = document.querySelector('.admin-sidebar');
 const cartBtn = document.querySelector('#cartBtn');
 const cart = document.querySelector('#cart');
 if (cartBtn) {
@@ -33,13 +35,24 @@ if (accountMenuBtn) {
         cart.classList.remove('cart-active');
     });
 };
+if (adminMenuBtn) {
+    adminMenuBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        adminMenu.classList.toggle('admin-sidebar-active');
+    });
+}
 document.addEventListener('click', function (event) {
    if (accountMenu) {
        if (!accountMenu.contains(event.target) && !accountMenuBtn.contains(event.target) && !cartBtn.contains(event.target) && !cart.contains(event.target)) {
            accountMenu.classList.remove('account-menu-active');
            cart.classList.remove('cart-active')
        }
-   }
+    }
+    if (adminMenu) {
+        if (!adminMenu.contains(event.target) && !adminMenuBtn.contains(event.target)) {
+            adminMenu.classList.remove('admin-sidebar-active');
+        }
+    }
 });
 
 
@@ -51,10 +64,10 @@ const afterImg = document.querySelector(".xodry-after-img");
 const wrapper = document.querySelector(".xodry-compare-image-wrapper");
 
 let isDragging = false;
-
+if(slider){
 slider.addEventListener("mousedown", (e) => {
     isDragging = true;
-});
+});}
 
 document.addEventListener("mouseup", () => {
     isDragging = false;
@@ -74,7 +87,9 @@ document.addEventListener("mousemove", (e) => {
 });
 
 // Mobile support
+if(slider){
 slider.addEventListener("touchstart", () => isDragging = true);
+}
 document.addEventListener("touchend", () => isDragging = false);
 document.addEventListener("touchmove", (e) => {
     if (!isDragging) return;

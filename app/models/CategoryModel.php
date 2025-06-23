@@ -23,6 +23,12 @@ class CategoryModel
         $stmt = $this->db->query("SELECT * FROM categories");
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function getCategoryNameById($categoryId)
+    {
+        $stmt = $this->db->prepare("SELECT category_name FROM categories WHERE id = ?");
+        $stmt->execute([$categoryId]);
+        return $stmt->fetchColumn();
+    }
 
     public function addCategory($data)
     {

@@ -11,10 +11,10 @@
 }
 .default-btn-outline {
   background-color: var(--light-color);
-  color: var(--accent-color);
+  color: var(--main-color);
 }
 .default-btn {
-  background-color: var(--accent-color);
+  background-color: var(--main-color);
   color: var(--light-color);
 }
 

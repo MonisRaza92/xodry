@@ -32,6 +32,55 @@
         <div id="numberError"></div>
 
         <!-- Submit button -->
-        <button type="submit"  class="default-btn-outline btn-block w-100 mb-4">Sign in</button>
+        <button type="submit"  class="default-btn-outline text-dark btn-block w-100 mb-4">Sign in</button>
     </form>
 </div>
+<script>
+    document.getElementById('showPassword').addEventListener('change', function() {
+    var pwd = document.getElementById('loginPassword');
+    pwd.type = this.checked ? 'text' : 'password';
+});
+
+//Login Form Ajax
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    // Clear previous error messages
+    document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+    fetch('login', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Login successful
+            if (data.role === 'admin') {
+            window.location.href = 'admin';
+            } else if (data.role === 'rider') {
+            window.location.href = 'rider';
+            } else {
+            window.location.href = 'home';
+            }
+        } else {
+            // Login failed
+            if (data.message === 'Invalid number') {
+                document.getElementById('numberError').textContent = data.message;
+            } else if (data.message === 'User not found' || data.message === 'Incorrect password') {
+                document.getElementById('loginError').textContent = data.message;
+            } else {
+                document.getElementById('loginError').textContent = 'An error occurred. Please try again.';
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('loginError').textContent = 'An error occurred. Please try again.';
+    });
+});
+
+</script>

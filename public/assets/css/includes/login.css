@@ -2,8 +2,8 @@
     min-width: 400px!important;
     position: fixed;
     padding: 40px 20px;
-    background-color: var(--secondary-color);
-    border: 1px solid var(--accent-color);
+    background-color: var(--primary-color);
+    border: 1px solid var(--light-color);
     border-radius: 5px;
     top: 160%;
     left: 50%;

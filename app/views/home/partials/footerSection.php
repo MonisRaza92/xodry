@@ -1,4 +1,4 @@
-<footer class="xodry-footer pt-5 pb-4">
+<footer class="xodry-footer pt-5 pb-5">
     <div class="container">
         <div class="row gy-4">
             <!-- Brand Info -->
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <hr class="footer-divider my-4" data-aos="fade-up">
+        <hr class="footer-divider my-4">
 
         <div class="text-center small">
             © 2025 <strong>Xodry Laundry Service.</strong> All Rights Reserved. Desing & Developed by <a href="https://themeforest.net/user/arjun-kumar">ARZAQ INSIGHTS</a>

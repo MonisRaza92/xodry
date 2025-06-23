@@ -30,17 +30,14 @@
 @import url(components/imageCompare.css);
 @import url(components/statsCard.css);
 @import url(components/recentUserList.css);
-@import url(components/shortRidersList.css);
-@import url(components/rateListCard.css);
 @import url(components/addPriceCard.css);
 
 
 :root{
     --dark-color:#111111;
-    --primary-color:#000000;
-    /* --primary-color:#18230F; */
+    --primary-color:rgb(7, 10, 4);
     --secondary-color:#27391C;
-    --accent-color:#255F38;
+    --accent-color:linear-gradient(149deg,rgba(68, 194, 110, 1) 0%, rgba(37, 95, 56, 1) 89%);
     --main-color:#1F7D53;
     --light-color:#f2f2f2;
     --light-accent-color:#a0b3a6;
@@ -49,6 +46,9 @@
 }
 body{
     background: var(--primary-color);
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--light-color); 
     font-family:sans-serif;
     box-sizing: border-box;

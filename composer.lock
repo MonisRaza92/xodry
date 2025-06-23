@@ -39,7 +39,7 @@
             "autoload": {
                 "psr-4": {
                     "Firebase\\JWT\\": "src",
-                    "App\\":"app/"
+                    "App\\":"App/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

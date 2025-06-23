@@ -10,45 +10,31 @@
 }
 
 .xodry-whychoose-intro {
-  font-size: 16px;
+  font-size: 1.2rem;
   color: var(--light-color);
   border-bottom: 1px solid var(--light-color);
 }
 .xodry-whychoose-list {
   background-color: var(--secondary-color);
-  border: 1px solid var(--accent-color);
   padding: 18px;
   border-radius: 10px;
   transition: .3s all ease;
-  &:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-  }
 }
 .xodry-whychoose-list li {
   margin-bottom: 12px;
   font-size: 20px;
-  font-weight: 400px;
   padding: 6px 0px;
   color: var(--light-color);
 }
 
 .xodry-whychoose-feature {
   background-color: var(--secondary-color);
-  border: 1px solid var(--accent-color);
   color: var(--light-color);
   transition: 0.3s ease;
 }
 
-.xodry-whychoose-feature:hover {
-  background-color: var(--accent-color);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-}
-
 .xodry-whychoose-feature h5 {
-  color: var(--light-accent-color);
+  color: var(--light-color);
   font-weight: 600;
   font-size: 1rem;
 }
@@ -58,20 +44,13 @@
   color: #dbdbdb;
 }
 .xodry-stat {
-    background: var(--secondary-color);
-    border: 1px solid var(--accent-color);
-    border-radius: 8px;
-    padding: 25px 35px;
-    text-align: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .xodry-stat:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px var(--secondary-color);
-  }
-  
+  background: var(--secondary-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  padding: 25px 35px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
   .xodry-stat i {
     font-size: 2.8rem;
     color: var(--accent-color);

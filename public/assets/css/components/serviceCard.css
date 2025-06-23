@@ -1,13 +1,8 @@
 .xodry-whatwedo-card {
-  background-color: var(--accent-color);
+  background: var(--accent-color);
   transition: all 0.3s ease;
-  border: 1px solid var(--accent-color);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-}
-
-.xodry-whatwedo-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 .xodry-whatwedo-card img {
   height: 300px;

@@ -100,12 +100,15 @@ class PickupsController
 
             if ($result === true) {
                 echo json_encode(['status' => 'success', 'message' => 'Pickup cancelled successfully']);
+                header('Location: home'); // Redirect to home after cancellation
             } else {
                 echo json_encode(['status' => 'error', 'message' => $result]);
+                header('Location: home'); // Redirect to home after cancellation
             }
         } catch (\Exception $e) {
             error_log("Error in cancelPickupStatus: " . $e->getMessage());
             echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+            header('Location: home'); // Redirect to home after cancellation
         }
         exit;
     }
@@ -126,7 +129,7 @@ class PickupsController
             if ($result === true) {
                 echo json_encode(['status' => 'success', 'message' => 'Pickup status updated']);
             } else {
-                echo json_encode(['status' => 'error', 'message' => $result]);
+                echo json_encode(['status' => 'error', 'message' => 'Failed to update pickup status']);
             }
         }
         exit;

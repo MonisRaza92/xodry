@@ -10,7 +10,7 @@ $pickupList = $navbarData['pickupList'];
 ?>
 <nav class="container-fluid">
     <div class="container navbar">
-        <a href="home""><img src=" assets/images/Logo/Logo.png" alt="Xodry"></a>
+        <a href="home""><img src="assets/images/Logo/logo.png" alt="Xodry"></a>
         <div class="nav-links">
             <a class="d-none d-md-block" href="home">home</a>
             <a class="d-none d-md-block" href="about">About</a>
@@ -19,7 +19,8 @@ $pickupList = $navbarData['pickupList'];
             <div class="login-btn position-relative">
                 <?php if (isset($_SESSION['user_id'])) : ?>
                     <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin') : ?>
-                        <a href="admin" class="mx-2"><i class="fa-solid nav-icons fa-chart-simple"></i></a>
+                        <a href="admin" class="mx-2 d-none d-lg-block"><i class="fa-solid nav-icons fa-chart-simple"></i></a>
+                        <a href="admin" class="mx-2 admin-menu-open-btn d-lg-none"><i class="fa-solid nav-icons fa-chart-simple"></i></a>
                     <?php endif; ?>
                     <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'rider') : ?>
                         <a href="rider" class="mx-2"><i class="fa-solid nav-icons fa-chart-simple"></i></a>
@@ -30,18 +31,7 @@ $pickupList = $navbarData['pickupList'];
                             <h6>Orders</h6>
                             <a href="#"><i class="fa-solid fa-clock-rotate-left"></i> HISTORY</a>
                         </div>
-                        <?php foreach ($pickupList as $pickup): ?>
-                            <div class="short-order-list">
-                                <i class="fa-solid fa-shirt"></i>
-                                <div class="details">
-                                    <p><?= htmlspecialchars($pickup['schedule'] ?? '') ?></p>
-                                    <p><?= htmlspecialchars($pickup['address'] ?? '') ?></p>
-                                </div>
-                                <button class="btn btn-danger cancel-pickup" data-pickup-id="<?= htmlspecialchars($pickup['id']) ?>">
-                                    <i class="fa-solid fa-xmark"></i>
-                                </button>
-                            </div>
-                        <?php endforeach; ?>
+                       <?php include __DIR__ . '/../home/components/orderList.php'?>
                     </div>
                     <button id="accountMenuBtn"><i class="fa-regular nav-icons fa-user"></i></button>
                     <div class="account-menu rounded">
@@ -65,7 +55,7 @@ $pickupList = $navbarData['pickupList'];
         <a href="home">home</a>
         <a href="about">About</a>
         <a href="services">Services</a>
-        <a href="prices">Pricing</a>
+        <a href="pricing">Pricing</a>
     </div>
 </div>
 

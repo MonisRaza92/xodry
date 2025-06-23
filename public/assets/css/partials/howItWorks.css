@@ -1,55 +1,47 @@
 /* Section Background and Text */
 .xodry-howitworks-section {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   color: var(--light-color);
   padding: 60px 0px!important;
 }
 
 /* Heading */
 .xodry-howitworks-section h2 {
-  font-weight: 700;
+  font-weight: bolder;
+  text-transform: uppercase;
   font-size: 3rem;
   margin-bottom: 10px;
   color: var(--light-color);
 }
 
 .xodry-howitworks-section .paragraph {
-  font-size: 18px;
+  font-size: 1.2rem;
   color: var(--light-color);
   margin: 0 auto 30px auto;
 }
 
 /* === User Steps Section === */
 .xodry-user-step-container h3{
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: bolder;
   padding: 20px 10px;
   text-transform: capitalize;
 }
 .xodry-user-step-container h2 {
   font-size: 100px;
   font-weight: 900;
-  padding: 22px;
-  background-color: var(--secondary-color);
-  border: 2px solid var(--accent-color);
+  padding: 30px 22px;
+  background: var(--accent-color);
   border-radius: 8px;
 }
 .xodry-user-step {
-  background-color: var(--secondary-color);
-  border: 2px solid var(--accent-color);
+  background: var(--accent-color);
   color: var(--light-color);
   transition: 0.3s;
   padding: 30px 20px;
   border-radius: 15px;
   text-align: center;
 }
-
-.xodry-user-step:hover {
-  background-color: var(--accent-color);
-  cursor: pointer;
-  transform: translateY(-5px);
-}
-
 .xodry-user-step h4 {
   font-weight: 700;
   font-size: 1.4rem;
@@ -58,15 +50,15 @@
 }
 
 .xodry-user-step p {
-  font-size: 0.95rem;
+  font-size: 1.2rem;
   color: #ddd;
   line-height: 1.4;
 }
 
 /* === Timeline Section === */
 .timeline-container h3{
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: bolder;
   padding: 20px 0px;
 }
 
@@ -76,14 +68,14 @@
   left: 30px;
   width: 10px;
   height: 85%;
-  background-color: var(--accent-color);
+  background: var(--accent-color);
 
 }
 
 /* Timeline Cards */
 .timeline-card {
-  background-color: var(--secondary-color);
-  border-left: 10px solid var(--accent-color);
+  background: var(--accent-color);
+  border-left: 10px solid var(--main-color);
   margin-left: 70px;
   padding: 25px 30px;
   border-radius: 14px;
@@ -102,7 +94,7 @@
   height: 20px;
   border-radius: 50%;
   background-color: var(--light-color);
-  box-shadow: 0 0 0 10px var(--secondary-color);
+  box-shadow: 0 0 0 10px var(--main-color);
 }
 
 .timeline-card:hover {
@@ -125,6 +117,12 @@
 @media screen and (max-width:768px) {
   .timeline-side-line{
     top: 160px;
+  }
+  .timeline-card h5 {
+    font-size: 1.2rem;
+  }
+  .timeline-card p {
+    font-size: 0.9rem;
   }
   
 }

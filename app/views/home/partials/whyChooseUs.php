@@ -1,8 +1,8 @@
 <section class="xodry-whychoose-section  py-5" style="background-color: var(--primary-color); color: var(--light-color);">
     <div class="container">
-        <h2 class="xodry-whychoose-title mb-4" data-aos="fade-up">Why Choose Xodry?</h2>
+        <h2 class="xodry-whychoose-title mb-4 text-uppercase fw-bolder" data-aos="fade-up">Why Xodry?</h2>
         <p class="xodry-whychoose-intro pb-4 mb-5" data-aos="fade-up">
-            We’re not just a laundry service — we’re your reliable cleaning partner. With smart processes, modern equipment, and a customer-first mindset, Xodry makes your laundry experience easy, hygienic, and stress-free — from pickup to delivery.
+            We’re your laundry partner. Xodry combines speed, care, and convenience to ensure your clothes are always fresh and ready to wear. Here’s why you should choose us: 
         </p>
         <div class="row align-items-center">
             <!-- Left Side Text -->
