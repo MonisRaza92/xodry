@@ -1,9 +1,9 @@
 .pickup-card {
-    border: 1px solid var(--accent-color);
+    border: 2px solid var(--light-accent-color);
     border-radius: 5px;
     margin-bottom: 10px;
     padding: 10px;
-    background: var(--secondary-color);
+    background: var(--fade-color);
     display: flex;
     align-items: center;
     justify-content: space-between;

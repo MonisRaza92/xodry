@@ -42,68 +42,84 @@
 </div>
 
 <script>
-    // When Category Checkbox Change
+    // ✅ When Category Checkbox is Changed
     document.addEventListener('change', function(e) {
         if (e.target.classList.contains('category-checkbox')) {
-            loadServicesForCategories();
+            const categoryId = e.target.value;
+            const isChecked = e.target.checked;
+
+            if (isChecked) {
+                loadServicesForCategory(categoryId);
+            } else {
+                removeServiceSection(categoryId);
+            }
         }
     });
 
-    function loadServicesForCategories() {
-        const selectedCategories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(cb => cb.value);
+    // ✅ Load Services for ONE Category
+    function loadServicesForCategory(categoryId) {
+        const checkbox = document.getElementById('cat_' + categoryId);
+        const categoryName = checkbox.nextElementSibling.innerText;
 
-        if (selectedCategories.length === 0) {
-            document.getElementById('serviceArea').innerHTML = '';
-            updateTotalPrice();
-            return;
-        }
-
-        document.getElementById('serviceArea').innerHTML = ''; // clear previous
-        selectedCategories.forEach(categoryId => {
-            fetch('rider/get-services', {
-                    method: 'POST',
-                    body: new URLSearchParams({
-                        category_id: categoryId
-                    })
+        fetch('rider/get-services', {
+                method: 'POST',
+                body: new URLSearchParams({
+                    category_id: categoryId
                 })
-                .then(res => res.json())
-                .then(services => {
-                    let html = `<label class="form-label mt-3">Services for Category ID ${categoryId}</label><div class="row">`;
-                    services.forEach(service => {
-                        html += `
-                        <div class="col-md-6 mb-2">
-                            <div class="form-check d-flex align-items-center">
-                                <input 
-                                    class="form-check-input service-checkbox me-2" 
-                                    type="checkbox" 
-                                    data-category-id="${categoryId}"
-                                    data-service='${JSON.stringify(service)}'
-                                    id="service_${categoryId}_${service.id}"
-                                >
-                                <label class="form-check-label me-3" for="service_${categoryId}_${service.id}">
-                                    ${service.service_name} (₹${service.price})
-                                </label>
-                                <input 
-                                    type="number" 
-                                    min="1" 
-                                    value="1" 
-                                    class="form-control form-control-sm ms-2 service-qty" 
-                                    style="width:70px;" 
-                                    data-service-id="${service.id}" 
-                                    disabled
-                                >
-                            </div>
+            })
+            .then(res => res.json())
+            .then(services => {
+                let html = `
+                <div class="category-service-section" id="services_cat_${categoryId}">
+                    <label class="form-label mt-3">${categoryName}</label>
+                    <div class="row">
+            `;
+
+                services.forEach(service => {
+                    html += `
+                    <div class="col-md-6 mb-2">
+                        <div class="form-check d-flex align-items-center">
+                            <input 
+                                class="form-check-input service-checkbox me-2" 
+                                type="checkbox" 
+                                data-category-id="${categoryId}"
+                                data-service='${JSON.stringify(service)}'
+                                id="service_${categoryId}_${service.id}"
+                            >
+                            <label class="form-check-label me-3" for="service_${categoryId}_${service.id}">
+                                ${service.service_name} (₹${service.price})
+                            </label>
+                            <input 
+                                type="number" 
+                                min="1" 
+                                value="1" 
+                                class="form-control form-control-sm ms-2 service-qty" 
+                                style="width:70px;" 
+                                data-service-id="${service.id}" 
+                                disabled
+                            >
                         </div>
-                    `;
-                    });
-                    html += '</div>';
-                    document.getElementById('serviceArea').innerHTML += html;
-                    attachServiceEvents();
+                    </div>
+                `;
                 });
-        });
+
+                html += '</div></div>';
+                document.getElementById('serviceArea').innerHTML += html;
+
+                attachServiceEvents(); // Re-bind events
+            });
     }
 
-    // Attach Events for Newly Generated Services
+    // ✅ Remove Service Section when Category Unchecked
+    function removeServiceSection(categoryId) {
+        const section = document.getElementById('services_cat_' + categoryId);
+        if (section) {
+            section.remove();
+        }
+        updateTotalPrice();
+    }
+
+    // ✅ Attach Events to checkboxes + qty inputs
     function attachServiceEvents() {
         document.querySelectorAll('.service-checkbox').forEach(cb => {
             cb.addEventListener('change', function() {
@@ -119,14 +135,12 @@
             });
         });
 
-        document.addEventListener('input', function(e) {
-            if (e.target.classList.contains('service-qty')) {
-                updateTotalPrice();
-            }
+        document.querySelectorAll('.service-qty').forEach(input => {
+            input.addEventListener('input', updateTotalPrice);
         });
     }
 
-    // Update Total Price Calculation
+    // ✅ Calculate Total Price
     function updateTotalPrice() {
         let total = 0;
         document.querySelectorAll('.service-checkbox:checked').forEach(cb => {
@@ -138,12 +152,11 @@
         document.getElementById('totalPrice').innerText = '₹' + total;
     }
 
-    // Submit All Selected Services
-    window.submitPickupDetails = function() {
+    // ✅ Submit All Selected Services
+    function submitPickupDetails() {
         const pickupId = document.getElementById('modalPickupId').value;
-        console.log("Submitting pickupId:", pickupId);
-
         let items = [];
+
         document.querySelectorAll('.service-checkbox:checked').forEach(cb => {
             const service = JSON.parse(cb.getAttribute('data-service'));
             const categoryId = cb.getAttribute('data-category-id');
@@ -163,7 +176,6 @@
             return;
         }
 
-        // Save Items via Ajax
         fetch('rider/save-pickup-items', {
                 method: 'POST',
                 body: new URLSearchParams({
@@ -180,6 +192,5 @@
                     alert('Error: ' + result.message);
                 }
             });
-
     }
 </script>

@@ -6,11 +6,13 @@
     padding: 65px 20px 0 20px;
 }
 .hero-section .hero-content h6{
-    border: 1px solid var(--light-color);
+    border: 1px solid var(--light-accent-color);
     width: fit-content;
     font-weight: 600;
     border-radius: 20px;
-    background-color: var(--secondary-color);
+    background-color: var(--fade-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 5px 20px 5px 40px;
     position: relative;
 }
@@ -72,7 +74,7 @@
 }
 @media screen and  (max-width:768px) {
     .hero-section .hero-content{
-        padding: 40px 15px 0 15px;
+        padding: 80px 15px 0 15px;
     }
     .hero-section .hero-content h1{
         font-size: 45px;

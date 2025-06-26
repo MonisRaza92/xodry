@@ -1,11 +1,10 @@
 <section class="xodry-vision-mission py-5">
-    <div class="container">
-        <div class="row mb-4">
-            <div class="col text-center" data-aos="fade-up">
-                <h2 class=" mb-3">Our Vision & Mission</h2>
+    <div class="container px-lg-0">
+            <div class="section-heading p-3 mb-4" data-aos="fade-up">
+                <h2>Our Vision & Mission</h2>
+                <hr>
                 <p class="lead">Jo dekhte hain sapna, wohi badalte hain duniya.</p>
             </div>
-        </div>
         <div class="row">
             <div class="col-md-6 mb-4" data-aos="fade-up">
                 <div class="card rounded">

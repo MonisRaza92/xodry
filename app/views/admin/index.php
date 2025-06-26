@@ -9,7 +9,7 @@
 <body>
 	<?php include_once __DIR__ . '/../includes/Navbar.php' ?>
 	<div class="container-fluid pb-5">
-		<div class="container">
+		<div class="container px-lg-0">
 			<div class="row">
 				<div class="col-lg-3 position-relative">
 					<?php include_once __DIR__ . '/partials/adminSidebar.php' ?>

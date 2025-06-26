@@ -1,6 +1,13 @@
 .xodry-whatwedo-section {
   color: var(--light-color);
 }
+.section-heading{
+  background: var(--fade-color);
+  border: 2px solid var(--light-accent-color);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
 
 .xodry-whatwedo-title {
   font-size: 3rem;

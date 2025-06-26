@@ -14,13 +14,14 @@
         if (!empty($pickups)):
             foreach ($pickups as $pickup): ?>
                 <div class="col-md-6 mb-4">
-                    <div class="card rounded-3 shadow-sm" style="background:var(--secondary-color);">
+                    <div class="card rounded-3 shadow-sm bg-gradient" style="background:var(--fade-color);">
                         <div class="card-body text-white">
                             <h5 class="card-title"><i class="fas fa-box-open me-2 text-white"></i> Pickup ID: <?= $pickup['id'] ?></h5>
                             <p class="mb-1"><strong>Customer:</strong> <?= $pickup['name'] ?> #<?= $pickup['user_id'] ?></p>
                             <p class="mb-1"><strong>Contact:</strong> <a href="tel:<?= $pickup['number'] ?>"><?= $pickup['number'] ?></a></p>
                             <p class="mb-1"><strong>Status:</strong> <?= $pickup['status'] ?></p>
-                            <p class="mb-1"><strong>Schedule:</strong> <?= $pickup['schedule'] ?></p>
+                            <p class="mb-1"><strong>Pickup Date:</strong> <?= $pickup['schedule'] ?></p>
+                            <p class="mb-1"><strong>Pickup Time:</strong> <?= $pickup['pickup_time'] ?></p>
                             <p class="mb-1"><strong>Address:</strong> <?= $pickup['address'] ?></p>
 
                             <?php
@@ -83,7 +84,7 @@
         if (!empty($pickups)):
             foreach ($pickups as $pickup): ?>
                 <div class="col-md-6 mb-4">
-                    <div class="card rounded-3 shadow-sm" style="background:var(--secondary-color);">
+                    <div class="card rounded-3 shadow-sm bg-success" style="background:var(--fade-color);">
                         <div class="card-body text-white">
                             <h5 class="card-title"><i class="fas fa-box-open me-2 text-white"></i> Pickup ID: <?= $pickup['id'] ?></h5>
                             <p class="mb-1"><strong>Customer:</strong> <?= $pickup['name'] ?> #<?= $pickup['user_id'] ?></p>
@@ -109,7 +110,7 @@
                                     <form method="POST" action="changePickupStatus">
                                         <input type="hidden" name="pickup_id" value="<?= $pickup['id'] ?>">
                                         <input type="hidden" name="new_status" value="<?= $nextStatus ?>">
-                                        <button type="submit" class="btn btn-success btn-sm">
+                                        <button type="submit" class="btn btn-light btn-sm">
                                             <i class="fas fa-arrow-right me-1"></i> Move to <?= $nextStatus ?>
                                         </button>
                                     </form>

@@ -4,12 +4,16 @@ namespace App\Controllers;
 include __DIR__. '/../../vendor/autoload.php';
 
 use App\Models\AuthModel;
+use Core\Database;
 
 class AuthController {
+     private $db;
      private $userModel;
 
      public function __construct() {
-          $this->userModel = new AuthModel();
+          $database = new Database(); // ✅ Your custom DB wrapper
+          $this->db = $database->connect();
+          $this->userModel = new AuthModel($this->db);
      }
      public function login() {
           error_reporting(E_ALL);

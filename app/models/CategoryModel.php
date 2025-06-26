@@ -12,7 +12,7 @@ class CategoryModel
 {
     private $db;
 
-    public function __construct($db)
+    public function __construct()
     {
         $database = new Database(); // Custom Database class
         $this->db = $database->connect();
@@ -34,7 +34,7 @@ class CategoryModel
     {
         $stmt = $this->db->prepare("
             INSERT INTO categories 
-            (image, category_name, description, bullet_point_1, bullet_point_2, bullet_point_3) 
+            (image, category_name, description, bullet_point_1, bullet_point_2, bullet_point_3, bullet_point_4, bullet_point_5) 
             VALUES (?, ?, ?, ?, ?, ?)
         ");
 
@@ -44,14 +44,16 @@ class CategoryModel
             $data['description'],
             $data['bullet_point_1'],
             $data['bullet_point_2'],
-            $data['bullet_point_3']
+            $data['bullet_point_3'],
+            $data['bullet_point_4'],
+            $data['bullet_point_5'],
         ]);
     }
     public function updateCategory($data)
     {
         $stmt = $this->db->prepare("
             UPDATE categories
-            SET image = ?, category_name = ?, description = ?, bullet_point_1 = ?, bullet_point_2 = ?, bullet_point_3 = ?
+            SET image = ?, category_name = ?, description = ?, bullet_point_1 = ?, bullet_point_2 = ?, bullet_point_3 = ?, bullet_point_4 = ?, bullet_point_5 = ?
             WHERE id = ?
         ");
 
@@ -62,6 +64,8 @@ class CategoryModel
             $data['bullet_point_1'],
             $data['bullet_point_2'],
             $data['bullet_point_3'],
+            $data['bullet_point_4'],
+            $data['bullet_point_5'],
             $data['id'], // Assuming 'id' is part of the $data array
         ]);
     }

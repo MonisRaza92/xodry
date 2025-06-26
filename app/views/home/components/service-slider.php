@@ -1,4 +1,4 @@
-<div class="px-3 overflow-hidden" data-aos="fade-up">
+<div class="slider-container" data-aos="fade-up">
     <div class="service-slider overflow-hidden rounded-3 mt-3">
         <div class="slider">
             <?php foreach ($categories as $cat): ?>
@@ -23,14 +23,22 @@
     </div>
 </div>
 <style>
+    .slider-container{
+        background: var(--fade-color);
+        border: 2px solid var(--light-accent-color);
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 0 15px; 
+    }
     .service-slider {
         display: flex;
         overflow-x: auto;
         white-space: nowrap;
         width: 100%;
         scrollbar-width: none;
+        margin-bottom:15px;
     }
-
+    
     .slider {
         display: flex;
         animation: slider 15s linear infinite;

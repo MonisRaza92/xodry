@@ -7,7 +7,7 @@ foreach ($categories as $cat) {
 
 // Build service map
 $serviceMap = [];
-foreach ($services as $srv) {
+foreach ($servicesName as $srv) {
     $serviceMap[$srv['id']] = $srv['service_name'];
 }
 
@@ -39,7 +39,8 @@ foreach ($pickupItems as $item) {
                                 <strong>Pickup Address:</strong> <?= htmlspecialchars($pickup['address'] ?? 'N/A') ?>
                             </div>
                             <div class="pickup-meta">
-                                <strong>Date:</strong> <?= htmlspecialchars($pickup['schedule'] ?? 'N/A') ?>
+                                <strong>Pickup Date:</strong> <?= htmlspecialchars($pickup['schedule'] ?? 'N/A') ?> &nbsp; 
+                                <strong>Pickup Time:</strong> <?= htmlspecialchars($pickup['pickup_time'] ?? 'N/A') ?>
                             </div>
                         </div>
                         <div class="d-flex flex-column mt-3">
@@ -78,22 +79,43 @@ foreach ($pickupItems as $item) {
                                 See Items
                             </button>
                             <!-- Hidden Items List -->
+                            <!-- Hidden Items List -->
                             <div class="pickup-items-list mt-2" style="display: none;">
-                                <?php if (!empty($pickupItems)): ?>
-                                    <ul class="list-group">
-                                        <?php foreach ($pickupItems as $item): ?>
-                                            <li class="list-group-item bg-light">
-                                                <strong>Category:</strong> <?= htmlspecialchars($categoryMap[$item['category_id']] ?? 'Unknown') ?> |
-                                                <strong>Service:</strong> <?= htmlspecialchars($serviceMap[$item['service_id']] ?? 'Unknown') ?> |
-                                                <strong>Qty:</strong> <?= htmlspecialchars($item['quantity']) ?> |
-                                                <strong>Price:</strong> ₹<?= htmlspecialchars($item['total_price']) ?>
-                                            </li>
-                                        <?php endforeach; ?>
-                                    </ul>
+                                <?php if (!empty($items)): ?>
+                                    <?php
+                                    $grouped = [];
+                                    $totalPrice = 0;
+
+                                    foreach ($items as $item) {
+                                        $grouped[$item['category_id']][] = $item;
+                                        $totalPrice += $item['total_price'];
+                                    }
+                                    ?>
+                                    <?php foreach ($grouped as $catId => $services): ?>
+                                        <div class="mb-2">
+                                            <h6 class="text-dark fw-bold bg-light p-2 rounded">
+                                                <?= htmlspecialchars($categoryMap[$catId] ?? 'Unknown Category') ?>
+                                            </h6>
+                                            <ul class="list-group mb-2">
+                                                <?php foreach ($services as $srv): ?>
+                                                    <li class="list-group-item">
+                                                        <strong>Service:</strong> <?= htmlspecialchars($serviceMap[$srv['service_id']] ?? 'Unknown') ?> |
+                                                        <strong>Qty:</strong> <?= htmlspecialchars($srv['quantity']) ?> |
+                                                        <strong>Price:</strong> ₹<?= htmlspecialchars($srv['total_price']) ?>
+                                                    </li>
+                                                <?php endforeach; ?>
+                                            </ul>
+                                        </div>
+                                    <?php endforeach; ?>
+
+                                    <div class="text-end fw-bold bg-success text-white p-2 rounded">
+                                        Total Amount: ₹<?= $totalPrice ?>
+                                    </div>
                                 <?php else: ?>
                                     <div class="alert alert-info mt-2">No items found.</div>
                                 <?php endif; ?>
                             </div>
+
                         </div>
                     </div>
                 </div>

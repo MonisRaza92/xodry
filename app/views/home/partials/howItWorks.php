@@ -1,9 +1,9 @@
-<section class="xodry-howitworks-section py-5">
-    <div class="container pe-lg-0">
-        <div>
-            <h2 class="fw-bold">How It Works
-            </h2>
-            <p class="pt-2 paragraph">
+<section class="xodry-howitworks-section">
+    <div class="container px-lg-0">
+        <div class="section-heading p-3 mb-4">
+            <h2 class="fw-bold">How It Works</h2>
+            <hr>
+            <p class="paragraph">
                 Your laundry journey made simple. just book, and we’ll handle the rest with precision and care.
             </p>
         </div>
@@ -16,7 +16,7 @@
                     <h2>1</h2>
                 </div>
                 <div class="col-lg-9 col-12 pe-0" data-aos="fade-up">
-                    <div class="xodry-user-step p-4 rounded">
+                    <div class="xodry-user-step p-4">
                         <h4 class="fw-semibold mb-2">
                             <i class="fas fa-edit me-lg-1"></i>Enter Your Details
                         </h4>
@@ -31,7 +31,7 @@
                     <h2>2</h2>
                 </div>
                 <div class="col-lg-9 pe-0 col-12">
-                    <div class="xodry-user-step p-4 rounded " data-aos="fade-up">
+                    <div class="xodry-user-step p-4 " data-aos="fade-up">
                         <h4 class="fw-semibold mb-2">
                             <i class="fas fa-calendar-check me-1"></i>Book Your Pickup
                         </h4>

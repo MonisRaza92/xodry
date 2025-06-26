@@ -1,6 +1,6 @@
 <div class="container-fluid hero-section">
     <div class="container px-0">
-        <div class="row">
+        <div class="row mb-4">
             <div class="hero-content col-lg-5">
                 <h6 class="mb-4">WELCOME TO <span>XODRY</span></h6>
                 <h1 class="heading mt-2" data-aos="fade-up">Freshnes Deliverd to Your Door</h1>
@@ -13,7 +13,7 @@
             <div class="hero-img col-lg-7" data-aos="fade-up">
                 <?php include __DIR__ . '/../components/imageSlider.php' ?>
             </div>
-            <?php include __DIR__ . '/../components/service-slider.php' ?>
         </div>
+        <?php include __DIR__ . '/../components/service-slider.php' ?>
     </div>
 </div>

@@ -15,10 +15,10 @@ class PickupsModel {
         $this->db = $database->connect();
     }
 
-    public function pickups($user_id, $name, $schedule, $number, $address) {
+    public function createPickups($user_id, $name, $schedule, $pickup_time, $number, $address) {
         try {
-            $stmt = $this->db->prepare("INSERT INTO pickups (user_id, name, schedule, number, address) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$user_id, $name, $schedule, $number, $address]);
+            $stmt = $this->db->prepare("INSERT INTO pickups (user_id, name, schedule, pickup_time, number, address) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$user_id, $name, $schedule, $pickup_time, $number, $address]);
             return true;
         } catch (PDOException $e) {
             return $e->getMessage();
@@ -26,10 +26,10 @@ class PickupsModel {
     }
 
     // Update pickup details
-    public function updatePickup($user_id, $name, $schedule, $number, $address) {
+    public function updatePickup($user_id, $name, $schedule, $pickup_time, $number, $address) {
         try {
-            $stmt = $this->db->prepare("UPDATE pickups SET name = ?, schedule = ?, number = ?, address = ? WHERE user_id = ?");
-            $stmt->execute([$user_id, $name, $schedule, $number, $address,]);
+            $stmt = $this->db->prepare("UPDATE pickups SET name = ?, schedule = ?, pickup_time = ?, number = ?, address = ? WHERE user_id = ?");
+            $stmt->execute([$name, $schedule, $pickup_time, $number, $address, $user_id]);
             return true;
         } catch (PDOException $e) {
             return $e->getMessage();

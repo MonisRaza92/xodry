@@ -1,5 +1,5 @@
 .xodry-footer {
-  background-color: var(--secondary-color);
+  background-color: var(--fade-color);
   color: var(--light-color);
   font-size: 0.95rem;
 }
@@ -35,7 +35,7 @@
 }
 
 .footer-contact li {
-  color: #ccc;
+  color:var(--light-color);
   margin-bottom: 0.5rem;
 }
 

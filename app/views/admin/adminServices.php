@@ -20,19 +20,16 @@
                     <form method="post" action="admin-addCategory" enctype="multipart/form-data" class=" py-4 mt-2 shadow-sm add-category-form">
                         <!-- Image at Top -->
                         <div class="mb-3">
-                            <label for="categoryImage" class="form-label">Category Image</label>
                             <input type="file" class="form-control" id="categoryImage" name="image" accept="image/*" required>
                         </div>
 
                         <!-- Category Name -->
                         <div class="mb-3">
-                            <label for="categoryName" class="form-label">Category Name</label>
                             <input type="text" class="form-control" id="categoryName" name="category_name" placeholder="Category Name" required>
                         </div>
 
                         <!-- Description -->
                         <div class="mb-3">
-                            <label for="categoryDescription" class="form-label">Description</label>
                             <textarea class="form-control" id="categoryDescription" name="description" placeholder="Description" rows="3"></textarea>
                         </div>
 
@@ -41,7 +38,9 @@
                             <label class="form-label">Bullet Points</label>
                             <input type="text" class="form-control mb-2" name="bullet_point_1" placeholder="Bullet Point 1">
                             <input type="text" class="form-control mb-2" name="bullet_point_2" placeholder="Bullet Point 2">
-                            <input type="text" class="form-control" name="bullet_point_3" placeholder="Bullet Point 3">
+                            <input type="text" class="form-control mb-2" name="bullet_point_3" placeholder="Bullet Point 3">
+                            <input type="text" class="form-control mb-2" name="bullet_point_4" placeholder="Bullet Point 4">
+                            <input type="text" class="form-control" name="bullet_point_5" placeholder="Bullet Point 5">
                         </div>
 
                         <button type="submit" class="default-btn fs-5 w-100">Add new service</button>
@@ -64,6 +63,8 @@
                                             <?php if (!empty($cat['bullet_point_1'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_1'] ?? '') ?></li><?php endif; ?>
                                             <?php if (!empty($cat['bullet_point_2'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_2'] ?? '') ?></li><?php endif; ?>
                                             <?php if (!empty($cat['bullet_point_3'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_3'] ?? '') ?></li><?php endif; ?>
+                                            <?php if (!empty($cat['bullet_point_4'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_4'] ?? '') ?></li><?php endif; ?>
+                                            <?php if (!empty($cat['bullet_point_5'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_5'] ?? '') ?></li><?php endif; ?>
                                         </ul>
                                         <form class="mt-4" method="post" action="delete-service" onsubmit="return confirm('Are you sure you want to delete this service?');">
                                             <input type="hidden" name="category_id" value="<?= array_key_exists('id', $cat) ? htmlspecialchars($cat['id']) : '' ?>">
@@ -102,7 +103,9 @@
                                                     <label class="form-label">Bullet Points</label>
                                                     <input type="text" class="form-control mb-2" name="bullet_point_1" placeholder="Bullet Point 1" value="<?= htmlspecialchars($cat['bullet_point_1'] ?? '') ?>">
                                                     <input type="text" class="form-control mb-2" name="bullet_point_2" placeholder="Bullet Point 2" value="<?= htmlspecialchars($cat['bullet_point_2'] ?? '') ?>">
-                                                    <input type="text" class="form-control" name="bullet_point_3" placeholder="Bullet Point 3" value="<?= htmlspecialchars($cat['bullet_point_3'] ?? '') ?>">
+                                                    <input type="text" class="form-control mb-2" name="bullet_point_3" placeholder="Bullet Point 3" value="<?= htmlspecialchars($cat['bullet_point_3'] ?? '') ?>">
+                                                    <input type="text" class="form-control mb-2" name="bullet_point_4" placeholder="Bullet Point 4" value="<?= htmlspecialchars($cat['bullet_point_4'] ?? '') ?>">
+                                                    <input type="text" class="form-control" name="bullet_point_5" placeholder="Bullet Point 5" value="<?= htmlspecialchars($cat['bullet_point_5'] ?? '') ?>">
                                                 </div>
                                             </div>
                                             <div class="modal-footer">

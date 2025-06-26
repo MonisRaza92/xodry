@@ -42,9 +42,9 @@
             <div class="col-md-3" data-aos="fade-up">
                 <h5 class="footer-title">Contact Us</h5>
                 <ul class="footer-contact list-unstyled">
-                    <li><i class="fas fa-map-marker-alt me-2"></i> D-199, New Ashok Nagar, New Delhi</li>
-                    <li><i class="fas fa-phone-alt me-2"></i> +91 91985 99490</li>
-                    <li><i class="fas fa-envelope me-2"></i> support@xodry.in</li>
+                    <li><i class="fas fa-map-marker-alt me-2"></i> E-136,137, New Ashok Nagar, New Delhi</li>
+                    <li><a href="tel:+91876240439"><i class="fas fa-phone-alt me-2"></i> +91 876240439</a></li>
+                    <li><a href="mailto:xodry1@gmail.com"><i class="fas fa-envelope me-2"></i> xodry1@gmail.com</a></li>
                 </ul>
             </div>
         </div>
@@ -52,7 +52,7 @@
         <hr class="footer-divider my-4">
 
         <div class="text-center small">
-            © 2025 <strong>Xodry Laundry Service.</strong> All Rights Reserved. Desing & Developed by <a href="https://themeforest.net/user/arjun-kumar">ARZAQ INSIGHTS</a>
+            © 2025 <strong>Xodry Laundry Service.</strong> All Rights Reserved. || Desing & Developed by <a href="tel:+919198599490"> <strong>ARZAQ INSIGHTS </strong></a>
         </div>
     </div>
 </footer>

@@ -1,7 +1,7 @@
 .my-chart {
-  border: 1px solid var(--accent-color);
+  border: 1px solid var(--light-accent-color);
   padding: 10px;
-  background-color: var(--secondary-color);
+  background-color: var(--fade-color);
 }
 .recent-users-container {
     border: 1px solid var(--accent-color);

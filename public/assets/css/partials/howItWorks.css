@@ -1,10 +1,3 @@
-/* Section Background and Text */
-.xodry-howitworks-section {
-  background-color: var(--secondary-color);
-  color: var(--light-color);
-  padding: 60px 0px!important;
-}
-
 /* Heading */
 .xodry-howitworks-section h2 {
   font-weight: bolder;
@@ -17,7 +10,6 @@
 .xodry-howitworks-section .paragraph {
   font-size: 1.2rem;
   color: var(--light-color);
-  margin: 0 auto 30px auto;
 }
 
 /* === User Steps Section === */
@@ -31,11 +23,14 @@
   font-size: 100px;
   font-weight: 900;
   padding: 30px 22px;
-  background: var(--accent-color);
-  border-radius: 8px;
+  background: var(--fade-color);
+  border: 2px solid var(--light-accent-color);
+  border-radius: 10px;
 }
 .xodry-user-step {
-  background: var(--accent-color);
+  background: var(--fade-color);
+  border: 2px solid var(--light-accent-color);
+  border-radius: 10px;
   color: var(--light-color);
   transition: 0.3s;
   padding: 30px 20px;
@@ -68,19 +63,18 @@
   left: 30px;
   width: 10px;
   height: 85%;
-  background: var(--accent-color);
+  background: var(--light-color);
 
 }
 
 /* Timeline Cards */
 .timeline-card {
-  background: var(--accent-color);
-  border-left: 10px solid var(--main-color);
+  background: var(--fade-color);
+  border-left: 10px solid var(--light-accent-color);
   margin-left: 70px;
   padding: 25px 30px;
   border-radius: 14px;
   color: var(--light-color);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
   position: relative;
 }
@@ -94,11 +88,10 @@
   height: 20px;
   border-radius: 50%;
   background-color: var(--light-color);
-  box-shadow: 0 0 0 10px var(--main-color);
+  box-shadow: 0 0 0 10px var(--light-accent-color);
 }
 
 .timeline-card:hover {
-  background-color: var(--accent-color);
   transform: translateY(-5px);
 }
 

@@ -18,15 +18,28 @@ class ServiceModel
         $database = new Database(); // Custom Database class
         $this->db = $database->connect();
     }
-    public function getServicesByCategory()
+    public function getServicesByCategoryName()
     {
         $stmt = $this->db->prepare("
             SELECT s.*, c.category_name FROM services s
             JOIN categories c ON s.category_id = c.id
-            WHERE s.category_id = ?
         ");
+        $stmt->execute(); // ✅ Don't forget this
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getServicesByCategory($categoryId)
+    {
+        $stmt = $this->db->prepare("
+            SELECT s.*, c.category_name 
+            FROM services s
+            JOIN categories c ON s.category_id = c.id
+            WHERE s.category_id = ?
+        ");
+        $stmt->execute([$categoryId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
     public function getAllServices()
     {
         $stmt = $this->db->query("

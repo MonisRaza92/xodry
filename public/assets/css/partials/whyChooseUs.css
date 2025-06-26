@@ -12,23 +12,29 @@
 .xodry-whychoose-intro {
   font-size: 1.2rem;
   color: var(--light-color);
-  border-bottom: 1px solid var(--light-color);
 }
 .xodry-whychoose-list {
-  background-color: var(--secondary-color);
-  padding: 18px;
+  background: var(--fade-color);
+  border: 2px solid var(--light-accent-color);
+  border-radius: 10px;
+  padding: 10px 8px;
   border-radius: 10px;
   transition: .3s all ease;
 }
 .xodry-whychoose-list li {
-  margin-bottom: 12px;
+  margin: 9px;
   font-size: 20px;
-  padding: 6px 0px;
+  padding: 5.8px 20px;
+  font-weight: bold;
   color: var(--light-color);
+  border: 2px solid var(--light-accent-color);
+  border-radius: 40px;
 }
 
 .xodry-whychoose-feature {
-  background-color: var(--secondary-color);
+  background-color: var(--fade-color);
+  border-radius: 10px;
+  border: 2px solid var(--light-accent-color);
   color: var(--light-color);
   transition: 0.3s ease;
 }
@@ -44,8 +50,8 @@
   color: #dbdbdb;
 }
 .xodry-stat {
-  background: var(--secondary-color);
-  border: 1px solid var(--accent-color);
+  background: var(--fade-color);
+  border: 2px solid var(--light-accent-color);
   border-radius: 8px;
   padding: 25px 35px;
   text-align: center;

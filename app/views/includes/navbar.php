@@ -1,11 +1,18 @@
 <?php
 
 use helpers\HelperFunctions;
+use App\Models\CategoryModel;
+use App\Models\PickupItemsModel;
 
 $helperFunctions = new HelperFunctions();
 $navbarData = $helperFunctions->getNavbarData();
 $orderCount = $navbarData['orderCount'];
 $pickupList = $navbarData['pickupList'];
+                $catModel = new CategoryModel();
+                $categories = $catModel->getAllCategories();
+
+                $pickupModel = new PickupItemsModel();
+                $pickupItems = $pickupModel->getAllPickupItems();
 
 ?>
 <nav class="container-fluid">

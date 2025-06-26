@@ -4,7 +4,7 @@
         <?php foreach ($users as $user): ?>
             <div class="user-row-xodry user-row-xodry-<?php echo (int)$user['id']; ?>">
                 <div class="user-name-xodry user-name-xodry-<?php echo (int)$user['id']; ?>">
-                    <span class="user-name-text-xodry"><?php echo htmlspecialchars($user['name'] ?? ''); ?></span>
+                    <span class="user-name-text-xodry">Name:  <?php echo htmlspecialchars($user['name'] ?? ''); ?></span>
                 </div>
                 <div class="user-phone-xodry user-phone-xodry-<?php echo (int)$user['id']; ?>">
                     <span class="user-phone-text-xodry"><strong>Phone:</strong> <?php echo htmlspecialchars($user['number'] ?? ''); ?></span>

@@ -1,4 +1,4 @@
-<section id="adminSidebar" class="admin-sidebar rounded">
+<section id="adminSidebar" class="admin-sidebar">
     <ul class="side-menu w-100">
         <li class="<?php echo basename($_SERVER['REQUEST_URI']) == 'admin' ? 'active-li' : '' ?> mt-3">
             <a href="admin"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>

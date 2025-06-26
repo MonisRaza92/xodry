@@ -13,10 +13,9 @@ class AuthModel
 {
      private $db;
 
-     public function __construct()
+     public function __construct($db)
      {
-          $database = new Database(); // Custom Database class
-          $this->db = $database->connect(); // This is the actual PDO object
+          $this->db = $db; 
      }
 
      public function userExists($number)

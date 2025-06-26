@@ -3,13 +3,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--secondary-color);
-    border: 1px  solid var(--accent-color);
+    background-color: var(--fade-color);
+    border: 2px  solid var(--light-accent-color);
     gap: 20px;
     padding: 10px 5px;
 }
 .stats-card-icon{
-    background-color: var(--accent-color);
+    background-color: var(--light-accent-color);
     padding: 10px;
 }
 .stats-card-icon i{

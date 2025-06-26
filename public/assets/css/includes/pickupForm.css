@@ -1,65 +1,67 @@
-.pickup-form{
-    width: 400px!important;
-    position: fixed;
-    padding: 40px 20px;
-    background-color: var(--primary-color);
-    border: 1px solid var(--light-color);
-    border-radius: 5px;
-    top: 150%;
-    left: 50%;
-    transform: translate(-50%, -50%)!important;
-    box-shadow: 0 0 200px #000000;
-    transition: 0.5s all ease;
-    z-index: 99999;
+.pickup-form {
+  width: 400px !important;
+  position: fixed;
+  padding: 40px 20px;
+  background: var(--primary-color);
+  border: 1px solid var(--light-color);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-radius: 5px;
+  bottom: -150%;
+  left: 50%;
+  transform: translate(-50%, 50%) !important;
+  box-shadow: 0 0 50px #000000;
+  transition: 0.5s all ease;
+  z-index: 99999;
 }
-.pickup-form form h3{
-    font-size: 30px;
-    margin-bottom: 20px;
+.pickup-form form h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
-.pickup-form form{
-    padding: 10px;
-    border: none;
-    width: 100%;
-    border-radius: 0;
-    
+.pickup-form form {
+  padding: 10px;
+  border: none;
+  width: 100%;
+  border-radius: 0;
 }
-.pickup-form form input{
-    width: 100%;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    padding: 10px;
-    border: none;
+.pickup-form form input {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  border: none;
 }
-.pickup-form form input:focus{
-    outline: none;
+.pickup-form form input:focus {
+  outline: none;
 }
 
-.pickup-form-active{
-    top: 50%!important;
+.pickup-form-active {
+  bottom: 50% !important;
 }
-.pickup-form #pickupFormClose{
-    position: absolute;
-    transform: rotate(-45deg);
-    background-color: var(--light-color);
-    width: 25px;
-    height: 3px;
-    border-radius: 4px;
-    top: 30px;
-    right: 20px;
-    cursor: pointer;
+.pickup-form #pickupFormClose {
+  position: absolute;
+  transform: rotate(-45deg);
+  background-color: var(--light-color);
+  width: 25px;
+  height: 3px;
+  border-radius: 4px;
+  top: 30px;
+  right: 20px;
+  cursor: pointer;
 }
-.pickup-form #pickupFormClose::before{
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: rotate(90deg);
-    width: 25px;
-    height: 3px;
-    background-color: var(--light-color);
-    border-radius: 4px;
+.pickup-form #pickupFormClose::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(90deg);
+  width: 25px;
+  height: 3px;
+  background-color: var(--light-color);
+  border-radius: 4px;
 }
-.pickup-form  img{
-    height: 20px;
-    margin-bottom: 20px;
+.pickup-form img {
+  height: 20px;
+  margin-bottom: 20px;
 }

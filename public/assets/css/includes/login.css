@@ -2,25 +2,28 @@
     min-width: 400px!important;
     position: fixed;
     padding: 40px 20px;
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     border: 1px solid var(--light-color);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     border-radius: 5px;
-    top: 160%;
+    bottom: -150%;
     left: 50%;
-    transform: translate(-50%, -50%)!important;
-    box-shadow: 0 0 200px #000000;
+    transform: translate(-50%, 50%)!important;
+    box-shadow: 0 0 50px #000000;
     transition: 0.5s all ease;
     z-index: 99999;
 }
 .login-form form .form-control{
-    padding: 10px;
+    padding: 10px 20px;
     border: none;
     width: 100%;
     border-radius: 0;
+    border-radius: 5px;
     
 }
 .login-form-active{
-    top: 50%!important;
+    bottom: 50%!important;
 }
 .login-form #formClose{
     position: absolute;
@@ -51,4 +54,5 @@
 .login-form h3{
     font-size: 40px;
     padding: 0 0 10px 2px;
+    font-weight: bold;
 }

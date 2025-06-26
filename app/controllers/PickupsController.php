@@ -19,8 +19,9 @@ class PickupsController
 
     public function __construct()
     {
-        $this->db = new Database();
-        $this->authModel = new AuthModel();
+        $database = new Database(); // ✅ Your custom DB wrapper
+        $this->db = $database->connect();
+        $this->authModel = new AuthModel( $this->db );
         $this->userModel = new UserModel($this->db);
         $this->pickupsModel = new PickupsModel();
     }
@@ -33,12 +34,13 @@ class PickupsController
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
             $pickup_date = $_POST['pickup_date'];
+            $pickup_time = $_POST['pickup_time'];
             $number = $_POST['number'];
             $email = $_POST['email'] ?? null;
             $address = $_POST['address'];
             $password = $_POST['password'] ?? null;
 
-            $authModel = new AuthModel();
+            $authModel = new AuthModel( $this->db);
             $userModel = new UserModel($this->db);
             $pickupModel = new PickupsModel();
 
@@ -47,17 +49,16 @@ class PickupsController
             // Step 1: If not logged in → check user by number
             if (!$user_id) {
                 $user = $authModel->getUserByNumber($number);
-
+                
                 if (!$user) {
-                    // Register and login
-                    $user_id = $authModel->createUser($name, $number, $email, $address, $password);
+                    $newUser = $authModel->createUser($name, $number, $email, $address, $password); // ✅ FIXED LINE
+                    $user = $authModel->getUserByNumber($number);
+                    $user_id = $user['id'];
                     $_SESSION['user_id'] = $user_id;
                 } else {
-                    // Login existing user
                     $user_id = $user['id'];
                     $_SESSION['user_id'] = $user_id;
 
-                    // Optional: update incomplete profile
                     if (empty($user['name']) || empty($user['address'])) {
                         $userModel->updateUser($user_id, $name, $number, $email, $address);
                     }
@@ -65,7 +66,11 @@ class PickupsController
             }
 
             // Step 2: Create pickup
-            $result = $pickupModel->pickups($user_id, $name, $pickup_date, $number, $address);
+            if (!$user_id) {
+                echo json_encode(['status' => 'error', 'message' => 'User not found']);
+                return;
+            }
+            $result = $pickupModel->createPickups($user_id, $name, $pickup_date, $pickup_time, $number, $address);
 
             if ($result === true) {
                 echo json_encode(['status' => 'success']);

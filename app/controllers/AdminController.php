@@ -17,10 +17,11 @@ class AdminController{
 
 
     public function __construct() {
-        $this->db = new Database(); 
+        $database = new Database(); // ✅ Your custom DB wrapper
+        $this->db = $database->connect();
         $this->userModel = new \App\Models\UserModel($this->db);
         $this->pickupsModel = new  PickupsModel();
-        $this->catModel = new \App\Models\CategoryModel($this->db);
+        $this->catModel = new \App\Models\CategoryModel();
         $this->serviceModel = new \App\Models\ServiceModel();
         $this->pickupItemsModel = new \App\Models\PickupItemsModel();
         $this->subscriptionModel = new \App\Models\SubscriptionModel();
@@ -105,14 +106,14 @@ class AdminController{
         $pickupStatus = $this->pickupsModel->getAllPickupsStatus();
         $pickupItems = $this->pickupItemsModel->getAllPickupItems(); // get all items for all pickups
         $categories = $this->catModel->getAllCategories(); // All category names
-        $services = $this->serviceModel->getAllServices(); // All service names
+        $servicesName = $this->serviceModel->getAllServices(); // All service names
 
         include_once __DIR__ . '/../views/admin/adminOrders.php';
         exit();
     }
 
     public function services(){
-        $catModel = new \App\Models\CategoryModel($this->db);
+        $catModel = new \App\Models\CategoryModel();
         $categories = $catModel->getAllCategories();
 
         include __DIR__. '/../views/admin/adminServices.php';
@@ -120,10 +121,10 @@ class AdminController{
     }
     public function prices()
     {
-        $catModel = new \App\Models\CategoryModel($this->db);
+        $catModel = new \App\Models\CategoryModel();
         $serviceModel = new \App\Models\ServiceModel();
         $categories = $catModel->getAllCategories();
-        $services = $serviceModel->getServicesByCategory();
+        $servicesByCategory = $serviceModel->getServicesByCategoryName();
         include_once __DIR__ . '/../views/admin/adminPrices.php';
         exit();
     }
@@ -136,7 +137,7 @@ class AdminController{
             $address = $_POST['address'];
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            $authModel = new \App\Models\AuthModel();
+            $authModel = new \App\Models\AuthModel($this->db);
             $result = $authModel->createRider($name, $number, $email, $address, $password);
 
             if ($result === true) {
@@ -165,10 +166,12 @@ class AdminController{
                 'description' => $_POST['description'],
                 'bullet_point_1' => $_POST['bullet_point_1'],
                 'bullet_point_2' => $_POST['bullet_point_2'],
-                'bullet_point_3' => $_POST['bullet_point_3']
+                'bullet_point_3' => $_POST['bullet_point_3'],
+                'bullet_point_4' => $_POST['bullet_point_4'],
+                'bullet_point_5' => $_POST['bullet_point_5'],
             ];
 
-            $categoryModel = new \App\Models\CategoryModel($this->db);
+            $categoryModel = new \App\Models\CategoryModel();
             $result = $categoryModel->addCategory($data);
 
             if ($result) {
@@ -199,10 +202,12 @@ class AdminController{
                 'description' => $_POST['description'],
                 'bullet_point_1' => $_POST['bullet_point_1'],
                 'bullet_point_2' => $_POST['bullet_point_2'],
-                'bullet_point_3' => $_POST['bullet_point_3']
+                'bullet_point_3' => $_POST['bullet_point_3'],
+                'bullet_point_4' => $_POST['bullet_point_4'],
+                'bullet_point_5' => $_POST['bullet_point_5'],
             ];
 
-            $categoryModel = new \App\Models\CategoryModel($this->db);
+            $categoryModel = new \App\Models\CategoryModel();
             $result = $categoryModel->updateCategory($data);
 
             if ($result) {
@@ -216,7 +221,7 @@ class AdminController{
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['category_id'];
-            $deleteServiceModel = new \App\Models\CategoryModel($this->db);
+            $deleteServiceModel = new \App\Models\CategoryModel();
             $deleted = $deleteServiceModel->deleteCategory($id);
             if ($deleted) {
                 echo "<script>alert('Service deleted successfully');window.location.href='admin-services';</script>";

@@ -18,7 +18,7 @@
                     <?php $pageName = "Prices";
                     include_once __DIR__ . '/../includes/breadcrumb.php' ?>
                     <div class="card my-4 custom-add-service-card">
-                        <div class="custom-card-header">
+                        <div class="custom-card-header text-dark">
                             Add New Service
                         </div>
                         <div class="custom-card-body">
@@ -52,7 +52,7 @@
                 <div class="custom-services-container container">
                     <?php
                     $grouped = [];
-                    foreach ($services as $service) {
+                    foreach ($servicesByCategory as $service) {
                         $grouped[$service['category_name']][] = $service;
                     }
                     ?>
@@ -66,9 +66,9 @@
                                     <table class="custom-service-table">
                                         <thead>
                                             <tr>
-                                                <th>Service Name</th>
-                                                <th>Price (₹)</th>
-                                                <th>Action</th>
+                                                <th class="text-dark">Service</th>
+                                                <th class="text-dark">Price (₹)</th>
+                                                <th class="text-dark">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>

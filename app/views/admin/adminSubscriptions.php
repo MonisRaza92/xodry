@@ -101,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row justify-content-center gy-4">
+            <div class="row justify-content-center gy-4 mt-4">
                 <!-- Basic Plan -->
                 <?php foreach ($subscriptions as $subscription): ?>
                     <div class="col-md-6 col-lg-4" data-aos="fade-up">

@@ -29,7 +29,7 @@ class RiderModel
         $pickups = $stmt->fetch()['pickups'];
 
         // Total pending/assigned orders (not completed)
-        $stmt = $this->db->prepare("SELECT COUNT(*) as delivery FROM pickups WHERE rider_id = :rider_id AND status NOT IN ('Assigned For Delivery',
+        $stmt = $this->db->prepare("SELECT COUNT(*) as delivery FROM pickups WHERE rider_id = :rider_id AND status IN ('Assigned For Delivery',
             'Out For Delivery',
             'Delivered')");
         $stmt->execute(['rider_id' => $rider_id]);

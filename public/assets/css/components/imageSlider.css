@@ -1,8 +1,9 @@
 .image-slider{
-    border-radius: 20px;
+    border-radius: 10px;
     position: relative;
     overflow: hidden;
     height:450px;
+    border: 2px solid var(--light-accent-color);
 }
 .image-slider .sliding-btns{
     position: absolute;

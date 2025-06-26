@@ -31,17 +31,19 @@
 @import url(components/statsCard.css);
 @import url(components/recentUserList.css);
 @import url(components/addPriceCard.css);
+@import url(components/rateListCard.css);
+
 
 
 :root{
     --dark-color:#111111;
-    --primary-color:rgb(7, 10, 4);
+    --primary-color:linear-gradient(149deg,rgb(29, 81, 46) 0%, rgb(10, 52, 27) 89%);
     --secondary-color:#27391C;
-    --accent-color:linear-gradient(149deg,rgba(68, 194, 110, 1) 0%, rgba(37, 95, 56, 1) 89%);
-    --main-color:#1F7D53;
+    --accent-color:linear-gradient(149deg,rgb(234, 234, 234) 0%, rgb(255, 255, 255) 89%);
+    --main-color:#09fc66;
     --light-color:#f2f2f2;
     --light-accent-color:#a0b3a6;
-    --fade-color:#00000050;
+    --fade-color:#ffffff2a;
     --nav-height:64px;
 }
 body{
