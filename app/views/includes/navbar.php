@@ -3,6 +3,7 @@
 use helpers\HelperFunctions;
 use App\Models\CategoryModel;
 use App\Models\PickupItemsModel;
+use App\Models\ServiceModel;
 
 $helperFunctions = new HelperFunctions();
 $navbarData = $helperFunctions->getNavbarData();
@@ -13,6 +14,10 @@ $pickupList = $navbarData['pickupList'];
 
                 $pickupModel = new PickupItemsModel();
                 $pickupItems = $pickupModel->getAllPickupItems();
+                
+                $serviceModel = new ServiceModel;
+                $services  =  $serviceModel->getAllServices();
+
 
 ?>
 <nav class="container-fluid">

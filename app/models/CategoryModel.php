@@ -23,6 +23,11 @@ class CategoryModel
         $stmt = $this->db->query("SELECT * FROM categories");
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+    public function getAllCategoryForCard()
+    {
+        $stmt = $this->db->query("SELECT * FROM categories WHERE visibility = 'for page card'");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function getCategoryNameById($categoryId)
     {
         $stmt = $this->db->prepare("SELECT category_name FROM categories WHERE id = ?");
@@ -34,8 +39,8 @@ class CategoryModel
     {
         $stmt = $this->db->prepare("
             INSERT INTO categories 
-            (image, category_name, description, bullet_point_1, bullet_point_2, bullet_point_3, bullet_point_4, bullet_point_5) 
-            VALUES (?, ?, ?, ?, ?, ?)
+            (image, category_name, description, bullet_point_1, bullet_point_2, bullet_point_3, bullet_point_4, bullet_point_5, visibility) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
         ");
 
         return $stmt->execute([
@@ -47,13 +52,14 @@ class CategoryModel
             $data['bullet_point_3'],
             $data['bullet_point_4'],
             $data['bullet_point_5'],
+            $data['visibility'],
         ]);
     }
     public function updateCategory($data)
     {
         $stmt = $this->db->prepare("
             UPDATE categories
-            SET image = ?, category_name = ?, description = ?, bullet_point_1 = ?, bullet_point_2 = ?, bullet_point_3 = ?, bullet_point_4 = ?, bullet_point_5 = ?
+            SET image = ?, category_name = ?, description = ?, bullet_point_1 = ?, bullet_point_2 = ?, bullet_point_3 = ?, bullet_point_4 = ?, bullet_point_5 = ?, visibility = ?
             WHERE id = ?
         ");
 
@@ -66,6 +72,7 @@ class CategoryModel
             $data['bullet_point_3'],
             $data['bullet_point_4'],
             $data['bullet_point_5'],
+            $data['visibility'],
             $data['id'], // Assuming 'id' is part of the $data array
         ]);
     }

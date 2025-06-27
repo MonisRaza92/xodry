@@ -64,12 +64,18 @@ const userDetailsBtn = document.querySelector('#userDetailsBtn');
 const userDetailsForm = document.querySelector('.user-details-form');
 const userDetailsFormClose = document.querySelector('#userDetailsFormClose');
 
+if (userDetailsBtn) {
+    userDetailsBtn.addEventListener('click', function () {
+        userDetailsForm.classList.add('user-details-form-active')
+    });
+}
+
 document.addEventListener('click', function (event) {
     if (
         userDetailsForm &&
-        userDetaailsBtn &&
+        userDetailsBtn &&
         !userDetailsForm.contains(event.target) &&
-        !userDetaailsBtn.contains(event.target)
+        !userDetailsBtn.contains(event.target)
     ) {
         userDetailsForm.classList.remove('user-details-form-active');
     }

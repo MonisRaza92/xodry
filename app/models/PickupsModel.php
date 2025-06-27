@@ -73,7 +73,7 @@ class PickupsModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getAllPickups() {
-        $stmt = $this->db->prepare("SELECT * FROM pickups");
+        $stmt = $this->db->prepare("SELECT * FROM pickups ORDER BY id DESC");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

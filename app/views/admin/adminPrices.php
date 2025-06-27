@@ -41,6 +41,14 @@
                                     <input type="number" step="0.01" name="price" id="price" class="form-control" placeholder="Price" required>
                                 </div>
                                 <div class="col-12">
+                                    <label for="visibility" class="form-label">Add visibility</label>
+                                    <select name="visibility" id="visibility" class="form-control">
+                                        <option value="" selected>Select Visibility</option>
+                                        <option value="for riders">For Riders</option>
+                                        <option value="for users">For Users</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
                                     <button type="submit" class="default-btn mb-2 mt-3 fs-4 w-100">ADD new price</button>
                                 </div>
                             </form>
@@ -69,6 +77,7 @@
                                                 <th class="text-dark">Service</th>
                                                 <th class="text-dark">Price (₹)</th>
                                                 <th class="text-dark">Action</th>
+                                                <th class="text-dark">Visible</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -76,6 +85,7 @@
                                                 <tr>
                                                     <td><?= htmlspecialchars($srv['service_name']) ?></td>
                                                     <td>₹<?= number_format($srv['price'], 2) ?></td>
+                                                    <td><?= htmlspecialchars($srv['visibility']) ?></td>
                                                     <td>
                                                         <form method="post" action="delete-price" onsubmit="return confirm('Are you sure you want to delete this service?');" style="display:inline;">
                                                             <input type="hidden" name="service_id" value="<?= (int)$srv['id'] ?>">

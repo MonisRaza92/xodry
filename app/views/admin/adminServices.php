@@ -42,6 +42,10 @@
                             <input type="text" class="form-control mb-2" name="bullet_point_4" placeholder="Bullet Point 4">
                             <input type="text" class="form-control" name="bullet_point_5" placeholder="Bullet Point 5">
                         </div>
+                        <select name="visibility" id="visibility" class="form-control mb-3">
+                            <option value="only for prices" selected>Only For Prices</option>
+                            <option value="for page card">For Page Card</option>
+                        </select>
 
                         <button type="submit" class="default-btn fs-5 w-100">Add new service</button>
                     </form>
@@ -65,7 +69,8 @@
                                             <?php if (!empty($cat['bullet_point_3'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_3'] ?? '') ?></li><?php endif; ?>
                                             <?php if (!empty($cat['bullet_point_4'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_4'] ?? '') ?></li><?php endif; ?>
                                             <?php if (!empty($cat['bullet_point_5'])) : ?><li><i class="fa-regular fa-circle-check"></i> &nbsp;<?= htmlspecialchars($cat['bullet_point_5'] ?? '') ?></li><?php endif; ?>
-                                        </ul>
+                                            </ul>
+                                            <?php if (!empty($cat['visibility'])) : ?><li><?= htmlspecialchars($cat['visibility'] ?? '') ?></li><?php endif; ?>
                                         <form class="mt-4" method="post" action="delete-service" onsubmit="return confirm('Are you sure you want to delete this service?');">
                                             <input type="hidden" name="category_id" value="<?= array_key_exists('id', $cat) ? htmlspecialchars($cat['id']) : '' ?>">
                                             <button type="submit" class="btn btn-danger btn-sm mt-2 w-100">Delete</button>
@@ -107,6 +112,10 @@
                                                     <input type="text" class="form-control mb-2" name="bullet_point_4" placeholder="Bullet Point 4" value="<?= htmlspecialchars($cat['bullet_point_4'] ?? '') ?>">
                                                     <input type="text" class="form-control" name="bullet_point_5" placeholder="Bullet Point 5" value="<?= htmlspecialchars($cat['bullet_point_5'] ?? '') ?>">
                                                 </div>
+                                                <select name="visibility" id="visibility" class="form-control mb-3">
+                                                    <option value="only for prices" selected>Only For Prices</option>
+                                                    <option value="for page card">For Page Card</option>
+                                                </select>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>

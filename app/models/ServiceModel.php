@@ -26,7 +26,17 @@ class ServiceModel
         ");
         $stmt->execute(); // ✅ Don't forget this
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+    } 
+    public function getServicesByCategoryNameForUsers()
+    {
+        $stmt = $this->db->prepare("
+            SELECT s.*, c.category_name FROM services s
+            JOIN categories c ON s.category_id = c.id
+             WHERE s.visibility = 'for users'
+        ");
+        $stmt->execute(); // ✅ Don't forget this
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } 
     public function getServicesByCategory($categoryId)
     {
         $stmt = $this->db->prepare("
@@ -55,10 +65,10 @@ class ServiceModel
         return $stmt->fetchColumn();
     }
 
-    public function addService($category_id, $service_name, $price)
+    public function addService($category_id, $service_name, $price, $visibility)
     {
-        $stmt = $this->db->prepare("INSERT INTO services (category_id, service_name, price) VALUES (?, ?, ?)");
-        return $stmt->execute([$category_id, $service_name, $price]);
+        $stmt = $this->db->prepare("INSERT INTO services (category_id, service_name, price, visibility) VALUES (?, ?, ?, ?)");
+        return $stmt->execute([$category_id, $service_name, $price, $visibility]);
     }
     public function deleteService($id)
     {

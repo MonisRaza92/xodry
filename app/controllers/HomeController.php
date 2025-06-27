@@ -30,7 +30,7 @@ class HomeController
 
     public function index()
     {
-        $categories = $this->catModel->getAllCategories();
+        $categoriesForCard = $this->catModel->getAllCategoryForCard();
         $subscriptions = $this->SubscriptionModel->getAllSubscriptions();
         include_once __DIR__. '/../views/home/index.php';
     }
@@ -40,13 +40,13 @@ class HomeController
     }
     public function services()
     {
-        $categories = $this->catModel->getAllCategories();
+        $categoriesForCard = $this->catModel->getAllCategoryForCard();
         $subscriptions = $this->SubscriptionModel->getAllSubscriptions();
         include_once __DIR__. '/../views/home/sevices.php';
     }
     public function prices()
     {
-        $serviceListByCategory = $this->ServiceModel->getServicesByCategoryName();
+        $serviceListByCategory = $this->ServiceModel->getServicesByCategoryNameForUsers();
         include_once __DIR__. '/../views/home/prices.php';
     }
 }

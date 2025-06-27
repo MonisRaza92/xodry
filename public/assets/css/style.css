@@ -37,7 +37,7 @@
 
 :root{
     --dark-color:#111111;
-    --primary-color:linear-gradient(149deg,rgb(29, 81, 46) 0%, rgb(10, 52, 27) 89%);
+    --primary-color:linear-gradient(149deg,rgb(23, 27, 24) 0%, rgb(1, 8, 4) 89%);
     --secondary-color:#27391C;
     --accent-color:linear-gradient(149deg,rgb(234, 234, 234) 0%, rgb(255, 255, 255) 89%);
     --main-color:#09fc66;

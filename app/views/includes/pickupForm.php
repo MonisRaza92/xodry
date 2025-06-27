@@ -14,7 +14,7 @@
             <select name="pickup_time" id="pickup_time" class="form-control">
                 <?php
                 // Generate time slots from 9:00 AM to 8:00 PM
-                for ($hour = 9; $hour <= 24; $hour++) {
+                for ($hour = 9; $hour <= 21; $hour++) {
                     $time = DateTime::createFromFormat('H:i', "$hour:00");
                     echo "<option value='{$time->format('H:i')}'>{$time->format('g:i A')}</option>";
                 }

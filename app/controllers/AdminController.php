@@ -169,6 +169,7 @@ class AdminController{
                 'bullet_point_3' => $_POST['bullet_point_3'],
                 'bullet_point_4' => $_POST['bullet_point_4'],
                 'bullet_point_5' => $_POST['bullet_point_5'],
+                'visibility' => $_POST['visibility'],
             ];
 
             $categoryModel = new \App\Models\CategoryModel();
@@ -205,6 +206,7 @@ class AdminController{
                 'bullet_point_3' => $_POST['bullet_point_3'],
                 'bullet_point_4' => $_POST['bullet_point_4'],
                 'bullet_point_5' => $_POST['bullet_point_5'],
+                'visibility' => $_POST['visibility'],
             ];
 
             $categoryModel = new \App\Models\CategoryModel();
@@ -238,8 +240,9 @@ class AdminController{
             $cat_id = $_POST['category_id'];
             $name = $_POST['service_name'];
             $price = $_POST['price'];
+            $visibility = $_POST['visibility'];
             $serviceModel = new \App\Models\ServiceModel();
-            $serviceModel->addService($cat_id, $name, $price);
+            $serviceModel->addService($cat_id, $name, $price, $visibility);
             header("Location: admin-prices");
             exit;
         }
