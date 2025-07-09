@@ -1,8 +1,7 @@
-<section class="xodry-owner-portfolio text-light" style="background-color: var(--primary-color);">
+<section class="xodry-owner-portfolio text-light container-fluid" style="background-color: var(--primary-color);">
     <div class="container px-lg-0">
-        <div class="section-heading p-3 mb-4" data-aos="fade-up">
+        <div class="section-heading mb-4" data-aos="fade-up">
             <h2 class="text-accent">Meet The Founder</h2>
-            <hr>
             <p class="text-light-accent">Behind Every Clean Cloth, There's a Vision</p>
         </div>
         <div class="row align-items-center">

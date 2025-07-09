@@ -17,7 +17,7 @@
                 <div class="col-lg-9">
                     <?php $pageName = "Services";
                     include_once __DIR__ . '/../includes/breadcrumb.php' ?>
-                    <form method="post" action="admin-addCategory" enctype="multipart/form-data" class=" py-4 mt-2 shadow-sm add-category-form">
+                    <form method="post" action="admin-addCategory" enctype="multipart/form-data" class=" py-2 shadow-sm add-category-form text-white">
                         <!-- Image at Top -->
                         <div class="mb-3">
                             <input type="file" class="form-control" id="categoryImage" name="image" accept="image/*" required>

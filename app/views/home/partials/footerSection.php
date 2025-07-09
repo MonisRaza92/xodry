@@ -1,11 +1,9 @@
-<footer class="xodry-footer pt-5 pb-5">
+<footer class="xodry-footer pt-5 pb-5 container-fluid">
     <div class="container">
         <div class="row gy-4">
             <!-- Brand Info -->
             <div class="col-md-4" data-aos="fade-up">
-                <h4 class="footer-brand mb-3">
-                    <i class="fas fa-tshirt me-2"></i> Xodry
-                </h4>
+                <img width="125px" class="mb-3" src="assets/images/Logo/xodry-light-logo.png" alt="">
                 <p class="footer-about">
                     Xodry is your trusted laundry & dry-cleaning partner. Fast, affordable & reliable doorstep service.
                 </p>

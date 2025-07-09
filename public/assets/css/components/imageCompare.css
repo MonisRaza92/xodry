@@ -11,7 +11,7 @@
   height: 450px;
   overflow: hidden;
   aspect-ratio: 16/9;
-  border-radius: 12px;
+  border-radius: 5px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
@@ -69,7 +69,7 @@
   color: white;
   font-weight: bold;
   font-size: 0.9rem;
-  border-radius: 8px;
+  border-radius: 5px;
   z-index: 4;
 }
 

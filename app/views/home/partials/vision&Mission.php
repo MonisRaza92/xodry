@@ -1,9 +1,8 @@
-<section class="xodry-vision-mission py-5">
+<section class="xodry-vision-mission py-5 container-fluid">
     <div class="container px-lg-0">
-            <div class="section-heading p-3 mb-4" data-aos="fade-up">
-                <h2>Our Vision & Mission</h2>
-                <hr>
-                <p class="lead">Jo dekhte hain sapna, wohi badalte hain duniya.</p>
+            <div class="section-heading mb-5" data-aos="fade-up">
+                <h2 class="text-white">Our Vision & Mission</h2>
+                <p class="lead text-white">Jo dekhte hain sapna, wohi badalte hain duniya.</p>
             </div>
         <div class="row">
             <div class="col-md-6 mb-4" data-aos="fade-up">

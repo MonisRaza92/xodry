@@ -1,8 +1,7 @@
-<section class="xodry-pricing-section py-5 <?php echo !empty($subscriptions) ? '' : 'd-none'; ?>">
+<section class="xodry-pricing-section py-5 container-fluid <?php echo !empty($subscriptions) ? '' : 'd-none'; ?>">
     <div class="container px-lg-0">
-        <div class="section-heading p-3 mb-4">
-            <h2 class="section-title" data-aos="fade-up">Affordable Pricing Plans</h2>
-            <hr>
+        <div class="section-heading mb-4">
+            <h2 class="section-title text-uppercase" data-aos="fade-up">Plans</h2>
             <p class="section-subtitle" data-aos="fade-up">Choose a plan that fits your laundry needs.</p>
 
         </div>
@@ -15,7 +14,6 @@
                                 <h2 class="pricing-title"><?php echo $subscription['title']; ?></h2>
                                 <div class="pricing-price">₹<?php echo $subscription['price']; ?></div>
                         </div>
-                        <hr>
                         <ul class="pricing-features">
                             <li><i class="fas fa-check-circle"></i> <?php echo $subscription['point1']; ?></li>
                             <li><i class="fas fa-check-circle"></i> <?php echo $subscription['point2']; ?></li>
@@ -29,4 +27,4 @@
             <?php endforeach; ?>
         </div>
     </div>
-</section>
+</section> 

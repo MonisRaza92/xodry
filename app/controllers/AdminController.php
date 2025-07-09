@@ -52,7 +52,8 @@ class AdminController{
             header('Location: home');
             exit();
         }
-        $users = $this->userModel->getAllUsers();
+        $users = $this->userModel->getAllUsersWithPickupCount();
+
         include_once __DIR__. '/../views/admin/adminUsers.php';
         exit();
     }
@@ -89,6 +90,20 @@ class AdminController{
         $riders = $this->userModel->getAllRiders();
         include_once __DIR__. '/../views/admin/adminRiders.php';
         exit();
+    }
+    public function deleteRider()
+    {
+        $id = $_POST['id'] ?? null;
+        if ($id) {
+            $deleted = $this->userModel->deleteUser($id);
+            if ($deleted) {
+                echo "<script>alert('Rider deleted successfully');window.location.href='admin-riders';</script>";
+            } else {
+                echo "<script>alert('Failed to delete Rider');window.location.href='admin-riders';</script>";
+            }
+        } else {
+            echo "<script>alert('Invalid Rider ID');window.location.href='admin-riders';</script>";
+        }
     }
     public function orders()
     {

@@ -10,10 +10,15 @@
     <?php include_once __DIR__ . '/../includes/Navbar.php' ?>
     <?php include_once __DIR__ .  '/../includes/login.php' ?>
     <?php include_once __DIR__ .  '/../includes/userDetailsForm.php' ?>
-    <?php $pageName = "Prices";
-    include_once __DIR__ .  '/../includes/breadcrumb.php'; ?>
-    <?php include __DIR__. '/components/rateListCard.php' ?>
-
+    <div class="container-fluid">
+        <div class="container">
+        <?php $pageName = "Prices";
+        include_once __DIR__ . '/../includes/breadcrumb.php'; ?>
+        </div>
+    </div>
+    <div class="container-fluid">
+    <?php include __DIR__ . '/components/rateListCard.php' ?>
+    </div>
 
 
     <?php include_once __DIR__ .  '/partials/FAQSection.php' ?>

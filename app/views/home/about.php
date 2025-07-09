@@ -10,8 +10,12 @@
     <?php include_once __DIR__ . '/../includes/Navbar.php'; ?>
     <?php include_once __DIR__ .  '/../includes/login.php'; ?>
     <?php include_once __DIR__ .  '/../includes/userDetailsForm.php' ?>
+   <div class="container-fluid">
+    <div class="container">
     <?php $pageName = "About";
     include_once __DIR__ .  '/../includes/breadcrumb.php'; ?>
+    </div>
+   </div>
     <?php include_once __DIR__ .  '/partials/aboutOurStory.php'; ?>
     <?php include_once __DIR__ .  '/partials/vision&Mission.php'; ?>
     <?php include_once __DIR__ .  '/partials/ownerPortfolio.php'; ?>

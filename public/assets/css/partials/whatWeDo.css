@@ -1,34 +1,24 @@
-.xodry-whatwedo-section {
-  color: var(--light-color);
-}
-.section-heading{
-  background: var(--fade-color);
-  border: 2px solid var(--light-accent-color);
-  border-radius: 10px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+.xodry-section {
+  background-color: var(--primary-color);
 }
 
-.xodry-whatwedo-title {
-  font-size: 3rem;
-  text-transform: uppercase;
-  font-weight: bolder;
-  color: var(--light-color);
-}
-
-.xodry-whatwedo-subtitle {
-  font-size: 1.2rem;
-  color: var(--light-color);
-  margin: 0 auto;
-  text-align: left;
-}
-@media screen and (max-width: 768px) {
-  .xodry-whatwedo-title {
-    font-size: 2.6rem;
+.xodry-stat-box {
+  background-color: var(--secondary-color);
+  padding: 30px;
+  border-radius: 5px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position:relative;
+  overflow: hidden;
+  i{
+    color:var(--main-color);
   }
-  .xodry-whatwedo-subtitle {
-    font-size: 0.9rem;
+  p{
+    margin-bottom: 0;
   }
-  
+  img{
+    position:absolute;
+    width: 150px;
+    right: 10px;
+    bottom: 0;
+  }
 }
-

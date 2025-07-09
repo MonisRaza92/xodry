@@ -1,8 +1,8 @@
 <div class="login-form">
     <div id="formClose"></div>
-    <form id="loginForm" method="POST">
-        <img src="assets/images/Logo/logo.png" alt="Brand Logo">
-        <h3>Sign in</h3>
+    <form id="loginForm" method="POST" class="text-white">
+        <img src="assets/images/Logo/xodry-light-logo.png" alt="Brand Logo">
+        <h3 class="text-white">Sign in</h3>
         <div data-mdb-input-init class="form-outline mb-2">
             <label class="form-label" for="loginNumber">Enter Your Number</label>
             <input type="number" id="loginNumber" name="number" class="form-control" placeholder="Enter Number" />
@@ -32,7 +32,7 @@
         <div id="numberError"></div>
 
         <!-- Submit button -->
-        <button type="submit"  class="default-btn-outline text-dark btn-block w-100 mb-4">Sign in</button>
+        <button type="submit"  class="default-btn-outline btn-block w-100 mb-4">Sign in</button>
     </form>
 </div>
 <script>

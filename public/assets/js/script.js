@@ -49,7 +49,7 @@ document.addEventListener('click', function (event) {
        }
     }
     if (adminMenu) {
-        if (!adminMenu.contains(event.target) && !adminMenuBtn.contains(event.target)) {
+        if (!adminMenu.contains(event.target) && (!adminMenuBtn || !adminMenuBtn.contains(event.target))) {
             adminMenu.classList.remove('admin-sidebar-active');
         }
     }

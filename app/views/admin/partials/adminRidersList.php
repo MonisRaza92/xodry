@@ -1,26 +1,28 @@
-<!-- adminUsersList.php -->
-<div class="users-list-xodry mt-3">
+<div class="user-list-xodry mt-3">
     <?php if (!empty($riders)): ?>
+        <div class="user-header-xodry d-none d-md-grid">
+            <div>Rider Name</div>
+            <div>Phone</div>
+            <div>Email</div>
+            <div>Action</div>
+        </div>
+
         <?php foreach ($riders as $rider): ?>
-            <div class="user-row-xodry user-row-xodry-<?php echo (int)$rider['id']; ?>">
-                <div class="user-name-xodry user-name-xodry-<?php echo (int)$rider['id']; ?>">
-                    <span class="user-name-text-xodry"><?php echo htmlspecialchars($rider['name'] ?? ''); ?></span>
+            <div class="user-row-xodry my-2">
+                <div data-label="Name"><?php echo htmlspecialchars($rider['name'] ?? ''); ?></div>
+                <div data-label="Phone"><a href="tel:<?php echo htmlspecialchars($rider['number'] ?? ''); ?>"><?php echo htmlspecialchars($rider['number'] ?? ''); ?></a>
                 </div>
-                <div class="user-phone-xodry user-phone-xodry-<?php echo (int)$rider['id']; ?>">
-                    <span class="user-phone-text-xodry"><strong>Phone:</strong> <?php echo htmlspecialchars($rider['number'] ?? ''); ?></span>
-                </div>
-                <div class="user-email-xodry user-email-xodry-<?php echo (int)$rider['id']; ?>">
-                    <span class="user-email-text-xodry"><?php echo htmlspecialchars($rider['email'] ?? ''); ?></span>
-                </div>
-                <div class="user-actions-xodry user-actions-xodry-<?php echo (int)$rider['id']; ?>">
-                    <form action="deleteUser" method="post" class="user-delete-form-xodry">
-                        <input type="hidden" name="id" value="<?php echo (int)$rider['id']; ?>">
-                        <button type="submit" class="btn btn-danger btn-sm user-delete-btn-xodry" onclick="return confirm('Are you sure to delete this user?');">Delete</button>
+                <div data-label="Email"><?php echo htmlspecialchars($rider['email'] ?? ''); ?></div>
+                <div class="delete" data-label="Action">
+                    <form action="deleteRider" method="POST"
+                        onsubmit="return confirm('Do you want to delete this rider? This action cannot be undone.')">
+                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($rider['id'] ?? ''); ?>">
+                        <button type="submit" class="border rounded">Delete</button>
                     </form>
                 </div>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <div class="alert alert-info users-list-empty-xodry">No users found.</div>
+        <div class="alert alert-info riders-list-empty-xodry">No riders found.</div>
     <?php endif; ?>
 </div>

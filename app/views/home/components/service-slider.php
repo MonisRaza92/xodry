@@ -24,9 +24,8 @@
 </div>
 <style>
     .slider-container{
-        background: var(--fade-color);
-        border: 2px solid var(--light-accent-color);
-        border-radius: 10px;
+        background: var(--secondary-color);
+        border-radius: 5px;
         overflow: hidden;
         padding: 0 15px; 
     }
@@ -46,9 +45,9 @@
 
     .slider p {
         padding: 10px 30px;
-        background-color: #f0f0f0;
+        background-color: var(--contrast-color);
         margin: 5px;
-        color: var(--dark-color);
+        color: var(--primary-color);
         text-transform: uppercase;
         font-weight: bold;
         font-size: 1.2rem;
@@ -60,9 +59,9 @@
 
     .slider p:hover {
         background: var(--primary-color);
-        color: var(--light-color);
+        color: var(--contrast-color);
         cursor: pointer;
-        border: 2px solid var(--light-color);
+        border: 2px solid var(--contrast-color);
     }
 
     @keyframes slider {

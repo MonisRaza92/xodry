@@ -26,8 +26,23 @@ class UserModel{
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE role = ?");
         $stmt->execute(['user']);
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getAllUsersWithPickupCount()
+    {
+        $stmt = $this->db->prepare("
+        SELECT u.*, 
+               COUNT(p.id) as pickup_count
+        FROM users u
+        LEFT JOIN pickups p ON u.id = p.user_id
+        WHERE u.role = 'user'
+        GROUP BY u.id
+        ORDER BY u.id DESC
+    ");
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function deleteUser($id)
     {
         try {

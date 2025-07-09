@@ -7,8 +7,8 @@
 
 /* Card */
 .custom-service-card {
-  background: var(--fade-color);
-  border: 2px solid var(--light-accent-color);
+  background: var(--secondary-color);
+  /* border: 2px solid var(--accent-color); */
   border-radius: 5px;
   width: calc(33%  - 10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -29,8 +29,8 @@
 
 /* Header */
 .custom-service-card-header {
-  background: var(--light-color);
-  color: var(--dark-color);
+  background: var(--contrast-color);
+  color: var(--secondary-color);
   padding: 12px 16px;
   text-transform: uppercase;
 }
@@ -48,7 +48,7 @@
 }
 
 .custom-service-table thead {
-  background: var(--light-accent-color);
+  background: var(--accent-color);
 }
 
 .custom-service-table th,
@@ -59,12 +59,12 @@
 
 .custom-service-table th {
   font-weight: 600;
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 
 .custom-service-table td {
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 .custom-service-table tr{
-  border-bottom: 1px solid var(--light-accent-color);
+  border-top: 1px solid var(--accent-color);
 }

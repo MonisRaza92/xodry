@@ -23,15 +23,13 @@ class RiderModel
         $stmt = $this->db->prepare("SELECT COUNT(*) as pickups FROM pickups WHERE rider_id = :rider_id AND status IN ('Assigned For Pickup',
             'Pickup Pending',
             'Going for Pickup',
-            'Picked Up',
-            'Dropped at Store')");
+            'Picked Up')");
         $stmt->execute(['rider_id' => $rider_id]);
         $pickups = $stmt->fetch()['pickups'];
 
         // Total pending/assigned orders (not completed)
         $stmt = $this->db->prepare("SELECT COUNT(*) as delivery FROM pickups WHERE rider_id = :rider_id AND status IN ('Assigned For Delivery',
-            'Out For Delivery',
-            'Delivered')");
+            'Out For Delivery')");
         $stmt->execute(['rider_id' => $rider_id]);
         $delivery = $stmt->fetch()['delivery'];
 

@@ -1,12 +1,11 @@
 .xodry-whatwedo-card {
-  background: var(--fade-color);
-  border: 2px solid var(--light-accent-color);
-  border-radius: 10px;
+  background: var(--secondary-color);
+  border-radius: 5px;
   transition: all 0.3s ease;
   overflow: hidden;
 }
 .xodry-whatwedo-card img {
-  height: 300px;
+  height: 250px;
   width: 100%;
   object-fit: cover;
 }
@@ -22,4 +21,21 @@
 }
 .xodry-whatwedo-card .service-card-content {
   text-align: left;
+}
+.service-card-content{
+  h4{
+    font-size: 25px;
+    text-transform: uppercase;
+  }
+  p{
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--fade-color);
+  }
+  ul li{
+    margin-bottom: 10px;
+    i{
+      color: var(--main-color);
+    }
+  }
 }

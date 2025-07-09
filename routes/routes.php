@@ -26,6 +26,19 @@ $router->addRoute('POST', 'deleteUser', 'AdminController@deleteUser');
 $router->addRoute('GET', 'admin-riders', 'AdminController@riders');
 $router->addRoute('POST', 'deleteRider', 'AdminController@deleteRider');
 $router->addRoute('GET', 'admin-orders', 'AdminController@orders');
+
+$router->addRoute('POST', 'admin/category/store', 'AdminController@storeCategory');
+$router->addRoute('POST', 'admin/category/update', 'AdminController@updateCategory');
+$router->addRoute('GET', 'admin/category/delete', 'AdminController@deleteCategory');
+
+$router->addRoute('POST', 'admin/service/store', 'AdminController@storeService');
+$router->addRoute('POST', 'admin/service/update', 'AdminController@updateService');
+$router->addRoute('GET', 'admin/service/delete', 'AdminController@deleteService');
+
+$router->addRoute('POST', 'admin/item/store', 'AdminController@storeItem');
+$router->addRoute('POST', 'admin/item/update', 'AdminController@updateItem');
+$router->addRoute('GET', 'admin/item/delete', 'AdminController@deleteItem');
+
 $router->addRoute('GET', 'admin-services', 'AdminController@services');
 $router->addRoute('POST', 'delete-service', 'AdminController@deleteService');
 $router->addRoute('GET', 'admin-prices', 'AdminController@prices');

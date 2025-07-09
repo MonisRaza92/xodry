@@ -36,14 +36,13 @@
 
 
 :root{
-    --dark-color:#111111;
-    --primary-color:linear-gradient(149deg,rgb(23, 27, 24) 0%, rgb(1, 8, 4) 89%);
-    --secondary-color:#27391C;
-    --accent-color:linear-gradient(149deg,rgb(234, 234, 234) 0%, rgb(255, 255, 255) 89%);
-    --main-color:#09fc66;
-    --light-color:#f2f2f2;
-    --light-accent-color:#a0b3a6;
-    --fade-color:#ffffff2a;
+    --primary-color:#111111;
+    --backgroud-color:#ffffff;
+    --secondary-color:#000000;
+    --accent-color:#454545;
+    --main-color:#02ff63;
+    --contrast-color:#ffffff;
+    --fade-color:#a9a9a9;
     --nav-height:64px;
 }
 body{

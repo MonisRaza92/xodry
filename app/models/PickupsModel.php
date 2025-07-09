@@ -72,6 +72,15 @@ class PickupsModel {
         $stmt->execute([$user_id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getPickupsCountByUserId($userId)
+    {
+        $stmt = $this->db->prepare("SELECT COUNT(*) as count FROM pickups WHERE user_id = :user_id");
+        $stmt->execute(['user_id' => $userId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result ? (int) $result['count'] : 0;
+    }
+
     public function getAllPickups() {
         $stmt = $this->db->prepare("SELECT * FROM pickups ORDER BY id DESC");
         $stmt->execute();

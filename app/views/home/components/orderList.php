@@ -29,7 +29,7 @@ foreach ($services as $srv) {
             $total += $item['total_price'];
         }
         ?>
-        <div class="border rounded mb-3 p-3 bg-transparent text-white" style="cursor: pointer;" onclick="togglePickupDetails(this)">
+        <div class="border rounded mb-3 p-3 bg-transparent text-dark" style="cursor: pointer;" onclick="togglePickupDetails(this)">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
                     <strong>Order #<?= htmlspecialchars($pickupId) ?></strong>
@@ -75,7 +75,7 @@ foreach ($services as $srv) {
                 <!-- Cancel Button -->
                 <form method="post" action="cancelPickupStatus" class="d-inline mt-3">
                     <input type="hidden" name="pickup_id" value="<?= $pickupId ?>">
-                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to cancel this pickup?')">
+                    <button type="submit" class="btn btn-dark mt-3" onclick="return confirm('Are you sure you want to cancel this pickup?')">
                         <i class="fas fa-xmark me-1"></i> Cancel
                     </button>
                 </form>

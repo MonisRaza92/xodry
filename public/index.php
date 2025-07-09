@@ -17,6 +17,11 @@ $basePath = '/websites/Xodry/'; // 🔁 Change as per your localhost folder
 $requestUri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);
 $requestUri = trim(parse_url($requestUri, PHP_URL_PATH), '/');
 $requestUri = $requestUri === '' ? '/' : $requestUri;
+if ($requestUri === '/') {
+    header("Location: {$basePath}home");
+    exit;
+}
+
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 

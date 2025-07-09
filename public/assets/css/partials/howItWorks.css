@@ -13,35 +13,39 @@
 }
 
 /* === User Steps Section === */
-.xodry-user-step-container h3{
-  font-size: 1.5rem;
-  font-weight: bolder;
-  padding: 20px 10px;
-  text-transform: capitalize;
+.xodry-user-step-container {
+  h3 {
+    font-size: 1.5rem;
+    font-weight: bolder;
+    padding: 20px 10px;
+    text-transform: capitalize;
+    color: var(--contrast-color);
+  }
+  i{
+    color: var(--main-color);
+  }
 }
 .xodry-user-step-container h2 {
   font-size: 100px;
   font-weight: 900;
   padding: 30px 22px;
-  background: var(--fade-color);
-  border: 2px solid var(--light-accent-color);
-  border-radius: 10px;
+  background: var(--secondary-color);
+  color: var(--contrast-color);
+  border-radius: 5px;
 }
 .xodry-user-step {
-  background: var(--fade-color);
-  border: 2px solid var(--light-accent-color);
-  border-radius: 10px;
-  color: var(--light-color);
+  background: var(--secondary-color);
+  border-radius: 5px;
+  color: var(--contrast-color);
   transition: 0.3s;
   padding: 30px 20px;
-  border-radius: 15px;
+  border-radius: 5px;
   text-align: center;
 }
 .xodry-user-step h4 {
   font-weight: 700;
   font-size: 1.4rem;
   margin-bottom: 10px;
-  color: var(--light-color);
 }
 
 .xodry-user-step p {
@@ -51,7 +55,7 @@
 }
 
 /* === Timeline Section === */
-.timeline-container h3{
+.timeline-container h3 {
   font-size: 1.5rem;
   font-weight: bolder;
   padding: 20px 0px;
@@ -63,22 +67,21 @@
   left: 30px;
   width: 10px;
   height: 85%;
-  background: var(--light-color);
-
+  background: var(--main-color);
 }
 
 /* Timeline Cards */
 .timeline-card {
-  background: var(--fade-color);
-  border-left: 10px solid var(--light-accent-color);
+  background: var(--secondary-color);
+  border-left: 10px solid var(--main-color);
   margin-left: 70px;
   padding: 25px 30px;
-  border-radius: 14px;
-  color: var(--light-color);
+  border-radius: 5px;
+  color: var(--contrast-color);
   transition: all 0.3s ease;
   position: relative;
 }
-.timeline-card::before{
+.timeline-card::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -87,8 +90,8 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: var(--light-color);
-  box-shadow: 0 0 0 10px var(--light-accent-color);
+  background-color: var(--primary-color);
+  box-shadow: 0 0 0 10px var(--contrast-color);
 }
 
 .timeline-card:hover {
@@ -98,17 +101,17 @@
 .timeline-card h5 {
   font-size: 1.3rem;
   margin-bottom: 10px;
-  color: var(--light-color);
+  color: var(--contrast-color);
 }
 
 .timeline-card p {
   font-size: 1rem;
   line-height: 1.5;
-  color: var(--light-color);
+  color: var(--contrast-color);
   margin: 0;
 }
-@media screen and (max-width:768px) {
-  .timeline-side-line{
+@media screen and (max-width: 768px) {
+  .timeline-side-line {
     top: 160px;
   }
   .timeline-card h5 {
@@ -117,5 +120,4 @@
   .timeline-card p {
     font-size: 0.9rem;
   }
-  
 }

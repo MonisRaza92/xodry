@@ -1,46 +1,44 @@
-.xodry-whychoose-section {
-  background-color: var(--primary-color);
-  color: var(--light-color);
-}
-
 .xodry-whychoose-title {
   font-size: 3rem;
   font-weight: 700;
-  color: var(--light-color);
 }
 
 .xodry-whychoose-intro {
   font-size: 1.2rem;
-  color: var(--light-color);
 }
 .xodry-whychoose-list {
-  background: var(--fade-color);
-  border: 2px solid var(--light-accent-color);
-  border-radius: 10px;
-  padding: 10px 8px;
-  border-radius: 10px;
+  background: var(--secondary-color);
+  padding: 20px 10px;
+  border-radius: 5px;
   transition: .3s all ease;
+  border: 2px solid var(--accent-color);
 }
 .xodry-whychoose-list li {
-  margin: 9px;
+  margin: 9.5px;
   font-size: 20px;
   padding: 5.8px 20px;
   font-weight: bold;
-  color: var(--light-color);
-  border: 2px solid var(--light-accent-color);
-  border-radius: 40px;
+  color: var(--contrast-color);
+  background: var(--primary-color);
+  border-radius: 4px;
+  i{
+    color: var(--main-color);
+  }
 }
 
 .xodry-whychoose-feature {
-  background-color: var(--fade-color);
-  border-radius: 10px;
-  border: 2px solid var(--light-accent-color);
-  color: var(--light-color);
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  border: 2px solid var(--accent-color);
+  color: var(--contrast-color);
   transition: 0.3s ease;
+  i{
+    color: var(--main-color);
+  }
 }
 
 .xodry-whychoose-feature h5 {
-  color: var(--light-color);
+  color: var(--contrast-color);
   font-weight: 600;
   font-size: 1rem;
 }
@@ -49,31 +47,3 @@
   font-size: 0.85rem;
   color: #dbdbdb;
 }
-.xodry-stat {
-  background: var(--fade-color);
-  border: 2px solid var(--light-accent-color);
-  border-radius: 8px;
-  padding: 25px 35px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-  .xodry-stat i {
-    font-size: 2.8rem;
-    color: var(--accent-color);
-    margin-bottom: 12px;
-    display: block;
-  }
-  
-  .xodry-stat .number {
-    font-size: 2.4rem;
-    font-weight: 700;
-    color: var(--light-accent-color);
-    margin-bottom: 6px;
-  }
-  
-  .xodry-stat .label {
-    font-size: 1.1rem;
-    color: #ddd;
-    font-weight: 500;
-  }
-  

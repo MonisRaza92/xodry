@@ -1,9 +1,13 @@
 .image-slider{
-    border-radius: 10px;
+    border-radius: 5px;
     position: relative;
     overflow: hidden;
     height:450px;
-    border: 2px solid var(--light-accent-color);
+}
+@media screen and (max-width:768px) {
+    .image-slider{
+        height: 300px;
+    }    
 }
 .image-slider .sliding-btns{
     position: absolute;

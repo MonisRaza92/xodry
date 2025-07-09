@@ -1,4 +1,4 @@
-<div class="custom-services-container container px-lg-0">
+<div class="custom-services-container container">
     <?php
     $grouped = [];
     foreach ($serviceListByCategory as $service) {
@@ -15,8 +15,8 @@
                     <table class="custom-service-table">
                         <thead>
                             <tr>
-                                <th class="text-dark">Service</th>
-                                <th class="text-dark">Price (₹)</th>
+                                <th class="text-white">Service</th>
+                                <th class="text-white">Price (₹)</th>
                             </tr>
                         </thead>
                         <tbody>

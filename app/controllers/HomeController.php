@@ -33,6 +33,7 @@ class HomeController
         $categoriesForCard = $this->catModel->getAllCategoryForCard();
         $subscriptions = $this->SubscriptionModel->getAllSubscriptions();
         include_once __DIR__. '/../views/home/index.php';
+        exit;
     }
     public function about()
     {

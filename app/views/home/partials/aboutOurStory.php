@@ -1,4 +1,4 @@
-<section class="xodry-our-story py-5">
+<section class="xodry-our-story py-5 container-fluid">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6 mb-4 mb-md-0" data-aos="fade-up">
