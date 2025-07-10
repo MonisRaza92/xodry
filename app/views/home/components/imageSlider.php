@@ -1,12 +1,14 @@
 <div class="image-slider px-0" id="imageSlider">
-    <img src="assets/images/Hero/slider1.jpg" alt="" class="img-fluid slider-img active">
-    <img src="assets/images/Hero/slider2.jpg" alt="" class="img-fluid slider-img">
-    <img src="assets/images/Hero/slider3.jpg" alt="" class="img-fluid slider-img">
+    <?php foreach ($images as $image): ?>
+        <img src="<?php echo $image['image_url']; ?>" alt="" class="img-fluid slider-img">
+    <?php endforeach; ?>
+
     <div class="sliding-btns">
         <button id="prevBtn"></button>
         <button id="nextBtn"></button>
     </div>
 </div>
+
 <script>
     let current = 0;
     const images = document.querySelectorAll('#imageSlider .slider-img');

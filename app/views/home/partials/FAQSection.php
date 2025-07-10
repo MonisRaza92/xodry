@@ -1,4 +1,4 @@
-<section class="xodry-faq-section py-5 container-fluid">
+<section class="xodry-faq-section py-5 my-3 container-fluid">
     <div class="container">
         <div class="text-center mb-5">
             <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>

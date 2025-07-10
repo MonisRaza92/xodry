@@ -75,4 +75,19 @@ class ServiceModel
         $stmt = $this->db->prepare("DELETE FROM services WHERE id = ?");
         return $stmt->execute([$id]);
     }
+    public function addDemoService($name)
+    {
+        $stmt = $this->db->prepare("INSERT INTO demo_service (name) VALUES (?)");
+        return $stmt->execute([$name]);
+    }
+    public function deleteDemoService($id)
+    {
+        $stmt = $this->db->prepare("DELETE FROM demo_service WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
+    public function getAllDemoServices()
+    {
+        $stmt = $this->db->query("SELECT * FROM demo_service");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

@@ -1,4 +1,4 @@
-<section class="xodry-pricing-section py-5 container-fluid <?php echo !empty($subscriptions) ? '' : 'd-none'; ?>">
+<section class="xodry-pricing-section py-5 mt-3 container-fluid <?php echo !empty($subscriptions) ? '' : 'd-none'; ?>">
     <div class="container px-lg-0">
         <div class="section-heading mb-4">
             <h2 class="section-title text-uppercase" data-aos="fade-up">Plans</h2>

@@ -23,7 +23,8 @@
   width: 100%;
   border-radius: 0;
 }
-.pickup-form form input {
+.pickup-form form input,
+.pickup-form form select {
   width: 100%;
   margin-bottom: 10px;
   border-radius: 5px;
@@ -70,6 +71,7 @@
       border-radius: 20px;
       padding: 50px 20px;
       padding-bottom: 80px;
+      border: none;
   }  
   .pickup-form-active{
       bottom: -10px!important;

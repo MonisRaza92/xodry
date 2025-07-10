@@ -9,7 +9,6 @@
 /* Header */
 .custom-add-service-card .custom-card-header {
     background: var(--accent-color,);
-    color: var(--light-color);
     padding: 14px 20px;
     font-size: 1.2rem;
     font-weight: 600;
@@ -31,23 +30,23 @@
 .custom-add-service-card .form-select {
     border-radius: 5px;
     background-color: transparent;
-    color: var(--light-color);
+    color: var(--contrast-color);
     padding: 10px;
-    border: 1px solid var(--light-color);
+    border: 1px solid var(--contrast-color);
     transition: border 0.2s ease;
 }
 .custom-add-service-card .form-control::placeholder,
 .custom-add-service-card .form-select::placeholder {
-    color: var(--light-accent-color, #a0b3a6);
+    color: var(--accent-color);
     opacity: 1; /* Ensures placeholder is fully opaque */
 }
 
 .custom-add-service-card .form-control:focus,
 .custom-add-service-card .form-select:focus {
-    border-color: var(--main-color, #1F7D53);
+    border-color: var(--main-color);
     box-shadow: 0 0 0 0.15rem rgba(31, 125, 83, 0.25);
     background-color: var(--secondary-color, #27391C);
-    color: var(--light-color, #f2f2f2);
+    color: var(--contrast-color, #f2f2f2);
 }
 
 /* Submit button */
@@ -60,5 +59,5 @@
 }
 
 .custom-add-service-card .btn-success:hover {
-    background: var(--main-color, #1F7D53);
+    background: var(--main-color);
 }

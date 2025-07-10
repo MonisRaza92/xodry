@@ -1,195 +1,251 @@
-<div class="modal fade my-5 py-5" id="pickupModal" tabindex="-1" aria-labelledby="pickupModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="background: var(--secondary-color); color: white;">
+<!-- 🟢 Step 1: Main Modal - List of Item Groups -->
+<div class="modal fade" id="pickupModal" tabindex="-1" aria-labelledby="pickupModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content" style="background: var(--secondary-color); margin-top: 80px; color: white; border: 1px solid var(--contrast-color);">
             <div class="modal-header">
-                <h5 class="modal-title" id="pickupModalLabel">Pickup Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Pickup Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-
             <div class="modal-body">
-                <input type="hidden" id="modalPickupId" value="">
+                <input type="hidden" id="modalPickupId">
 
-                <!-- Category Checkbox List -->
-                <div class="mb-3">
-                    <label class="form-label">Select Categories</label>
-                    <div id="categoryCheckboxes">
-                        <?php foreach ($categories as $cat): ?>
-                            <div class="form-check">
-                                <input class="form-check-input category-checkbox" type="checkbox" value="<?= $cat['id'] ?>" id="cat_<?= $cat['id'] ?>">
-                                <label class="form-check-label" for="cat_<?= $cat['id'] ?>">
-                                    <?= $cat['category_name'] ?>
-                                </label>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
+                <div id="itemListContainer"></div>
 
-                <!-- Services Area -->
-                <div id="serviceArea"></div>
+                <button class="btn btn-primary my-3" onclick="openNewListPopup()">+ Add New List</button>
 
-                <!-- Total Price -->
-                <div class="mb-3 mt-3">
-                    <label class="form-label">Total Price:</label>
-                    <p id="totalPrice">₹0</p>
+                <div class="mt-3">
+                    <strong>Grand Total Items:</strong> <span id="grandTotalQty">0</span><br>
+                    <strong>Grand Total Price:</strong> ₹<span id="grandTotalPrice">0</span>
                 </div>
             </div>
-
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" onclick="submitPickupDetails()">Save & Mark Picked Up</button>
+                <button class="btn btn-success" onclick="submitPickupDetails()">Save & Mark Picked Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🟡 Step 2: Add List Popup (Service + Category Select) -->
+<div class="modal fade" id="addListPopup" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content" style="background: var(--secondary-color); margin-top: 100px; color: white; border: 1px solid var(--contrast-color);">
+            <div class="modal-header">
+                <h5 class="modal-title">Add New List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label>Choose Category</label>
+                    <select class="form-select" id="demoServiceSelect">
+                        <option selected disabled>Select</option>
+                        <?php foreach ($demoServices as $demo): ?>
+                            <option value=""><?= $demo['name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label>Select Service</label>
+                    <select class="form-select" id="categorySelect">
+                        <option selected disabled>Select</option>
+                        <?php foreach ($categories as $cat): ?>
+                            <option value="<?= $cat['id'] ?>"><?= $cat['category_name'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 🔵 Step 3: Item Selection Popup (After category chosen) -->
+<div class="modal fade" id="itemPopup" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background: var(--secondary-color);  margin-top: 100px; color: white; border: 1px solid var(--contrast-color);">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Items</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="itemsArea"></div>
+                <div class="mt-3">
+                    <button class="btn btn-success" onclick="saveItemList()">Save This List</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // ✅ When Category Checkbox is Changed
-    document.addEventListener('change', function(e) {
-        if (e.target.classList.contains('category-checkbox')) {
-            const categoryId = e.target.value;
-            const isChecked = e.target.checked;
+    let allLists = [];
 
-            if (isChecked) {
-                loadServicesForCategory(categoryId);
+    function openNewListPopup(editIndex = null) {
+        const modal = new bootstrap.Modal(document.getElementById('addListPopup'));
+        document.getElementById('demoServiceSelect').selectedIndex = 0;
+        document.getElementById('categorySelect').selectedIndex = 0;
+        modal.show();
+
+        document.getElementById('categorySelect').onchange = function () {
+            const catId = this.value;
+            const catName = this.options[this.selectedIndex].text;
+            const serviceName = document.getElementById('demoServiceSelect').value || 'Unknown';
+
+            if (catId && serviceName !== 'Select') {
+                bootstrap.Modal.getInstance(document.getElementById('addListPopup')).hide();
+                loadItemsForCategory(catId, catName, serviceName, editIndex);
             } else {
-                removeServiceSection(categoryId);
+                alert('Please select service and category');
             }
-        }
-    });
+        };
+    }
 
-    // ✅ Load Services for ONE Category
-    function loadServicesForCategory(categoryId) {
-        const checkbox = document.getElementById('cat_' + categoryId);
-        const categoryName = checkbox.nextElementSibling.innerText;
-
+    function loadItemsForCategory(categoryId, categoryName, serviceName, editIndex = null) {
         fetch('rider/get-services', {
-                method: 'POST',
-                body: new URLSearchParams({
-                    category_id: categoryId
-                })
-            })
+            method: 'POST',
+            body: new URLSearchParams({ category_id: categoryId })
+        })
             .then(res => res.json())
-            .then(services => {
-                let html = `
-                <div class="category-service-section" id="services_cat_${categoryId}">
-                    <label class="form-label mt-3">${categoryName}</label>
-                    <div class="row">
-            `;
-
-                services.forEach(service => {
+            .then(items => {
+                let html = '';
+                items.forEach(item => {
                     html += `
-                    <div class="col-md-6 mb-2">
-                        <div class="form-check d-flex align-items-center">
-                            <input 
-                                class="form-check-input service-checkbox me-2" 
-                                type="checkbox" 
-                                data-category-id="${categoryId}"
-                                data-service='${JSON.stringify(service)}'
-                                id="service_${categoryId}_${service.id}"
-                            >
-                            <label class="form-check-label me-3" for="service_${categoryId}_${service.id}">
-                                ${service.service_name} (₹${service.price})
-                            </label>
-                            <input 
-                                type="number" 
-                                min="1" 
-                                value="1" 
-                                class="form-control form-control-sm ms-2 service-qty" 
-                                style="width:70px;" 
-                                data-service-id="${service.id}" 
-                                disabled
-                            >
-                        </div>
-                    </div>
-                `;
+        <div class="row align-items-center mb-2">
+          <div class="col-md-5">${item.service_name}</div>
+          <div class="col-md-3 d-flex align-items-center">
+            <button class="btn btn-sm btn-light me-2" onclick="changeQty(this, -1)">-</button>
+            <span class="qty-val" data-price="${item.price}" data-id="${item.id}" data-name="${item.service_name}">0</span>
+            <button class="btn btn-sm btn-light ms-2" onclick="changeQty(this, 1)">+</button>
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form-control comment-input" placeholder="Comment (optional)">
+          </div>
+        </div>`;
                 });
-
-                html += '</div></div>';
-                document.getElementById('serviceArea').innerHTML += html;
-
-                attachServiceEvents(); // Re-bind events
+                document.getElementById('itemsArea').innerHTML = html;
+                document.getElementById('itemPopup').setAttribute('data-category-id', categoryId);
+                document.getElementById('itemPopup').setAttribute('data-category-name', categoryName);
+                document.getElementById('itemPopup').setAttribute('data-demo-service', serviceName);
+                document.getElementById('itemPopup').setAttribute('data-edit-index', editIndex);
+                new bootstrap.Modal(document.getElementById('itemPopup')).show();
             });
     }
 
-    // ✅ Remove Service Section when Category Unchecked
-    function removeServiceSection(categoryId) {
-        const section = document.getElementById('services_cat_' + categoryId);
-        if (section) {
-            section.remove();
+    function changeQty(btn, delta) {
+        const span = btn.parentElement.querySelector('.qty-val');
+        let qty = parseInt(span.innerText);
+        qty = Math.max(0, qty + delta);
+        span.innerText = qty;
+    }
+
+    function saveItemList() {
+        const popup = document.getElementById('itemPopup');
+        const categoryId = popup.getAttribute('data-category-id');
+        const categoryName = popup.getAttribute('data-category-name');
+        const demoService = popup.getAttribute('data-demo-service');
+        const editIndex = popup.getAttribute('data-edit-index');
+
+        const rows = document.querySelectorAll('#itemsArea .row');
+        const items = [];
+        let totalQty = 0;
+        let totalPrice = 0;
+
+        rows.forEach(row => {
+            const span = row.querySelector('.qty-val');
+            const qty = parseInt(span.innerText);
+            if (qty > 0) {
+                const price = parseFloat(span.getAttribute('data-price'));
+                const comment = row.querySelector('.comment-input').value;
+                items.push({
+                    service_id: span.getAttribute('data-id'),
+                    service_name: span.getAttribute('data-name'),
+                    quantity: qty,
+                    total_price: qty * price,
+                    comment: comment
+                });
+                totalQty += qty;
+                totalPrice += qty * price;
+            }
+        });
+
+        if (items.length > 0) {
+            const newList = {
+                demo_service: demoService,
+                category_id: categoryId,
+                category_name: categoryName,
+                items: items,
+                total_quantity: totalQty,
+                total_price: totalPrice
+            };
+
+            if (editIndex !== 'null') {
+                allLists[editIndex] = newList;
+            } else {
+                allLists.push(newList);
+            }
+            renderItemLists();
         }
-        updateTotalPrice();
+        bootstrap.Modal.getInstance(popup).hide();
     }
 
-    // ✅ Attach Events to checkboxes + qty inputs
-    function attachServiceEvents() {
-        document.querySelectorAll('.service-checkbox').forEach(cb => {
-            cb.addEventListener('change', function() {
-                const service = JSON.parse(this.getAttribute('data-service'));
-                const qtyInput = document.querySelector(`.service-qty[data-service-id="${service.id}"]`);
-                if (this.checked) {
-                    qtyInput.disabled = false;
-                } else {
-                    qtyInput.disabled = true;
-                    qtyInput.value = 1;
-                }
-                updateTotalPrice();
-            });
+    function renderItemLists() {
+        const container = document.getElementById('itemListContainer');
+        container.innerHTML = '';
+        let grandQty = 0, grandPrice = 0;
+
+        allLists.forEach((list, index) => {
+            container.innerHTML += `
+      <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+        <div><strong>${list.demo_service}</strong></div>
+        <div>${list.category_name}</div>
+        <div>Qty: ${list.total_quantity}</div>
+        <div>Total: ₹${list.total_price}</div>
+        <div>
+          <button class="btn btn-sm btn-warning me-1" onclick="editList(${index})">Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteList(${index})">Delete</button>
+        </div>
+      </div>
+    `;
+            grandQty += list.total_quantity;
+            grandPrice += list.total_price;
         });
 
-        document.querySelectorAll('.service-qty').forEach(input => {
-            input.addEventListener('input', updateTotalPrice);
-        });
+        document.getElementById('grandTotalQty').innerText = grandQty;
+        document.getElementById('grandTotalPrice').innerText = grandPrice;
     }
 
-    // ✅ Calculate Total Price
-    function updateTotalPrice() {
-        let total = 0;
-        document.querySelectorAll('.service-checkbox:checked').forEach(cb => {
-            const service = JSON.parse(cb.getAttribute('data-service'));
-            const qtyInput = document.querySelector(`.service-qty[data-service-id="${service.id}"]`);
-            const qty = parseInt(qtyInput.value) || 1;
-            total += service.price * qty;
-        });
-        document.getElementById('totalPrice').innerText = '₹' + total;
+    function editList(index) {
+        const list = allLists[index];
+        document.getElementById('demoServiceSelect').value = list.demo_service;
+        document.getElementById('categorySelect').value = list.category_id;
+        openNewListPopup(index);
     }
 
-    // ✅ Submit All Selected Services
+    function deleteList(index) {
+        allLists.splice(index, 1);
+        renderItemLists();
+    }
+
     function submitPickupDetails() {
         const pickupId = document.getElementById('modalPickupId').value;
-        let items = [];
-
-        document.querySelectorAll('.service-checkbox:checked').forEach(cb => {
-            const service = JSON.parse(cb.getAttribute('data-service'));
-            const categoryId = cb.getAttribute('data-category-id');
-            const qtyInput = document.querySelector(`.service-qty[data-service-id="${service.id}"]`);
-            const qty = parseInt(qtyInput.value) || 1;
-
-            items.push({
-                category_id: categoryId,
-                service_id: service.id,
-                quantity: qty,
-                total_price: qty * service.price
-            });
-        });
-
-        if (items.length === 0) {
-            alert('Please select at least one service.');
+        if (allLists.length === 0) {
+            alert('Please add at least one list.');
             return;
         }
-
         fetch('rider/save-pickup-items', {
-                method: 'POST',
-                body: new URLSearchParams({
-                    pickup_id: pickupId,
-                    items: JSON.stringify(items)
-                })
+            method: 'POST',
+            body: new URLSearchParams({
+                pickup_id: pickupId,
+                items: JSON.stringify(allLists),
+                grand_total: document.getElementById('grandTotalPrice').innerText
             })
+        })
             .then(res => res.json())
-            .then(result => {
-                if (result.status === 'success') {
-                    alert(result.message);
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(data.message);
                     location.reload();
                 } else {
-                    alert('Error: ' + result.message);
+                    alert('Error: ' + data.message);
                 }
             });
     }

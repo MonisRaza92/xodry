@@ -11,6 +11,8 @@
         <li class="<?php echo basename($_SERVER['REQUEST_URI']) == 'admin-services' ? 'active-li' : '' ?>"><a href="admin-services"><i class="fa-solid fa-sliders"></i> Services</a></li>
         <li class="<?php echo basename($_SERVER['REQUEST_URI']) == 'admin-prices' ? 'active-li' : '' ?>"><a href="admin-prices"><i class="fa-solid fa-wallet"></i> Prices</a></li>
         <li class="<?php echo basename($_SERVER['REQUEST_URI']) == 'admin-subscriptions' ? 'active-li' : '' ?>"><a href="admin-subscriptions"><i class="fa-solid fa-money-bill-transfer"></i> Subscriptions</a></li>
+        <li class="<?php echo basename($_SERVER['REQUEST_URI']) == 'admin-discounts' ? 'active-li' : '' ?>"><a href="admin-discounts"><i class="fa-solid fa-tags"></i> Discounts</a></li>
+        <li class="<?php echo basename($_SERVER['REQUEST_URI']) == 'admin-settings' ? 'active-li' : '' ?>"><a href="admin-settings"><i class="fa-solid fa-gear"></i> Settings</a></li>
         <div class="divider-text">Extra</div>
         <div class="divider"></div>
         <li class="<?php echo basename($_SERVER['REQUEST_URI']) == 'admin-feedbacks' ? 'active-li' : '' ?>"><a href="admin-feedbacks"><i class="fa-solid fa-comments"></i> Feedbacks</a></li>

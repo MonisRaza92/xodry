@@ -1,4 +1,4 @@
-<section class="xodry-howitworks-section container-fluid py-4">
+<section class="xodry-howitworks-section container-fluid py-5 mt-3">
     <div class="container px-lg-0">
         <div class="section-heading mb-4">
             <h2 class="fw-bolder text-white">How It Works</h2>

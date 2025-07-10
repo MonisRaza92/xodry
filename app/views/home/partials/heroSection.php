@@ -1,4 +1,4 @@
-<div class="container-fluid hero-section px-lg-0">
+<div class="container-fluid hero-section px-lg-0 pb-5">
     <div class="container px-lg-0">
         <div class="row mb-4">
             <div class="hero-content col-lg-5">

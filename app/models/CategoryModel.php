@@ -21,7 +21,7 @@ class CategoryModel
     public function getAllCategories()
     {
         $stmt = $this->db->query("SELECT * FROM categories");
-        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     public function getAllCategoryForCard()
     {

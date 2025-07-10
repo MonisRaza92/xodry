@@ -1,4 +1,4 @@
-<section class="xodry-whychoose-section container-fluid py-4" style="background-color: var(--primary-color); color: var(--light-color);">
+<section class="xodry-whychoose-section container-fluid py-5" style="background-color: var(--primary-color); color: var(--light-color);">
     <div class="container px-lg-0">
         <div class="section-heading mb-4">
             <h2 class="xodry-whychoose-title text-uppercase fw-bolder text-white" data-aos="fade-up">Why Xodry?</h2>

@@ -5,7 +5,9 @@ namespace App\Controllers;
 use Core\Database;
 use App\Models\PickupsModel;
 
-class AdminController{
+class AdminController
+{
+    private $adminModel;
     private $userModel;
     private $pickupsModel;
     private $db;
@@ -14,21 +16,26 @@ class AdminController{
     private $pickupItemsModel;
 
     private $subscriptionModel;
+    private $discountModel;
 
 
-    public function __construct() {
+    public function __construct()
+    {
         $database = new Database(); // ✅ Your custom DB wrapper
         $this->db = $database->connect();
+        $this->adminModel = new \App\Models\AdminModel();
         $this->userModel = new \App\Models\UserModel($this->db);
-        $this->pickupsModel = new  PickupsModel();
+        $this->pickupsModel = new PickupsModel();
         $this->catModel = new \App\Models\CategoryModel();
         $this->serviceModel = new \App\Models\ServiceModel();
         $this->pickupItemsModel = new \App\Models\PickupItemsModel();
         $this->subscriptionModel = new \App\Models\SubscriptionModel();
+        $this->discountModel = new \App\Models\DiscountModel();
 
     }
 
-    public function index(){
+    public function index()
+    {
         if (!isset($_SESSION['user_id'])) {
             header('Location: home');
             exit();
@@ -40,10 +47,11 @@ class AdminController{
         $users = $this->userModel->getAllUsers();
         $riders = $this->userModel->getAllRiders();
         $categories = $this->catModel->getAllCategories();
-        include_once __DIR__. '/../views/admin/index.php';
+        include_once __DIR__ . '/../views/admin/index.php';
         exit();
     }
-    public function users(){
+    public function users()
+    {
         if (!isset($_SESSION['user_id'])) {
             header('Location: home');
             exit();
@@ -54,10 +62,11 @@ class AdminController{
         }
         $users = $this->userModel->getAllUsersWithPickupCount();
 
-        include_once __DIR__. '/../views/admin/adminUsers.php';
+        include_once __DIR__ . '/../views/admin/adminUsers.php';
         exit();
     }
-    public function deleteUser(){
+    public function deleteUser()
+    {
         if (!isset($_SESSION['user_id'])) {
             header('Location: home');
             exit();
@@ -78,7 +87,8 @@ class AdminController{
             echo "<script>alert('Invalid user ID');window.location.href='admin-users';</script>";
         }
     }
-    public function riders(){
+    public function riders()
+    {
         if (!isset($_SESSION['user_id'])) {
             header('Location: home');
             exit();
@@ -88,7 +98,7 @@ class AdminController{
             exit();
         }
         $riders = $this->userModel->getAllRiders();
-        include_once __DIR__. '/../views/admin/adminRiders.php';
+        include_once __DIR__ . '/../views/admin/adminRiders.php';
         exit();
     }
     public function deleteRider()
@@ -122,16 +132,19 @@ class AdminController{
         $pickupItems = $this->pickupItemsModel->getAllPickupItems(); // get all items for all pickups
         $categories = $this->catModel->getAllCategories(); // All category names
         $servicesName = $this->serviceModel->getAllServices(); // All service names
+        $pickupTotals = $this->pickupItemsModel->getAllTotals();
 
         include_once __DIR__ . '/../views/admin/adminOrders.php';
         exit();
     }
 
-    public function services(){
+    public function services()
+    {
         $catModel = new \App\Models\CategoryModel();
         $categories = $catModel->getAllCategories();
+        $demoServices = $this->serviceModel->getAllDemoServices();
 
-        include __DIR__. '/../views/admin/adminServices.php';
+        include __DIR__ . '/../views/admin/adminServices.php';
         exit();
     }
     public function prices()
@@ -141,6 +154,19 @@ class AdminController{
         $categories = $catModel->getAllCategories();
         $servicesByCategory = $serviceModel->getServicesByCategoryName();
         include_once __DIR__ . '/../views/admin/adminPrices.php';
+        exit();
+    }
+    public function discounts()
+    {
+        $discounts = $this->discountModel->getAll();
+        include_once __DIR__ . '/../views/admin/adminDiscount.php';
+        exit();
+    }
+    public function settings()
+    {
+        $images = $this->adminModel->getAllSliderImages();
+        $compare = $this->adminModel->getAllCompareImages();
+        include_once __DIR__ . '/../views/admin/adminSettings.php';
         exit();
     }
     public function addRider()
@@ -162,12 +188,38 @@ class AdminController{
             }
         }
     }
+    public function addDemoService()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $name = $_POST['name'] ?? '';
+
+            $result = $this->serviceModel->addDemoService($name);
+            if ($result === true) {
+                echo "<script>alert('Service added successfully!');window.location.href='admin-services';</script>";
+            } else {
+                echo "<script>alert('Failed to add Service: {$result}');window.location.href='admin-services';</script>";
+            }
+        }
+    }
+    public function deleteDemoService()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? '';
+
+            $result = $this->serviceModel->deleteDemoService($id);
+            if ($result === true) {
+                echo "<script>alert('Service added successfully!');window.location.href='admin-services';</script>";
+            } else {
+                echo "<script>alert('Failed to add Service: {$result}');window.location.href='admin-services';</script>";
+            }
+        }
+    }
 
     public function addCategory()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $image = 'uploads/' . $_FILES['image']['name'];
-            $uploadPath = __DIR__. '/../../public/' . $image; // full server path
+            $uploadPath = __DIR__ . '/../../public/' . $image; // full server path
 
             if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
                 // move success
@@ -372,4 +424,97 @@ class AdminController{
             exit;
         }
     }
+    // Upload Image
+    public function sliderImageAdd()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $image = 'uploads/' . $_FILES['image']['name'];
+            $uploadPath = __DIR__ . '/../../public/' . $image; // full server path
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $uploadPath)) {
+                // move success
+            } else {
+                die('Image upload failed.');
+            }
+
+            $result = $this->adminModel->sliderImageAdd($image);
+
+            if ($result) {
+                echo "<script>alert('Image added successfully!');window.location.href='admin-settings';</script>";
+            } else {
+                echo "<script>alert('Failed to add Image!');window.location.href='admin-settings';</script>";
+            }
+
+        }
+    }
+
+    // Delete Image
+    public function sliderImageDelete()
+    {
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            echo "<script>alert('ID not found');window.location.href='admin-settings';</script>";
+            exit;
+        }
+
+        $deleted = $this->adminModel->sliderImageDelete($id);
+        if ($deleted) {
+            echo "<script>alert('Image deleted successfully');window.location.href='admin-settings';</script>";
+        } else {
+            echo "<script>alert('Failed to delete Image');window.location.href='admin-settings';</script>";
+        }
+        exit;
+    }
+    // Add Before & After Image
+    public function compareImageAdd()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $before = $_FILES['before_image'];
+            $after = $_FILES['after_image'];
+
+            $beforeName = 'uploads/' . uniqid() . '_' . $before['name'];
+            $afterName = 'uploads/' . uniqid() . '_' . $after['name'];
+
+            $beforePath = __DIR__ . '/../../public/' . $beforeName;
+            $afterPath = __DIR__ . '/../../public/' . $afterName;
+
+            if (!move_uploaded_file($before['tmp_name'], $beforePath) || !move_uploaded_file($after['tmp_name'], $afterPath)) {
+                die('Image upload failed.');
+            }
+
+            $result = $this->adminModel->compareImageAdd($beforeName, $afterName);
+
+            if ($result) {
+                echo "<script>alert('Before/After images added successfully!');window.location.href='admin-settings';</script>";
+            } else {
+                echo "<script>alert('Failed to add images!');window.location.href='admin-settings';</script>";
+            }
+        }
+    }
+
+    // Delete Compare Images by ID
+    public function compareImageDelete()
+    {
+        $id = $_GET['id'] ?? null;
+
+        if (!$id) {
+            echo "<script>alert('ID not found');window.location.href='admin-settings';</script>";
+            exit;
+        }
+
+        $deleted = $this->adminModel->compareImageDelete($id);
+
+        if ($deleted) {
+            echo "<script>alert('Compare images deleted successfully!');window.location.href='admin-settings';</script>";
+        } else {
+            echo "<script>alert('Failed to delete images!');window.location.href='admin-settings';</script>";
+        }
+
+        exit;
+    }
+
+
+
 }

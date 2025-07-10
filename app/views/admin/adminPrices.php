@@ -18,23 +18,23 @@
                     <?php $pageName = "Prices";
                     include_once __DIR__ . '/../includes/breadcrumb.php' ?>
                     <div class="card my-4 custom-add-service-card">
-                        <div class="custom-card-header text-dark">
-                            Add New Service
+                        <div class="custom-card-header text-white">
+                            Add New Price
                         </div>
                         <div class="custom-card-body">
-                            <form method="post" action="admin-addServices" class="row g-3">
-                                <div class="col-12">
-                                    <label for="category_id" class="form-label">Category</label>
+                            <form method="post" action="admin-addServices" class="row g-3 text-white">
+                                <div class="col-12 text-white">
+                                    <label for="category_id" class="form-label">Service</label>
                                     <select name="category_id" id="category_id" class="form-select" required>
-                                        <option value="" disabled selected>Select Category</option>
+                                        <option value="" disabled selected>Select Service</option>
                                         <?php foreach ($categories as $cat): ?>
                                             <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['category_name']) ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label for="service_name" class="form-label">Service Name</label>
-                                    <input type="text" name="service_name" id="service_name" class="form-control" placeholder="Service Name" required>
+                                    <label for="service_name" class="form-label">Item Name</label>
+                                    <input type="text" name="service_name" id="service_name" class="form-control" placeholder="Item Name" required>
                                 </div>
                                 <div class="col-12">
                                     <label for="price" class="form-label">Price (₹)</label>
@@ -74,10 +74,10 @@
                                     <table class="custom-service-table">
                                         <thead>
                                             <tr>
-                                                <th class="text-dark">Service</th>
-                                                <th class="text-dark">Price (₹)</th>
-                                                <th class="text-dark">Action</th>
-                                                <th class="text-dark">Visible</th>
+                                                <th class="text-white">Service</th>
+                                                <th class="text-white">Price (₹)</th>
+                                                <th class="text-white">Action</th>
+                                                <th class="text-white">Visible</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -86,5 +86,9 @@
     width: 100%;
     margin-left: 0px !important;
     margin-top: 15px;
+    border-radius: 5px;
+  }
+  .hero-img{
+    padding-top: 20px;
   }
 }

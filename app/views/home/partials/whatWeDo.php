@@ -1,5 +1,5 @@
 <!-- Xodry Services Section -->
-<section class="xodry-section container-fluid">
+<section class="xodry-section container-fluid py-5">
     <div class="container text-light px-lg-0">
 
         <!-- Stats -->

@@ -18,6 +18,9 @@ $pickupItems = $pickupModel->getAllPickupItems();
 $serviceModel = new ServiceModel;
 $services = $serviceModel->getAllServices();
 
+$pickupItemsModel = new pickupItemsModel();
+$pickupTotals = $pickupItemsModel->getAllTotals();
+
 $user = HelperFunctions::userDetails();
 
 

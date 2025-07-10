@@ -16,12 +16,12 @@ $user = HelperFunctions::userDetails();
         <input type="text" name="address" placeholder="Enter Your Address"
             value="<?php echo htmlspecialchars($user['address'] ?? ''); ?>">
         <div class="d-flex gap-2 mb-3">
-            <select name="pickup_date" id="schedule_date" class="form-control">
+            <select name="pickup_date" id="schedule_date" class="form-control" style="width:60%;">
                 <option value="<?= date('d/m/Y') ?>">Today (<?= date('d/m/Y') ?>)</option>
                 <option value="<?= date('d/m/Y', strtotime('+1 day')) ?>">Tomorrow
                     (<?= date('d/m/Y', strtotime('+1 day')) ?>)</option>
             </select>
-            <select name="pickup_time" id="pickup_time" class="form-control">
+            <select name="pickup_time" id="pickup_time" class="form-control" style="width:40%;">
                 <?php
                 for ($hour = 9; $hour <= 21; $hour++) {
                     $time = DateTime::createFromFormat('H:i', "$hour:00");

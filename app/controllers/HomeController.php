@@ -8,6 +8,7 @@ use App\Models\ServiceModel; // Assuming you have a ServiceModel for services
 use App\Models\SubscriptionModel; // Assuming you have a SubscriptionModel for subscriptions
 use App\Models\PickupItemsModel; // Assuming you have a SubscriptionModel for subscriptions
 use App\Models\PickupsModel; // Assuming you have a SubscriptionModel for subscriptions
+use App\Models\AdminModel; // Assuming you have a SubscriptionModel for subscriptions
 
 class HomeController
 {
@@ -16,6 +17,7 @@ class HomeController
     private $SubscriptionModel;
     private $pickupItemModel;
     private $pickupsModel;
+    private $adminModel;
 
     public function __construct()
     {
@@ -26,12 +28,15 @@ class HomeController
         $this->SubscriptionModel = new SubscriptionModel();
         $this->pickupItemModel = new PickupItemsModel();
         $this->pickupsModel = new PickupsModel();
+        $this->adminModel = new AdminModel();
     }
 
     public function index()
     {
         $categoriesForCard = $this->catModel->getAllCategoryForCard();
         $subscriptions = $this->SubscriptionModel->getAllSubscriptions();
+        $images = $this->adminModel->getAllSliderImages();
+        $compare = $this->adminModel->getAllCompareImages();
         include_once __DIR__. '/../views/home/index.php';
         exit;
     }
