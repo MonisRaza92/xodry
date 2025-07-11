@@ -327,6 +327,20 @@ class AdminController
             }
         }
     }
+    public function updatePrice()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['service_id']; 
+            $cat_id = $_POST['category_id'];
+            $name = $_POST['service_name'];
+            $price = $_POST['price'];
+            $visibility = $_POST['visibility'];
+            $serviceModel = new \App\Models\ServiceModel();
+            $serviceModel->updateService($id, $cat_id, $name, $price, $visibility);
+            header("Location: admin-prices");
+            exit;
+        }
+    }
     public function subscriptions()
     {
         if (!isset($_SESSION['user_id'])) {

@@ -91,6 +91,8 @@
             const serviceName = document.getElementById('demoServiceSelect').value || 'Unknown';
 
             if (catId && serviceName !== 'Select') {
+                document.getElementById('categorySelect').blur();
+                document.getElementById('demoServiceSelect').blur();
                 bootstrap.Modal.getInstance(document.getElementById('addListPopup')).hide();
                 loadItemsForCategory(catId, catName, serviceName, editIndex);
             } else {
@@ -109,14 +111,16 @@
                 let html = '';
                 items.forEach(item => {
                     html += `
-        <div class="row align-items-center mb-2">
-          <div class="col-md-5">${item.service_name}</div>
-          <div class="col-md-3 d-flex align-items-center">
-            <button class="btn btn-sm btn-light me-2" onclick="changeQty(this, -1)">-</button>
-            <span class="qty-val" data-price="${item.price}" data-id="${item.id}" data-name="${item.service_name}">0</span>
-            <button class="btn btn-sm btn-light ms-2" onclick="changeQty(this, 1)">+</button>
+        <div class="row align-items-center mb-2 flex-nowrap">
+          <div class="col-5 col-md-5 text-truncate">${item.service_name}</div>
+          <div class="col-3 col-md-3">
+            <div class="input-group flex-nowrap">
+              <button class="btn btn-sm btn-light" type="button" onclick="changeQty(this, -1)">-</button>
+              <span class="qty-val input-group-text" data-price="${item.price}" data-id="${item.id}" data-name="${item.service_name}">0</span>
+              <button class="btn btn-sm btn-light" type="button" onclick="changeQty(this, 1)">+</button>
+            </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-4 col-md-4">
             <input type="text" class="form-control comment-input" placeholder="Comment (optional)">
           </div>
         </div>`;

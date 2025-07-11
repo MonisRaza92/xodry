@@ -70,6 +70,16 @@ class ServiceModel
         $stmt = $this->db->prepare("INSERT INTO services (category_id, service_name, price, visibility) VALUES (?, ?, ?, ?)");
         return $stmt->execute([$category_id, $service_name, $price, $visibility]);
     }
+
+    public function updateService($id, $category_id, $service_name, $price, $visibility)
+    {
+        $stmt = $this->db->prepare("
+            UPDATE services 
+            SET category_id = ?, service_name = ?, price = ?, visibility = ?
+            WHERE id = ?
+        ");
+        return $stmt->execute([$category_id, $service_name, $price, $visibility, $id]);
+    }
     public function deleteService($id)
     {
         $stmt = $this->db->prepare("DELETE FROM services WHERE id = ?");

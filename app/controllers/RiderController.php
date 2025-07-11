@@ -122,34 +122,39 @@ class RiderController
     public function getServices()
     {
         $categoryId = $_POST['category_id'];
+
         $services = $this->serviceModel->getServicesByCategory($categoryId);
+
+        header('Content-Type: application/json'); // ✅ Force JSON response
         echo json_encode($services);
+        exit; // ✅ Stop further output (important)
     }
+
 
     public function savePickupItems()
     {
         header('Content-Type: application/json');
-    
+
         if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'rider') {
             echo json_encode(['status' => 'error', 'message' => 'Unauthorized']);
             exit;
         }
-    
+
         $pickupId = $_POST['pickup_id'];
         $lists = json_decode($_POST['items'], true);
         $totalPrice = $_POST['grand_total'] ?? 0;
-    
+
         // ✅ Loop over all item lists
         foreach ($lists as $list) {
             $categoryId = $list['category_id'];
             $items = $list['items'];
-    
+
             foreach ($items as $item) {
                 $serviceId = $item['service_id'];
                 $quantity = $item['quantity'];
                 $price = $item['total_price'];
                 $comment = $item['comment'] ?? '';
-    
+
                 // Save each item individually
                 $this->pickupItemModel->savePickupItemWithComment(
                     $pickupId,
@@ -161,23 +166,23 @@ class RiderController
                 );
             }
         }
-    
+
         // ✅ Save total price (or with discount if added later)
         $this->pickupItemModel->saveTotalPrice($pickupId, $totalPrice);
-    
+
         // ✅ Update status
         $currentStatus = $this->riderModel->getCurrentStatus($pickupId);
         $newStatus = 'Picked Up';
         $riderId = $_SESSION['user_id'];
-    
+
         if ($this->canChangeStatus($currentStatus, $newStatus)) {
             $this->riderModel->updateStatusByRider($pickupId, $newStatus);
             $this->riderModel->insertPickupLog($pickupId, $riderId, 'Pickup', $newStatus);
-    
+
             echo json_encode(['status' => 'success', 'message' => 'Items saved and status updated to Picked Up!']);
         } else {
             echo json_encode(['status' => 'error', 'message' => 'Invalid status change!']);
         }
     }
-    
-}    
+
+}
